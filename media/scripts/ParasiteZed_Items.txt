@@ -1,0 +1,224 @@
+module Base
+{
+	item ParasiteZed_Mask
+	{
+		DisplayName = Parasite Mask,
+		ClothingItem = ParasiteZed_Mask,
+	    DisplayCategory = Accessory,
+		Icon = ParasiteZed_Mask,
+		Type = Clothing,
+        BodyLocation = ParasiteZed_Mask,
+		CanHaveHoles = false,
+		BiteDefense = 30,
+        ScratchDefense = 50,
+        BloodLocation = Head,
+        Insulation = 0.75,
+        WindResistance = 0.60,
+        WaterResistance = 1.0,
+		Tags = GasMask,
+        Weight = 0.5,
+	}
+	model ParasiteZed_Armor_Ground
+    {
+        mesh = WorldItems/ParasiteZed_Armor_Ground,
+        scale = 1,
+    }
+	item ParasiteZed_Armor
+    {
+        DisplayCategory = Bag,
+        WeightReduction	=	91,
+        Capacity	=	31,
+        Weight	=	3,
+        ClothingItemExtra = ParasiteZed_Armor_Alt,
+        ClothingItemExtraOption = ParasiteZed_ArmorAlt,
+        clothingExtraSubmenu = ParasiteZed_ArmorAlt,
+        Type	=	Container,
+        DisplayName	= Parasite Armor,
+        Icon	=	ParasiteZed_Armor,
+        OpenSound   =   OpenBag,
+        CloseSound   =   CloseBag,
+        PutInSound   =   PutItemInBag,
+        BodyLocation = ParasiteZed_Armor,
+        ClothingItem = ParasiteZed_Armor,
+        RunSpeedModifier = 0.98,
+		WorldStaticModel = ParasiteZed_Armor_Ground,
+		CanBeEquipped = Back,
+        CanHaveHoles = false,
+        AttachmentsProvided = SmallBeltLeft;SmallBeltRight,
+        BloodLocation = Bag,
+
+        Insulation = 0.45,
+        WindResistance = 0.3,
+        WaterResistance = 0.35,
+		BiteDefense = 50,
+        ScratchDefense = 60,
+
+
+    }
+	item ParasiteZed_Armor_Alt
+    {
+        DisplayCategory = Bag,
+        WeightReduction	=	91,
+        Capacity	=	31,
+        Weight	=	3,
+        ClothingItemExtra = ParasiteZed_Armor,
+        ClothingItemExtraOption = ParasiteZed_ArmorAlt,
+        clothingExtraSubmenu = ParasiteZed_ArmorAlt,
+        Type	=	Container,
+        DisplayName	= Parasite Armor,
+        Icon	=	ParasiteZed_Armor,
+        OpenSound   =   OpenBag,
+        CloseSound   =   CloseBag,
+        PutInSound   =   PutItemInBag,
+        BodyLocation = ParasiteZed_Armor,
+        ClothingItem = ParasiteZed_Armor_Alt,
+        RunSpeedModifier = 0.98,
+        WorldStaticModel = ParasiteZed_Armor_Ground,
+		CanBeEquipped = Back,
+        CanHaveHoles = false,
+        AttachmentsProvided = SmallBeltLeft;SmallBeltRight,
+        BloodLocation = Bag,
+
+        Insulation = 0.45,
+        WindResistance = 0.3,
+        WaterResistance = 0.35,
+		BiteDefense = 50,
+        ScratchDefense = 60,
+
+    }
+	model ParasiteZed_Spear
+	{
+		mesh = weapons/2handed/ParasiteZed_Spear,
+
+		attachment world
+		{
+			offset = -0.0150 -0.2350 0.0550,
+			rotate = 90.0000 0.0000 0.0000,
+		}
+
+		attachment BigWeapon
+		{
+			offset = 0.0160 0.7410 -0.1900,
+			rotate = 142.0000 0.0000 0.0000,
+		}
+	}
+	item ParasiteZed_Spear
+    {
+        DisplayCategory = WeaponCrafted,
+        MaxRange	=	1.55,
+        WeaponSprite	=	ParasiteZed_Spear,
+        MinAngle	=	0.8,
+        Type	=	Weapon,
+        MinimumSwingTime	=	2,
+        KnockBackOnNoDeath	=	FALSE,
+        SwingAmountBeforeImpact	=	0.02,
+        Categories	=	Improvised;Spear,
+        ConditionLowerChanceOneIn	=	10,
+        Weight	=	3.9,
+        SplatNumber	=	2,
+        PushBackMod	=	0.3,
+        SubCategory	=	Spear,
+        ConditionMax	=	30,
+        MaxHitCount	=	5,
+        DoorDamage	=	40,
+        SwingAnim	=	Spear,
+        DisplayName	=	Parasite Scythe,
+        MinRange	=	0.98,
+        SwingTime	=	2,
+        KnockdownMod	=	0,
+        SplatBloodOnNoDeath	=	FALSE,
+        Icon	=	ParasiteZed_Spear,
+        RunAnim	=	Run_Weapon2,
+        IdleAnim	=	Idle_Weapon2,
+        TwoHandWeapon = TRUE,
+        CriticalChance	=	30,
+        CritDmgMultiplier = 10,
+        MinDamage	=	1.7,
+        MaxDamage	=	3.4,
+        BaseSpeed = 0.9,
+        DamageCategory = Slash,
+        DamageMakeHole = TRUE,
+		TreeDamage  =   55,
+		BreakSound  =   WoodenLanceBreak,
+        HitFloorSound	=	WoodenLanceHit,
+        ImpactSound	=	WoodenLanceHit,
+        DoorHitSound = WoodenLanceHit,
+        HitSound	=	WoodenLanceHit,
+        SwingSound	=	WoodenLanceSwing,
+        SoundMap = SpearStab WoodenLanceStab,
+
+		AttachmentType = BigWeapon,
+        Tags = FishingSpear,
+    }
+
+	item ParasiteZed_Sword
+    {
+        DisplayName	=	Parasite Sword,
+
+        DisplayCategory = Weapon,
+        MaxRange	=	1.4,
+        WeaponSprite	=	ParasiteZed_Sword,
+        MinAngle	=	0.8,
+        Type	=	Weapon,
+        MinimumSwingTime	=	3,
+        HitFloorSound	=	KatanaHit,
+		ImpactSound	=	KatanaHit,
+        DoorHitSound = KatanaHit,
+		HitSound	=	KatanaHit,
+		SwingSound = KatanaSwing,
+        KnockBackOnNoDeath = TRUE,
+        SwingAmountBeforeImpact	=	0.02,
+        Categories	=	LongBlade,
+        isSword = true,
+        Weight	=	2,
+        ConditionLowerChanceOneIn	=	15,
+        PushBackMod	=	0.5,
+        SubCategory	=	Swinging,
+        ConditionMax	=	10,
+        MaxHitCount	=	3,
+        DoorDamage	=	8,
+        SwingAnim	=	Bat,
+        CriticalChance	=	35,
+        CritDmgMultiplier = 6,
+        MinRange	=	0.61,
+        SwingTime	=	3,
+        HitAngleMod	=	-30,
+        KnockdownMod	=	0,
+        Icon	=	ParasiteZed_Sword,
+        RunAnim	=	Run_Weapon2,
+        BreakSound  =   KatanaBreak,
+        TreeDamage  =   1,
+        CriticalChance	=	30,
+        CritDmgMultiplier = 10,
+        MinDamage	=	8,
+        MaxDamage	=	8,
+        BaseSpeed = 1,
+        WeaponLength = 0.3,
+        DamageCategory = Slash,
+        DamageMakeHole = TRUE,
+        TwoHandWeapon = TRUE,
+        WeaponLength = 0.4,
+        AttachmentType = Nightstick,
+    }
+	model ParasiteZed_Sword
+	{
+		mesh = weapons/2handed/ParasiteZed_Sword,
+
+		attachment world
+		{
+			offset = 0.0290 0.2780 0.0200,
+			rotate = 180.0000 0.0000 180.0000,
+		}
+
+		attachment Nightstick
+		{
+			offset = 0.00 -0.000 -0.0,
+			rotate = 0.0000 0.0000 0.0000,
+		}
+	}
+
+
+
+
+
+}

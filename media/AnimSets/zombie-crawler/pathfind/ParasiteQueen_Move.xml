@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<animNode>
+	<m_Name>Insect_Step</m_Name>
+	<m_AnimName>Queen_Crawl</m_AnimName>
+	<m_deferredBoneAxis>Y</m_deferredBoneAxis>
+	<m_SpeedScale>0.05</m_SpeedScale>
+
+	<m_BlendTime>0.20</m_BlendTime>
+	<m_Conditions>
+		<m_Name>bMoving</m_Name>
+		<m_Type>BOOL</m_Type>
+		<m_BoolValue>true</m_BoolValue>
+	</m_Conditions>
+
+	<m_Conditions>
+		<m_Name>isParasiteQueen</m_Name>
+		<m_Type>BOOL</m_Type>
+		<m_BoolValue>true</m_BoolValue>
+	</m_Conditions>
+</animNode>

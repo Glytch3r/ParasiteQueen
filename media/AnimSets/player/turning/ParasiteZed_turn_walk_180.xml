@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<animNode x_extends="ParasiteZed_turn_walk.xml">
+	<m_Name>ParasiteZed_turn_walk_180</m_Name>
+	<m_Looped>false</m_Looped>
+	<m_EarlyTransitionOut>false</m_EarlyTransitionOut>
+	<m_Conditions />
+	<m_Conditions />
+	<m_Conditions />
+	<m_Conditions>
+		<m_Name>isTurningAround</m_Name>
+		<m_Type>BOOL</m_Type>
+		<m_BoolValue>true</m_BoolValue>
+	</m_Conditions>
+	<m_Conditions>
+		<m_Name>momentumScalar</m_Name>
+		<m_Type>GTR</m_Type>
+		<m_FloatValue>0.999</m_FloatValue>
+	</m_Conditions>
+	<m_Transitions />
+	<m_Transitions>
+		<m_Target>ParasiteZed_Idle</m_Target>
+		<m_blendInTime>0.1</m_blendInTime>
+	</m_Transitions>
+	<m_Conditions>
+		<m_Name>isParasitePl</m_Name>
+		<m_Type>STRING</m_Type>
+		<m_StringValue>true</m_StringValue>
+	</m_Conditions>
+</animNode>

@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<animNode x_extends="ParasiteZed_turn_run_sneaklow.xml">
+	<m_Name>ParasiteZed_turn_idleToRun_sneaklow_180</m_Name>
+	<m_Looped>false</m_Looped>
+	<m_EarlyTransitionOut>true</m_EarlyTransitionOut>
+	<m_Conditions>
+		<m_Name>isParasitePl</m_Name>
+		<m_Type>STRING</m_Type>
+		<m_StringValue>true</m_StringValue>
+	</m_Conditions>
+</animNode>

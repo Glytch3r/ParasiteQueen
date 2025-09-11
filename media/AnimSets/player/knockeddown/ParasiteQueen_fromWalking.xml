@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<animNode x_extends="ParasiteQueen_Roll.xml">
+	<m_Name>ParasiteQueen_fromWalking</m_Name>
+	<m_Conditions>
+		<m_Name>ismoving</m_Name>
+	</m_Conditions>
+	<m_Conditions>
+		<m_Name>fromBehind</m_Name>
+		<m_Type>STRING</m_Type>
+		<m_StringValue />
+	</m_Conditions>
+
+	<m_Conditions>
+		<m_Name>isParasiteQueenPl</m_Name>
+		<m_Type>BOOL</m_Type>
+		<m_BoolValue>true</m_BoolValue>
+	</m_Conditions>
+
+</animNode>

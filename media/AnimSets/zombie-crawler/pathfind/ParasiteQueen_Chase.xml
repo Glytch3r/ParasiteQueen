@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<animNode x_extends="ParasiteQueen_Move.xml">
+	<m_Name>Insect_Chase</m_Name>
+	<m_AnimName>Insect_Chase</m_AnimName>
+	<m_SpeedScale>0.05</m_SpeedScale>
+
+	<m_Conditions />
+	<m_Conditions>
+		<m_Name>CrawlerType</m_Name>
+		<m_Type>EQU</m_Type>
+		<m_FloatValue>2</m_FloatValue>
+	</m_Conditions>
+
+	<m_Conditions>
+		<m_Name>isParasiteQueen</m_Name>
+		<m_Type>BOOL</m_Type>
+		<m_BoolValue>true</m_BoolValue>
+	</m_Conditions>
+</animNode>

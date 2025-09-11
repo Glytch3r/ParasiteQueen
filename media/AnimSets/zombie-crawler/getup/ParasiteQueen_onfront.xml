@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<animNode x_extends="ParasiteQueen_onback.xml">
+	<m_Name>ParasiteQueen_onfront</m_Name>
+	<m_AnimName>Insect_Climb</m_AnimName>
+	<m_deferredBoneAxis>Y</m_deferredBoneAxis>
+
+	<m_Conditions />
+	<m_Conditions />
+	<m_Conditions>
+		<m_Name>fallOnFront</m_Name>
+		<m_Type>BOOL</m_Type>
+		<m_BoolValue>true</m_BoolValue>
+	</m_Conditions>
+	<m_Conditions>
+		<m_Name>SprinterTripped</m_Name>
+		<m_Type>BOOL</m_Type>
+		<m_BoolValue>false</m_BoolValue>
+	</m_Conditions>
+	<m_Events>
+		<m_TimePc>0.7</m_TimePc>
+	</m_Events>
+	<m_Conditions>
+		<m_Name>isParasiteQueen</m_Name>
+		<m_Type>BOOL</m_Type>
+		<m_BoolValue>true</m_BoolValue>
+	</m_Conditions>
+</animNode>

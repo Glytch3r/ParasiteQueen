@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<animNode x_extends="ParasiteZed_turn_idle.xml">
+	<m_Name>ParasiteZed_turn_idle_90</m_Name>
+	<m_Conditions />
+	<m_Conditions />
+	<m_Conditions />
+	<m_Conditions>
+		<m_Name>isTurningAround</m_Name>
+		<m_Type>BOOL</m_Type>
+		<m_BoolValue>false</m_BoolValue>
+	</m_Conditions>
+	<m_Conditions>
+		<m_Name>isParasitePl</m_Name>
+		<m_Type>STRING</m_Type>
+		<m_StringValue>true</m_StringValue>
+	</m_Conditions>
+</animNode>

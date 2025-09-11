@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<animNode x_extends="aimsneak_default.xml">
+	<m_Name>ParasiteQueen_strafesneak</m_Name>
+	<m_AnimName>Insect_Step</m_AnimName>
+	<m_Conditions>
+		<m_Name>isParasiteQueenPl</m_Name>
+		<m_Type>BOOL</m_Type>
+		<m_BoolValue>true</m_BoolValue>
+	</m_Conditions>
+	<m_Conditions>
+		<m_Name>ismoving</m_Name>
+		<m_Type>BOOL</m_Type>
+		<m_BoolValue>true</m_BoolValue>
+	</m_Conditions>
+
+</animNode>

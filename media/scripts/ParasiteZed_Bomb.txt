@@ -1,0 +1,25 @@
+module Base
+{
+	model ParasiteZed_BugBomb
+	{
+		mesh = WorldItems/PipeBombSensor,
+		texture = weapons/ParasiteZed_BugBomb,
+		scale = 0.6,
+	}
+
+
+	item ParasiteZed_BugBomb
+	{
+		DisplayName = Parasite Bug Bomb,
+        DisplayCategory = Material,
+		Icon = ParasiteZed_BugBomb,
+		Type = Normal,
+        Weight = 0.5,
+        WorldStaticModel  = ParasiteZed_BugBomb,
+        Tooltip = Pesticide Bomb capable of destroying Parasite Nests,
+
+	}
+
+}
+
+

@@ -1,0 +1,29 @@
+ContextMenu_EN = {
+
+	ContextMenu_ParasiteZed_Debug = "Parasite Zed Debug",
+	ContextMenu_ParasiteZed_Skin = "Skin",
+	ContextMenu_ParasiteZed_WearSkin = "Wear Skin",
+	ContextMenu_ParasiteZed_WearQueenSkin = "Wear Queen Skin",
+	ContextMenu_ParasiteZed_RemoveSkin = "Remove Skin",
+	ContextMenu_ParasiteZed_Spawn = "Spawn Parasite Queen",
+
+	ContextMenu_ParasiteZed_Emote = "Emote",
+	ContextMenu_ParasiteZed_Despawn = "Despawn",
+	ContextMenu_ParasiteZed_KillQueen  = "Kill Nearby Queen Parasite",
+	ContextMenu_ParasiteZed_KillParasite = "Kill Nearby Parasite Zeds",
+	ContextMenu_ParasiteZed_KillOther = "Kill Other Nearby Zeds",
+	ContextMenu_ParasiteZed_Infected = "Infected",
+	ContextMenu_ParasiteZed_TimeLeft= "Time Left",
+	ContextMenu_ParasiteZed_Clear = "Clear Parasite Infection",
+	ContextMenu_ParasiteZed_DebugPrints = "Admin Debug Prints",
+	ContextMenu_ParasiteZed_ClipXY = "Clip Coordinates",
+	ContextMenu_ParasiteZed_ClipXYTip = "Stores X and Y Coordinates to Clipboard. For Setting Up Nest Locations Option",
+	ContextMenu_ParasiteZed_ArmorAlt = "Armor Style",
+	ContextMenu_ParasiteZed_Bomb = "Place Bug Bomb",
+}
+
+
+
+
+
+

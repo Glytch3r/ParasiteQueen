@@ -1,0 +1,142 @@
+VERSION = 1,
+
+
+
+
+
+
+option ParasiteZed_Queen.EMP
+{
+	type = boolean, default = true,
+	page = ParasiteZed_Queen, translation = ParasiteZed_Queen_EMP,
+}
+
+
+option ParasiteZed_Queen.InfectionChance
+{
+    type = double, min = 0, max = 100, default = 100,
+	page = ParasiteZed_Queen, translation = ParasiteZed_Queen_InfectionChance,
+}
+
+option ParasiteZed_Queen.ParasiteInfection
+{
+    type = double, min = 0, max = 86400, default = 1440,
+	page = ParasiteZed_Queen, translation = ParasiteZed_Queen_ParasiteInfection,
+}
+
+option ParasiteZed_Queen.ParasiteImmunity
+{
+    type = double, min = 0, max = 8064, default = 3,
+	page = ParasiteZed_Queen, translation = ParasiteZed_Queen_ParasiteImmunity,
+}
+
+option ParasiteZed_Queen.DistToChase
+{
+	type = double,	 min = 0,  max = 40,  default = 6,
+	page = ParasiteZed_Queen, translation = ParasiteZed_Queen_DistToChase,
+}
+
+option ParasiteZed_Queen.SeenTime
+{
+	type = double,	 min = 0,  max = 40,  default = 4,
+	page = ParasiteZed_Queen, translation = ParasiteZed_Queen_SeenTime,
+}
+
+option ParasiteZed_Queen.AlertIndicator
+{
+	type = string, default = !,
+	page = ParasiteZed_Queen, translation = ParasiteZed_Queen_AlertIndicator,
+}
+
+option ParasiteZed_Queen.SFXRate
+{
+    type = double, min = 0, max = 100, default = 0.8,
+	page = ParasiteZed_Queen, translation = ParasiteZed_Queen_SFXRate,
+}
+
+option ParasiteZed_Queen.SpawnRate
+{
+	type = double,	 min = 0,  max = 100,  default = 1,
+	page = ParasiteZed_Queen, translation = ParasiteZed_Queen_SpawnRate,
+}
+
+option ParasiteZed_Queen.DeathRewards
+{
+	type = string, default = Base.Machete;Base.Katana,
+	page = ParasiteZed_Queen, translation = ParasiteZed_Queen_DeathRewards,
+}
+
+option ParasiteZed_Queen.DropRate
+{
+    type = double, min = 0, max = 100, default = 20,
+	page = ParasiteZed_Queen, translation = ParasiteZed_Queen_DropRate,
+}
+
+option ParasiteZed_Queen.DeathSpawn
+{
+	type = boolean, default = true,
+	page = ParasiteZed_Queen, translation = ParasiteZed_Queen_DeathSpawn,
+}
+
+option ParasiteZed_Queen.PlayerInfectPlayer
+{
+	type = boolean, default = true,
+	page = ParasiteZed_Queen, translation = ParasiteZed_Queen_PlayerInfectPlayer,
+}
+
+
+option ParasiteZed_Queen.KillsToLearnCraftDummy
+{
+	type = integer, min = 0, max = 1000, default = 100,
+	page = ParasiteZed_Queen, translation = ParasiteZed_Queen_KillsToLearnCraftDummy,
+}
+option ParasiteZed_Queen.KillsToLearnCraftSword
+{
+	type = integer, min = 0, max = 1000, default = 85,
+	page = ParasiteZed_Queen, translation = ParasiteZed_Queen_KillsToLearnCraftSword,
+}
+option ParasiteZed_Queen.KillsToLearnCraftArmor
+{
+	type = integer, min = 0, max = 1000, default = 70,
+	page = ParasiteZed_Queen, translation = ParasiteZed_Queen_KillsToLearnCraftArmor,
+}
+option ParasiteZed_Queen.KillsToLearnCraftSpear
+{
+	type = integer, min = 0, max = 1000, default = 60,
+	page = ParasiteZed_Queen, translation = ParasiteZed_Queen_KillsToLearnCraftSpear,
+}
+option ParasiteZed_Queen.KillsToLearnCraftEgg
+{
+	type = integer, min = 0, max = 1000, default = 50,
+	page = ParasiteZed_Queen, translation = ParasiteZed_Queen_KillsToLearnCraftEgg,
+}
+
+option ParasiteZed_Queen.KillsToLearnCraftMask
+{
+	type = integer, min = 0, max = 1000, default = 40,
+	page = ParasiteZed_Queen, translation = ParasiteZed_Queen_KillsToLearnCraftMask,
+}
+
+option ParasiteZed_Queen.KillsToLearnCraftTrophy
+{
+	type = integer, min = 0, max = 1000, default = 30,
+	page = ParasiteZed_Queen, translation = ParasiteZed_Queen_KillsToLearnCraftTrophy,
+}
+option ParasiteZed_Queen.KillsToLearnCraftAnatomy
+{
+	type = integer, min = 0, max = 1000, default = 20,
+	page = ParasiteZed_Queen, translation = ParasiteZed_Queen_KillsToLearnCraftAnatomy,
+}
+
+option ParasiteZed_Queen.KillsToLearnAntiParasitic
+{
+	type = integer, min = 0, max = 1000, default = 200,
+	page = ParasiteZed_Queen, translation = ParasiteZed_Queen_KillsToLearnAntiParasitic,
+}
+
+option ParasiteZed_Queen.KillsToLearnBugBomb
+{
+	type = integer, min = 0, max = 1000, default = 110,
+	page = ParasiteZed_Queen, translation = ParasiteZed_Queen_KillsToLearnBugBomb,
+}
+

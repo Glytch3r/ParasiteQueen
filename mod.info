@@ -1,0 +1,11 @@
+id=ParasiteQueen
+name=ParasiteQueen
+description=ParasiteQueen
+poster=poster.png
+authors=Glytch3r
+tags=Build 41
+versionMin=41.0
+
+
+tiledef=ParasiteZedNest 111
+pack=ParasiteZedNest

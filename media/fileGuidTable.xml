@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<fileGuidTable>
+	<files>
+		<path>media/clothing/clothingItems/ParasiteZed.xml</path>
+		<guid>938cff2d-4d77-4e4c-a938-c35ef10590f5</guid>
+	</files>
+	<files>
+		<path>media/clothing/clothingItems/ParasiteZed_Queen.xml</path>
+		<guid>267e5392-436d-4a5e-b4ad-95a91345033e</guid>
+	</files>
+
+
+	<files>
+		<path>media/clothing/clothingItems/ParasiteZed_Armor.xml</path>
+		<guid>d77ae517-29bb-4fd7-9945-6e54f31a2367</guid>
+	</files>
+	<files>
+		<path>media/clothing/clothingItems/ParasiteZed_Armor_Alt.xml</path>
+		<guid>9d036b88-7b56-4076-9702-953f70a7490b</guid>
+	</files>
+
+	<files>
+		<path>media/clothing/clothingItems/ParasiteZed_Mask.xml</path>
+		<guid>6cfc0951-7a60-4eed-ba44-d07747953af3</guid>
+	</files>
+</fileGuidTable>

@@ -1,0 +1,163 @@
+module Base {
+
+
+	/* -----------------------   items* recipe* craft*        --------------------------- */
+
+
+    recipe Craft Parasite Spear
+    {
+        SpearCrafted,
+        keep [Recipe.GetItemTypes.Screwdriver],
+        ParasiteZed_Metasoma,
+        ParasiteZed_Aculeus,
+
+        Screws=4,
+        Result:ParasiteZed_Spear,
+        Time:100.0,
+        OnCreate:Recipe.OnCreate.UpgradeSpear,
+        Category:Survivalist,
+		NeedToBeLearn:true,
+        OnGiveXP:Recipe.OnGiveXP.WoodWork5,
+        SkillRequired:Woodwork=3,
+        AnimNode:Disassemble,
+        Prop1:Source=2,
+
+    }
+
+    recipe Craft Parasite Armor
+    {
+        keep [Recipe.GetItemTypes.Scissors],
+        keep [Recipe.GetItemTypes.SewingNeedle],
+        Thread=5,
+        ParasiteZed_HeadCapsule,
+        ParasiteZed_Mandibles=2,
+        ParasiteZed_HindLimb=2,
+        ParasiteZed_Raptorial=2,
+        Jacket_Padded,
+        LeatherStrips=4,
+
+        Result:ParasiteZed_Armor,
+        AnimNode:RipSheets,
+        Sound:ClothesRipping,
+        Time:120.0,
+        Category:Survivalist,
+        SkillRequired:Tailoring=5,
+		NeedToBeLearn:true,
+    }
+
+    recipe Craft Parasite Sword
+    {
+        BlowTorch=2,
+        keep [Recipe.GetItemTypes.WeldingMask],
+        ParasiteZed_Metasoma=8,
+        ParasiteZed_Aculeus=3,
+        MetalPipe,
+        SheetMetal,
+        Result:ParasiteZed_Sword,
+        Time:100.0,
+        Category:Survivalist,
+        SkillRequired:MetalWelding=4,
+        OnGiveXP:Recipe.OnGiveXP.MetalWelding25,
+		NeedToBeLearn:true,
+
+    }
+
+    recipe Craft Parasite Mask
+    {
+        ParasiteZed_HeadCapsule,
+        ParasiteZed_Mandibles=2,
+        keep [Recipe.GetItemTypes.Scissors],
+        keep [Recipe.GetItemTypes.SewingNeedle],
+        Thread=5,
+        Button=2,
+        LeatherStrips=8,
+        Result:ParasiteZed_Mask,
+        AnimNode:RipSheets,
+        Sound:ClothesRipping,
+        Time:120.0,
+        Category:Survivalist,
+        SkillRequired:Tailoring=3,
+		NeedToBeLearn:true,
+    }
+
+
+
+    /* -----------------------     moevables* craft*  recipe*      --------------------------- */
+
+    recipe Preserved Parasite Egg
+    {
+        ParasiteZed_Exosac=10,
+        AlcoholWipes=2,
+        Needle,
+        Thread,
+        WoodenStick,
+        Category:Survivalist,
+        SkillRequired:Tailoring=3,
+        Time:300,
+        Result:Mov_ParasiteEgg,
+		NeedToBeLearn:true,
+    }
+
+
+    recipe Construct Parasite Dummy
+    {
+        /* ParasiteZed_Exosac, */
+        ParasiteZed_Mandibles=2,
+        ParasiteZed_Raptorial=2,
+        ParasiteZed_HindLimb=2,
+        ParasiteZed_HeadCapsule,
+        ParasiteZed_Metasoma,
+        ParasiteZed_Aculeus,
+        ParasiteZed_DorsalVessel,
+        Category:Survivalist,
+        SkillRequired:Maintenance=4,
+        Time:400,
+        Result:Mov_ParasiteDummy,
+		NeedToBeLearn:true,
+    }
+
+    recipe Craft Parasite Head Trophy
+    {
+        ParasiteZed_HeadCapsule,
+        ParasiteZed_Mandibles=2,
+        keep [Recipe.GetItemTypes.Hammer],
+        Nails=2,
+        WoodenPlank,
+        Category:Survivalist,
+        Time:200,
+        Result:Mov_ParasiteHead,
+        SkillRequired:Woodwork=4,
+        Sound:Hammering,
+		NeedToBeLearn:true,
+    }
+
+
+    recipe Paint Parasite Anatomy
+    {
+        keep Paintbrush,
+        HairDyeRed=4,
+        HairDyeBlack=2,
+        HairDyeWhite=2,
+        HairDyePink,
+        HairDyeYellow,
+        Frame,
+        Category:Survivalist,
+        Time:150,
+        Result:Mov_ParasiteAnatomy,
+		NeedToBeLearn:true,
+
+    }
+
+
+    recipe Craft Pesticide Bomb
+    {
+		ParasiteZed_DorsalVessel/ParasiteZed_Aculeus,
+		ParasiteZed_Exosac,
+		SmokeBomb,
+		Result:ParasiteZed_BugBomb,
+		Time:80.0,
+		NeedToBeLearn:true,
+		Category:Engineer,
+    }
+
+}

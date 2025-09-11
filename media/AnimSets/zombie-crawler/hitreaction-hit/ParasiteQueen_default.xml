@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<animNode>
+	<m_Name>ParasiteQueen_default</m_Name>
+	<m_AnimName>Insect_Hurt</m_AnimName>
+	<m_SpeedScale>0.23</m_SpeedScale>
+	<m_BlendTime>0.04</m_BlendTime>
+
+	<m_Conditions>
+		<m_Name>isParasiteQueen</m_Name>
+		<m_Type>BOOL</m_Type>
+		<m_BoolValue>true</m_BoolValue>
+	</m_Conditions>
+</animNode>

@@ -1,0 +1,48 @@
+module Base
+{
+
+	item Mov_ParasiteEgg
+	{
+		DisplayName = Parasite Egg,
+		WorldObjectSprite = ParasiteZedNest_8,
+		DisplayCategory = Furniture,
+		Type = Moveable,
+		Icon = ParasiteZed_Exosac,
+		Weight = 1,
+		Tooltip = A preserved cocoon holding a dormant embryonic parasite,
+	}
+
+	item Mov_ParasiteDummy
+	{
+		DisplayName = Parasite Dummy,
+		WorldObjectSprite = ParasiteZedNest_10,
+		DisplayCategory = Furniture,
+		Type = Moveable,
+		Icon = ParasiteZed,
+		Weight = 1.5,
+		Tooltip = A life-sized sculpture of a Parasite Zed used for research or intimidation,
+	}
+
+	item Mov_ParasiteHead
+	{
+		DisplayName = Parasite Head,
+		WorldObjectSprite = ParasiteZedNest_12,
+		DisplayCategory = Furniture,
+		Type = Moveable,
+		Icon = ParasiteZed_HeadCapsule,
+		Weight = 0.4,
+		Tooltip = A mounted parasite cranium displayed like a hunter's trophy,
+	}
+
+	item Mov_ParasiteAnatomy
+	{
+		DisplayName = Parasite Anatomy,
+		WorldObjectSprite = ParasiteZedNest_14,
+		DisplayCategory = Furniture,
+		Type = Moveable,
+		Icon = ParasiteZed_Corpse,
+		Weight = 0.2,
+		Tooltip = An anatomical diagram detailing the biological structure of Parasite Zed,
+	}
+
+}

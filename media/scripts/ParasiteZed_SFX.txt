@@ -1,0 +1,19 @@
+
+module Base {
+
+	sound  ParasiteZed_Buzz1 { category = UI, clip { file = media/sound/ParasiteZed_Buzz1.ogg, distanceMax = 80, is3D = true, volume = 0.5, maxGain = 1, maxInstancesPerEmitter = 2, } }
+	sound  ParasiteZed_Buzz2 { category = UI, clip { file = media/sound/ParasiteZed_Buzz2.ogg, distanceMax = 80, is3D = true, volume = 0.5, maxGain = 1, maxInstancesPerEmitter = 2, } }
+	sound  ParasiteZed_Confused { category = UI, clip { file = media/sound/ParasiteZed_Confused.ogg, distanceMax = 80, is3D = true, volume = 0.5, maxGain = 1, maxInstancesPerEmitter = 2, } }
+	sound  ParasiteZed_Distant { category = UI, clip { file = media/sound/ParasiteZed_Distant.ogg, distanceMax = 80, is3D = true, volume = 0.5, maxGain = 1, maxInstancesPerEmitter = 2, } }
+	sound  ParasiteZed_Hurt { category = UI, clip { file = media/sound/ParasiteZed_Hurt.ogg, distanceMax = 80, is3D = true, volume = 0.5, maxGain = 1, maxInstancesPerEmitter = 2, } }
+	sound  ParasiteZed_Phrase1 { category = UI, clip { file = media/sound/ParasiteZed_Phrase1.ogg, distanceMax = 80, is3D = true, volume = 0.5, maxGain = 1, maxInstancesPerEmitter = 2, } }
+	sound  ParasiteZed_Phrase2 { category = UI, clip { file = media/sound/ParasiteZed_Phrase2.ogg, distanceMax = 80, is3D = true, volume = 0.5, maxGain = 1, maxInstancesPerEmitter = 2, } }
+	sound  ParasiteZed_Phrase3 { category = UI, clip { file = media/sound/ParasiteZed_Phrase3.ogg, distanceMax = 80, is3D = true, volume = 0.5, maxGain = 1, maxInstancesPerEmitter = 2, } }
+	sound  ParasiteZed_Phrase4 { category = UI, clip { file = media/sound/ParasiteZed_Phrase4.ogg, distanceMax = 80, is3D = true, volume = 0.5, maxGain = 1, maxInstancesPerEmitter = 2, } }
+	sound  ParasiteZed_Stutter1 { category = UI, clip { file = media/sound/ParasiteZed_Stutter1.ogg, distanceMax = 80, is3D = true, volume = 0.5, maxGain = 1, maxInstancesPerEmitter = 2, } }
+	sound  ParasiteZed_Stutter2 { category = UI, clip { file = media/sound/ParasiteZed_Stutter2.ogg, distanceMax = 80, is3D = true, volume = 0.5, maxGain = 1, maxInstancesPerEmitter = 2, } }
+	sound  ParasiteZed_BugBomb { category = UI, clip { file = media/sound/ParasiteZed_BugBomb.ogg, distanceMax = 80, is3D = true, volume = 0.5, maxGain = 1, maxInstancesPerEmitter = 2, } }
+
+}
+
+

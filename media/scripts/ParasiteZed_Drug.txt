@@ -1,0 +1,45 @@
+module Base
+{
+	model ParasiteZed_AntiParasitic
+    {
+        mesh = WorldItems/PillBottle,
+        texture = ParasiteZed_AntiParasitic,
+        scale = 0.45,
+    }
+
+    item ParasiteZed_AntiParasitic
+	{
+	    DisplayCategory = FirstAid,
+		Weight	=	0.2,
+		Type	=	Drainable,
+        UseDelta	=	0.1,
+		UseWhileEquipped	=	FALSE,
+		DisplayName	=	Anti Parasitic,
+		Icon	=	ParasiteZed_AntiParasitic,
+		Tooltip = Grants temporary immunity against Parasite Infection,
+		StaticModel = PillBottle,
+		WorldStaticModel = ParasiteZed_AntiParasitic,
+		Medical = TRUE,
+	}
+
+	recipe Synthesize Anti Parasitic Medication
+    {
+        ParasiteZed_DorsalVessel,
+        ParasiteZed_Exosac=5,
+        AlcoholWipes=4,
+        Thread,
+        keep [Recipe.GetItemTypes.Syringe],
+        keep [Recipe.GetItemTypes.Scissors],
+        EmptyJar,
+
+        Result:ParasiteZed_AntiParasitic,
+        Category:Survivalist,
+        Time:180,
+
+        SkillRequired:FirstAid=4,
+        OnGiveXP:Recipe.OnGiveXP.Doctor15,
+        NeedToBeLearn:true,
+        AnimNode:Bandage,
+    }
+
+}

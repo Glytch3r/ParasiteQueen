@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<animNode x_extends="ParasiteQueen_turn_walk_sneak.xml">
+	<m_Name>ParasiteQueen_turn_idleToWalk_sneak_180</m_Name>
+	<m_EarlyTransitionOut>true</m_EarlyTransitionOut>
+	<m_Transitions />
+	<m_Transitions>
+		<m_Target>ParasiteQueen_sneakIdle</m_Target>
+		<m_blendInTime>0.1</m_blendInTime>
+	</m_Transitions>
+	<m_Conditions>
+		<m_Name>isParasiteQueenPl</m_Name>
+		<m_Type>STRING</m_Type>
+		<m_StringValue>true</m_StringValue>
+	</m_Conditions>
+</animNode>

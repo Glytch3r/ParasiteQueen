@@ -1,0 +1,96 @@
+module Base
+{
+
+	/* -----------------------     materials*       --------------------------- */
+
+    item ParasiteZed_Exosac
+    {
+        DisplayName = Parasite Exosac,
+        Icon = ParasiteZed_Exosac,
+        WorldStaticModel = ParasiteZed_Exosac,
+        DisplayCategory = Material,
+        Weight = 0.4,
+        Type = Normal,
+        Tooltip = A hardened biological pod woven to protect embryonic parasites,
+    }
+
+    item ParasiteZed_Mandibles
+    {
+        DisplayName = Parasite Mandibles,
+        Icon = ParasiteZed_Mandibles,
+        WorldStaticModel = ParasiteZed_Mandibles,
+        DisplayCategory = Material,
+        Weight = 0.5,
+        Type = Normal,
+        Tooltip = Interlocking pincers built to shear through flesh and exoskeletons,
+    }
+
+    item ParasiteZed_Raptorial
+    {
+        DisplayName = Parasite Raptorial Limb,
+        Icon = ParasiteZed_Raptorial,
+        WorldStaticModel = ParasiteZed_Raptorial,
+        DisplayCategory = Material,
+        Weight = 1.0,
+        Type = Normal,
+        Tooltip = A scythe-edged limb adapted for swift predatory strikes,
+    }
+
+    item ParasiteZed_HeadCapsule
+    {
+        DisplayName = Parasite Head Capsule,
+        Icon = ParasiteZed_HeadCapsule,
+        WorldStaticModel = ParasiteZed_HeadCapsule,
+        DisplayCategory = Material,
+        Weight = 0.8,
+        Type = Normal,
+        Tooltip = A dense armored cranial plate shielding vital sensory organs,
+    }
+
+    item ParasiteZed_Metasoma
+    {
+        DisplayName = Parasite Metasoma,
+        Icon = ParasiteZed_Metasoma,
+        WorldStaticModel = ParasiteZed_Metasoma,
+        DisplayCategory = Material,
+        Weight = 1.2,
+        Type = Normal,
+        Tooltip = A flexible tail-like appendage ending in weaponized precision,
+    }
+
+    item ParasiteZed_Aculeus
+    {
+        DisplayName = Parasite Aculeus,
+        Icon = ParasiteZed_Aculeus,
+        WorldStaticModel = ParasiteZed_Aculeus,
+        DisplayCategory = Material,
+        Weight = 0.2,
+        Type = Normal,
+        Tooltip = A hollow fang capable of injecting paralytic toxins,
+    }
+
+    item ParasiteZed_DorsalVessel
+    {
+        DisplayName = Parasite Dorsal Vessel,
+        Icon = ParasiteZed_DorsalVessel,
+        WorldStaticModel = ParasiteZed_DorsalVessel,
+        DisplayCategory = Material,
+        Weight = 0.3,
+        Type = Normal,
+        Tooltip = A muscular conduit circulating nutrient-rich fluids,
+    }
+
+    item ParasiteZed_HindLimb
+    {
+        DisplayName = Parasite Hind Limb,
+        Icon = ParasiteZed_HindLimb,
+        WorldStaticModel = ParasiteZed_HindLimb,
+        DisplayCategory = Material,
+        Weight = 1.0,
+        Type = Normal,
+        Tooltip = A Digitigrade muscular flexible limb used for movement and support,
+    }
+
+
+}
+

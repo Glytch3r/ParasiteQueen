@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<animNode>
+	<m_Name>ParasiteQueen_Stop</m_Name>
+	<m_AnimName>Insect_Tail</m_AnimName>
+	<m_deferredBoneAxis>Y</m_deferredBoneAxis>
+	<m_SpeedScale>0.5</m_SpeedScale>
+	<m_BlendTime>1</m_BlendTime>
+	<m_Priority>4</m_Priority>
+
+	<m_Conditions>
+		<m_Name>isParasiteQueen</m_Name>
+		<m_Type>BOOL</m_Type>
+		<m_BoolValue>true</m_BoolValue>
+	</m_Conditions>
+
+	<m_Conditions>
+		<m_Name>isUseless</m_Name>
+		<m_Type>BOOL</m_Type>
+		<m_BoolValue>true</m_BoolValue>
+	</m_Conditions>
+</animNode>

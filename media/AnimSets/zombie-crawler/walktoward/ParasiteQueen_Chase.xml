@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<animNode>
+	<m_Name>ParasiteQueen_Move</m_Name>
+	<m_AnimName>Insect_Chase</m_AnimName>
+	<m_deferredBoneAxis>Y</m_deferredBoneAxis>
+	<m_SpeedScale>1.8</m_SpeedScale>
+	<m_BlendTime>0.20</m_BlendTime>
+	<m_Conditions>
+		<m_Name>TurnDirection</m_Name>
+		<m_Type>STRING</m_Type>
+		<m_StringValue></m_StringValue>
+	</m_Conditions>
+
+	<m_Conditions>
+		<m_Name>isParasiteQueen</m_Name>
+		<m_Type>BOOL</m_Type>
+		<m_BoolValue>true</m_BoolValue>
+	</m_Conditions>
+
+	<m_Conditions>
+		<m_Name>bHasTarget</m_Name>
+		<m_Type>BOOL</m_Type>
+		<m_BoolValue>true</m_BoolValue>
+	</m_Conditions>
+
+    <!--_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+-->
+
+</animNode>

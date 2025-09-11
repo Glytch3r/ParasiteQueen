@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<animNode>
+	<m_Name>ParasiteZed_onfront</m_Name>
+	<m_AnimName>Insect_Tail</m_AnimName>
+	<m_deferredBoneAxis>Y</m_deferredBoneAxis>
+	<m_SpeedScale>0.40</m_SpeedScale>
+	<m_BlendTime>0.30</m_BlendTime>
+	<m_Conditions>
+		<m_Name>FallOnFront</m_Name>
+		<m_Type>BOOL</m_Type>
+		<m_BoolValue>true</m_BoolValue>
+	</m_Conditions>
+
+	<m_Conditions>
+		<m_Name>isParasiteZed</m_Name>
+		<m_Type>BOOL</m_Type>
+		<m_BoolValue>true</m_BoolValue>
+	</m_Conditions>
+</animNode>

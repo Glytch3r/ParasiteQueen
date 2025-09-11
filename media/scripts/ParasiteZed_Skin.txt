@@ -1,0 +1,58 @@
+module Base {
+
+
+	item ParasiteZed
+    {
+        DisplayCategory = Clothing,
+        Type = Clothing,
+        ClothingItem = ParasiteZed,
+        BodyLocation = BodyCostume,
+        Icon = ParasiteZed,
+    }
+	item ParasiteZed_Queen
+    {
+        DisplayCategory = Clothing,
+        Type = Clothing,
+        ClothingItem = ParasiteZed_Queen,
+        BodyLocation = BodyCostume,
+        Icon = ParasiteZed_Queen,
+    }
+
+	model ParasiteZed_Corpse1
+    {
+        mesh = WorldItems/ParasiteZed_Corpse,
+        texture = ParasiteTexture_1,
+        scale = 0.1,
+    }
+	model ParasiteZed_Corpse2
+    {
+        mesh = WorldItems/ParasiteZed_Corpse,
+        texture = ParasiteTexture_2,
+        scale = 0.1,
+    }
+
+	item ParasiteZed_Corpse1
+	{
+        WorldStaticModel = ParasiteZed_Corpse1,
+	    DisplayCategory = Corpse,
+		Weight	=	10.0,
+		Type	=	Normal,
+		DisplayName	=	Corpse,
+		Icon = ParasiteZed_Corpse,
+		RequiresEquippedBothHands = true,
+		Tags = HeavyItem,
+	}
+	item ParasiteZed_Corpse2
+	{
+        WorldStaticModel = ParasiteZed_Corpse2,
+	    DisplayCategory = Corpse,
+		Weight	=	10.0,
+		Type	=	Normal,
+		DisplayName	=	Corpse,
+		Icon = ParasiteZed_Corpse,
+		RequiresEquippedBothHands = true,
+		Tags = HeavyItem,
+	}
+
+
+}

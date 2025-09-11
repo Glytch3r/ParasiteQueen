@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<animNode x_extends="ParasiteQueen_DoorBang.xml">
+	<m_Name>ParasiteQueen_DoorClaw</m_Name>
+	<m_Conditions>
+		<m_StringValue>DoorClaw</m_StringValue>
+	</m_Conditions>
+	<m_Conditions>
+		<m_Name>isParasiteQueen</m_Name>
+		<m_Type>BOOL</m_Type>
+		<m_BoolValue>true</m_BoolValue>
+	</m_Conditions>
+</animNode>
