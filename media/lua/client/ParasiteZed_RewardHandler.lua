@@ -50,14 +50,14 @@ end
 
 
 function ParasiteZed.getRewardRoll()
-    local chance = SandboxVars.ParasiteZed_Queen.DropRate or 20
+    local chance = SandboxVars.ParasiteQueen.DropRate or 20
     if chance <= 0 then return false end
     if chance >= 100 then return true end
     return ParasiteZed.doRoll(chance)
 end
 
 function ParasiteZed.getDeathRewards()
-    return SandboxVars.ParasiteZed_Queen.DeathRewards or 'Base.Katana;Base.Machete'
+    return SandboxVars.ParasiteQueen.DeathRewards or 'Base.Katana;Base.Machete'
 end
 
 function ParasiteZed.parseItems()
@@ -106,16 +106,16 @@ function ParasiteZed.doDropMaterial(sq)
 end
  ]]
 ParasiteZed.LearnTable = {
-    ["Craft Parasite Armor"] = SandboxVars.ParasiteZed_Queen.KillsToLearnCraftDummy or 100,
-    ["Craft Parasite Spear"] = SandboxVars.ParasiteZed_Queen.KillsToLearnCraftSword or 85,
-    ["Craft Parasite Sword"] = SandboxVars.ParasiteZed_Queen.KillsToLearnCraftArmor or 70,
-    ["Preserved Parasite Egg"] = SandboxVars.ParasiteZed_Queen.KillsToLearnCraftSpear or 60,
-    ["Craft Parasite Head Trophy"] = SandboxVars.ParasiteZed_Queen.KillsToLearnCraftEgg or 50,
-    ["Craft Parasite Mask"] = SandboxVars.ParasiteZed_Queen.KillsToLearnCraftMask or 40,
-    ["Construct Parasite Dummy"] = SandboxVars.ParasiteZed_Queen.KillsToLearnCraftTrophy or 30,
-    ["Paint Parasite Anatomy"] = SandboxVars.ParasiteZed_Queen.KillsToLearnCraftAnatomy or 20,
-    ["Synthesize Anti Parasitic Medication"] = SandboxVars.ParasiteZed_Queen.KillsToLearnAntiParasitic or 200,
-    ["Craft Pesticide Bomb"] = SandboxVars.ParasiteZed_Queen.KillsToLearnBugBomb or 110,
+    ["Craft Parasite Armor"] = SandboxVars.ParasiteQueen.KillsToLearnCraftDummy or 100,
+    ["Craft Parasite Spear"] = SandboxVars.ParasiteQueen.KillsToLearnCraftSword or 85,
+    ["Craft Parasite Sword"] = SandboxVars.ParasiteQueen.KillsToLearnCraftArmor or 70,
+    ["Preserved Parasite Egg"] = SandboxVars.ParasiteQueen.KillsToLearnCraftSpear or 60,
+    ["Craft Parasite Head Trophy"] = SandboxVars.ParasiteQueen.KillsToLearnCraftEgg or 50,
+    ["Craft Parasite Mask"] = SandboxVars.ParasiteQueen.KillsToLearnCraftMask or 40,
+    ["Construct Parasite Dummy"] = SandboxVars.ParasiteQueen.KillsToLearnCraftTrophy or 30,
+    ["Paint Parasite Anatomy"] = SandboxVars.ParasiteQueen.KillsToLearnCraftAnatomy or 20,
+    ["Synthesize Anti Parasitic Medication"] = SandboxVars.ParasiteQueen.KillsToLearnAntiParasitic or 200,
+    ["Craft Pesticide Bomb"] = SandboxVars.ParasiteQueen.KillsToLearnBugBomb or 110,
 }
 
 function ParasiteZed.RewardsHandler(zed)

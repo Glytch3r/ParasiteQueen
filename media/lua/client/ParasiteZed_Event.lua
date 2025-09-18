@@ -140,7 +140,7 @@ function ParasiteZed.trigger()
 end
 
 Events.OnPlayerMove.Remove(ParasiteZed.trigger)
-Events.OnPlayerMove.Add(ParasiteZed.trigger)
+--Events.OnPlayerMove.Add(ParasiteZed.trigger)
 
 
 

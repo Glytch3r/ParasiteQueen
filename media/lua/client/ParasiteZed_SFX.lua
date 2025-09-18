@@ -131,7 +131,7 @@ Events.OnZombieUpdate.Add(ParasiteZed.preSFX)
 
 function ParasiteZed.playRandSfx(targ)
 	targ = targ or getPlayer()
-	local sfxRate = SandboxVars.ParasiteZed_Queen.SFXRate or 0.8
+	local sfxRate = SandboxVars.ParasiteQueen.SFXRate or 0.8
 	local roll = ParasiteZed.doRoll(sfxRate)
 	if roll then
 		local toPlay = ParasiteZed.getSFX()

@@ -38,7 +38,7 @@ function ParasiteZed.doParasiteInfect(pl)
     pl = pl or getPlayer()
     if not pl then return end
     local data = pl:getModData()
-    local duration = SandboxVars.ParasiteZed_Queen.ParasiteInfection or 1440
+    local duration = SandboxVars.ParasiteQueen.ParasiteInfection or 1440
 
     if not ParasiteZed.isParasiteInfected(pl) then
         data.ParasiteInfectionTime = duration
@@ -60,7 +60,7 @@ function ParasiteZed.doDeathByInfection(pl)
         if not pl:isGodMod() then
             pl:Kill(nil)
             local sq = pl:getCurrentSquare()
-            if sq and (SandboxVars.ParasiteZed_Queen.DeathSpawn ~= false) then
+            if sq and (SandboxVars.ParasiteQueen.DeathSpawn ~= false) then
                 timer:Simple(3, function()
                     ParasiteZed.doSpawn(sq, false, "ParasiteZed")
                 end)
@@ -96,8 +96,8 @@ end
 
 function ParasiteZed.hit(zpl, pl, wpn, HP)
     if not instanceof(zpl, "IsoPlayer") or not instanceof(pl, "IsoPlayer") then return end
-    if SandboxVars.ParasiteZed_Queen.PlayerInfectPlayer ~= false and (ParasiteZed.isParasitePl(zpl) or ParasiteZed.isParasiteQueenPl(zpl)) then
-        local chance = SandboxVars.ParasiteZed_Queen.InfectionChance or 100
+    if SandboxVars.ParasiteQueen.PlayerInfectPlayer ~= false and (ParasiteZed.isParasitePl(zpl) or ParasiteZed.isParasiteQueenPl(zpl)) then
+        local chance = SandboxVars.ParasiteQueen.InfectionChance or 100
         if ParasiteZed.doRoll(chance) then
             ParasiteZed.doParasiteInfect(pl)
         end
@@ -113,7 +113,7 @@ function ParasiteZed.plDmg(pl, dType, dmg)
     if zed then
         if ParasiteZed.isParasiteZed(zed) then
            
-        local chance = SandboxVars.ParasiteZed_Queen.InfectionChance or 100
+        local chance = SandboxVars.ParasiteQueen.InfectionChance or 100
         if ParasiteZed.doRoll(chance) then
             ParasiteZed.doParasiteInfect(pl)
         end
@@ -134,7 +134,7 @@ function ParasiteZed.hookPill()
     function ISTakePillAction:perform()
         local itemType = self.item and self.item:getFullType()
         if itemType == "Base.ParasiteZed_AntiParasitic" then
-            local duration = SandboxVars.ParasiteZed_Queen.ParasiteImmunity or 5
+            local duration = SandboxVars.ParasiteQueen.ParasiteImmunity or 5
             local modData = self.character:getModData()
             modData.ParasiteImmuneTime = (modData.ParasiteImmuneTime or 0) + duration
 
@@ -168,6 +168,7 @@ function ParasiteZed.immunity()
 end
 Events.EveryHours.Remove(ParasiteZed.immunity)
 Events.EveryHours.Add(ParasiteZed.immunity)
+
 -----------------------            ---------------------------
 
 ParasiteZed.lastMouseCheck = 0
@@ -195,7 +196,7 @@ function ParasiteZed.mousePoint()
                     local score = md.ParasiteZed_KillCount or 0
                     chr:addLineChatElement("Parasite Killed: " .. tostring(score))
                     if (getCore():getDebug() and  ParasiteZed.isAdm(pl)) and ParasiteZed.isWIP then
-                        pl:setHaloNote( "NestCell: ".. tostring(ParasiteZed.getNestCellName()),150,250,150,900)
+                      --  pl:setHaloNote( "NestCell: ".. tostring(ParasiteZed.getNestCellName()),150,250,150,900)
                     end
                 end
             end

@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <animNode>
-	<m_Name>ParasiteQueen_Sprint</m_Name>
+	<m_Name>ParasiteZed_Sprint</m_Name>
 	<m_AnimName>Insect_Roll</m_AnimName>
 	<m_deferredBoneAxis>Y</m_deferredBoneAxis>
 	<m_SpeedScale>1</m_SpeedScale>
@@ -11,7 +11,7 @@
 
 
 	<m_Conditions>
-		<m_Name>isParasiteQueenPl</m_Name>
+		<m_Name>isParasitePl</m_Name>
 		<m_Type>STRING</m_Type>
 		<m_StringValue>true</m_StringValue>
 	</m_Conditions>

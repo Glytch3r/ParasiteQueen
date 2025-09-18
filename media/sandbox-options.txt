@@ -5,138 +5,142 @@ VERSION = 1,
 
 
 
-option ParasiteZed_Queen.EMP
+option ParasiteQueen.EMP
 {
 	type = boolean, default = true,
-	page = ParasiteZed_Queen, translation = ParasiteZed_Queen_EMP,
+	page = ParasiteQueen, translation = ParasiteQueen_EMP,
 }
 
 
-option ParasiteZed_Queen.InfectionChance
+option ParasiteQueen.InfectionChance
 {
     type = double, min = 0, max = 100, default = 100,
-	page = ParasiteZed_Queen, translation = ParasiteZed_Queen_InfectionChance,
+	page = ParasiteQueen, translation = ParasiteQueen_InfectionChance,
 }
 
-option ParasiteZed_Queen.ParasiteInfection
+option ParasiteQueen.ParasiteInfection
 {
     type = double, min = 0, max = 86400, default = 1440,
-	page = ParasiteZed_Queen, translation = ParasiteZed_Queen_ParasiteInfection,
+	page = ParasiteQueen, translation = ParasiteQueen_ParasiteInfection,
 }
 
-option ParasiteZed_Queen.ParasiteImmunity
+option ParasiteQueen.ParasiteImmunity
 {
     type = double, min = 0, max = 8064, default = 3,
-	page = ParasiteZed_Queen, translation = ParasiteZed_Queen_ParasiteImmunity,
+	page = ParasiteQueen, translation = ParasiteQueen_ParasiteImmunity,
 }
 
-option ParasiteZed_Queen.DistToChase
+option ParasiteQueen.DistToChase
 {
 	type = double,	 min = 0,  max = 40,  default = 6,
-	page = ParasiteZed_Queen, translation = ParasiteZed_Queen_DistToChase,
+	page = ParasiteQueen, translation = ParasiteQueen_DistToChase,
 }
 
-option ParasiteZed_Queen.SeenTime
+option ParasiteQueen.SeenTime
 {
 	type = double,	 min = 0,  max = 40,  default = 4,
-	page = ParasiteZed_Queen, translation = ParasiteZed_Queen_SeenTime,
+	page = ParasiteQueen, translation = ParasiteQueen_SeenTime,
 }
 
-option ParasiteZed_Queen.AlertIndicator
+option ParasiteQueen.AlertIndicator
 {
 	type = string, default = !,
-	page = ParasiteZed_Queen, translation = ParasiteZed_Queen_AlertIndicator,
+	page = ParasiteQueen, translation = ParasiteQueen_AlertIndicator,
 }
 
-option ParasiteZed_Queen.SFXRate
+option ParasiteQueen.SFXRate
 {
     type = double, min = 0, max = 100, default = 0.8,
-	page = ParasiteZed_Queen, translation = ParasiteZed_Queen_SFXRate,
+	page = ParasiteQueen, translation = ParasiteQueen_SFXRate,
 }
-
-option ParasiteZed_Queen.SpawnRate
+option ParasiteQueen.SoldierSpawnRate
 {
-	type = double,	 min = 0,  max = 100,  default = 1,
-	page = ParasiteZed_Queen, translation = ParasiteZed_Queen_SpawnRate,
+	type = double,	 min = 0,  max = 100,  default = 0.01,
+	page = ParasiteQueen, translation = ParasiteQueen_SoldierSpawnRate,
+}
+option ParasiteQueen.QueenSpawnRate
+{
+	type = double,	 min = 0,  max = 100,  default = 0.001,
+	page = ParasiteQueen, translation = ParasiteQueen_QueenSpawnRate,
 }
 
-option ParasiteZed_Queen.DeathRewards
+option ParasiteQueen.DeathRewards
 {
 	type = string, default = Base.Machete;Base.Katana,
-	page = ParasiteZed_Queen, translation = ParasiteZed_Queen_DeathRewards,
+	page = ParasiteQueen, translation = ParasiteQueen_DeathRewards,
 }
 
-option ParasiteZed_Queen.DropRate
+option ParasiteQueen.DropRate
 {
     type = double, min = 0, max = 100, default = 20,
-	page = ParasiteZed_Queen, translation = ParasiteZed_Queen_DropRate,
+	page = ParasiteQueen, translation = ParasiteQueen_DropRate,
 }
 
-option ParasiteZed_Queen.DeathSpawn
+option ParasiteQueen.DeathSpawn
 {
 	type = boolean, default = true,
-	page = ParasiteZed_Queen, translation = ParasiteZed_Queen_DeathSpawn,
+	page = ParasiteQueen, translation = ParasiteQueen_DeathSpawn,
 }
 
-option ParasiteZed_Queen.PlayerInfectPlayer
+option ParasiteQueen.PlayerInfectPlayer
 {
 	type = boolean, default = true,
-	page = ParasiteZed_Queen, translation = ParasiteZed_Queen_PlayerInfectPlayer,
+	page = ParasiteQueen, translation = ParasiteQueen_PlayerInfectPlayer,
 }
 
 
-option ParasiteZed_Queen.KillsToLearnCraftDummy
+option ParasiteQueen.KillsToLearnCraftDummy
 {
 	type = integer, min = 0, max = 1000, default = 100,
-	page = ParasiteZed_Queen, translation = ParasiteZed_Queen_KillsToLearnCraftDummy,
+	page = ParasiteQueen, translation = ParasiteQueen_KillsToLearnCraftDummy,
 }
-option ParasiteZed_Queen.KillsToLearnCraftSword
+option ParasiteQueen.KillsToLearnCraftSword
 {
 	type = integer, min = 0, max = 1000, default = 85,
-	page = ParasiteZed_Queen, translation = ParasiteZed_Queen_KillsToLearnCraftSword,
+	page = ParasiteQueen, translation = ParasiteQueen_KillsToLearnCraftSword,
 }
-option ParasiteZed_Queen.KillsToLearnCraftArmor
+option ParasiteQueen.KillsToLearnCraftArmor
 {
 	type = integer, min = 0, max = 1000, default = 70,
-	page = ParasiteZed_Queen, translation = ParasiteZed_Queen_KillsToLearnCraftArmor,
+	page = ParasiteQueen, translation = ParasiteQueen_KillsToLearnCraftArmor,
 }
-option ParasiteZed_Queen.KillsToLearnCraftSpear
+option ParasiteQueen.KillsToLearnCraftSpear
 {
 	type = integer, min = 0, max = 1000, default = 60,
-	page = ParasiteZed_Queen, translation = ParasiteZed_Queen_KillsToLearnCraftSpear,
+	page = ParasiteQueen, translation = ParasiteQueen_KillsToLearnCraftSpear,
 }
-option ParasiteZed_Queen.KillsToLearnCraftEgg
+option ParasiteQueen.KillsToLearnCraftEgg
 {
 	type = integer, min = 0, max = 1000, default = 50,
-	page = ParasiteZed_Queen, translation = ParasiteZed_Queen_KillsToLearnCraftEgg,
+	page = ParasiteQueen, translation = ParasiteQueen_KillsToLearnCraftEgg,
 }
 
-option ParasiteZed_Queen.KillsToLearnCraftMask
+option ParasiteQueen.KillsToLearnCraftMask
 {
 	type = integer, min = 0, max = 1000, default = 40,
-	page = ParasiteZed_Queen, translation = ParasiteZed_Queen_KillsToLearnCraftMask,
+	page = ParasiteQueen, translation = ParasiteQueen_KillsToLearnCraftMask,
 }
 
-option ParasiteZed_Queen.KillsToLearnCraftTrophy
+option ParasiteQueen.KillsToLearnCraftTrophy
 {
 	type = integer, min = 0, max = 1000, default = 30,
-	page = ParasiteZed_Queen, translation = ParasiteZed_Queen_KillsToLearnCraftTrophy,
+	page = ParasiteQueen, translation = ParasiteQueen_KillsToLearnCraftTrophy,
 }
-option ParasiteZed_Queen.KillsToLearnCraftAnatomy
+option ParasiteQueen.KillsToLearnCraftAnatomy
 {
 	type = integer, min = 0, max = 1000, default = 20,
-	page = ParasiteZed_Queen, translation = ParasiteZed_Queen_KillsToLearnCraftAnatomy,
+	page = ParasiteQueen, translation = ParasiteQueen_KillsToLearnCraftAnatomy,
 }
 
-option ParasiteZed_Queen.KillsToLearnAntiParasitic
+option ParasiteQueen.KillsToLearnAntiParasitic
 {
 	type = integer, min = 0, max = 1000, default = 200,
-	page = ParasiteZed_Queen, translation = ParasiteZed_Queen_KillsToLearnAntiParasitic,
+	page = ParasiteQueen, translation = ParasiteQueen_KillsToLearnAntiParasitic,
 }
 
-option ParasiteZed_Queen.KillsToLearnBugBomb
+option ParasiteQueen.KillsToLearnBugBomb
 {
 	type = integer, min = 0, max = 1000, default = 110,
-	page = ParasiteZed_Queen, translation = ParasiteZed_Queen_KillsToLearnBugBomb,
+	page = ParasiteQueen, translation = ParasiteQueen_KillsToLearnBugBomb,
 }
 

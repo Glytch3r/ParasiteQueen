@@ -51,7 +51,7 @@ end
 function ParasiteZed.carHandler()
 
 	local pl = getPlayer()
-	local isEMP = SandboxVars.ParasiteZed_Queen_Queen.EMP or true
+	local isEMP = SandboxVars.ParasiteQueen_Queen.EMP or true
 	if not isEMP then return end
 	local sq = pl:getSquare()
 	local x, y = round(pl:getX()),  round(pl:getY())

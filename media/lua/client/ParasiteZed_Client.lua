@@ -49,7 +49,8 @@ function ParasiteZed.syncModdata()
         ticks = 0
     end
 end
-Events.OnPlayerUpdate.Add(ParasiteZed.syncModdata)
+--Events.OnPlayerUpdate.Add(ParasiteZed.syncModdata)
+
 
 Commands.ParasiteZed.syncKills = function(args)
     if not args or not args.id then return end
@@ -63,26 +64,33 @@ Commands.ParasiteZed.syncKills = function(args)
 end
 
 
-
-
+Commands.ParasiteZed.OnSpitHit = function(args)
+    if not args or not args.id then return end
+    local targ = getPlayerByOnlineID(args.id)
+    if not targ then return end
+    targ:setBumpType("pushedbehind"); 
+    targ:setVariable("BumpFall", true);
+    targ:setVariable("BumpFallType", "pushedbehind"); 
+end
 
 -----------------------            ---------------------------
 function ParasiteZed.isShouldChase(zed)
     local targ = zed:getTarget()
     if not targ then return false end
 
-    local minDist = SandboxVars.ParasiteZed_Queen.DistToChase or 6
-    local minSeenTime = SandboxVars.ParasiteZed_Queen.SeenTime or 4
+    local minDist = SandboxVars.ParasiteQueen.DistToChase or 6
+    local minSeenTime = SandboxVars.ParasiteQueen.SeenTime or 4
 
     return ParasiteZed.checkDist(zed, targ) >= minDist
         and zed:getTargetSeenTime() >= minSeenTime
 end
+
 function ParasiteZed.isShouldObserve(zed)
     local targ = zed:getTarget()
     if not targ then return false end
 
-    local minDist = SandboxVars.ParasiteZed_Queen.DistToChase or 6
-    local minSeenTime = SandboxVars.ParasiteZed_Queen.SeenTime or 4
+    local minDist = SandboxVars.ParasiteQueen.DistToChase or 6
+    local minSeenTime = SandboxVars.ParasiteQueen.SeenTime or 4
     local seen =  zed:getTargetSeenTime() * 100
     return ParasiteZed.checkDist(zed, targ) <= minDist and seen <= minSeenTime
 
@@ -112,7 +120,7 @@ function ParasiteZed.soldier(zed)
             if targ then
                 zed:faceLocation(targ:getX(), targ:getY())
 
-                local showAlert = SandboxVars.ParasiteZed_Queen.AlertIndicator or true
+                local showAlert = SandboxVars.ParasiteQueen.AlertIndicator or true
                 if showAlert and showAlert ~= "" then
                     if getCore():getDebug() and isAdmin() then
                         showAlert = showAlert .. " " .. tostring(zed:getTargetSeenTime() * 100)

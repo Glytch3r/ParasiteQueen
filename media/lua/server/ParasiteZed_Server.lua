@@ -41,6 +41,11 @@ if isClient() then return; end
 local Commands = {};
 Commands.ParasiteZed = {};
 
+Commands.ParasiteZed.OnSpitHit = function(player, args)
+    local playerId = player:getOnlineID();
+    sendServerCommand('ParasiteZed', 'OnSpitHit', {id = playerId})
+end
+
 Commands.ParasiteZed.isParasiteQueen = function(player, args)
     local playerId = player:getOnlineID();
     sendServerCommand('ParasiteZed', 'isParasiteQueen', {id = playerId, isParasiteQueen = args.isParasiteQueen,   zedID = args.zedID})

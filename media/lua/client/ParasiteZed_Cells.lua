@@ -1,4 +1,4 @@
---[[ ParasiteZed = ParasiteZed or {}
+ParasiteZed = ParasiteZed or {}
 require "lua_timers"
 
 -----------------------            ---------------------------
@@ -17,11 +17,11 @@ function ParasiteZed.fetchZedLists()
     ParasiteZed.getParasiteCount()
     ParasiteZed.getQueenCount()
     ParasiteZed.QueenZed = ParasiteZed.getNearestQueenToMidpoint()
-    ParasiteZed.carHandler()
+    --ParasiteZed.carHandler()
 end
 Events.OnCreatePlayer.Add(function()
     ParasiteZed.NestCellSize = 189
-    ParasiteZed.fetchZedLists()
+    --ParasiteZed.fetchZedLists()
     ParasiteZed.NestCellEdgeMarkers = {}
     ParasiteZed.isWIP = false
 end)
@@ -79,7 +79,7 @@ function ParasiteZed.OnNestCellChangeEvent(pl)
         ParasiteZed.PreviousNestCell.x, ParasiteZed.PreviousNestCell.y = currentCellX, currentCellY
     end
 end
-Events.OnPlayerMove.Add(ParasiteZed.OnNestCellChangeEvent)
+--Events.OnPlayerMove.Add(ParasiteZed.OnNestCellChangeEvent)
 
 
 function ParasiteZed.core(prevX, prevY, curX, curY)
@@ -127,7 +127,7 @@ function ParasiteZed.core(prevX, prevY, curX, curY)
     end
 end
 
-Events.OnNestCellChange.Add(ParasiteZed.core)
+--Events.OnNestCellChange.Add(ParasiteZed.core)
 
 function ParasiteZed.getNestCell()
     return ParasiteZed.getNestCellData(nil, nil, nil)
@@ -302,6 +302,3 @@ function ParasiteZed.tpToNestCell()
 end
 
 
-
-
- ]]

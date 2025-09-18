@@ -84,13 +84,9 @@ function ParasiteZed.queen(zed)
 	if not zed then return end
 
 	local isQueen = ParasiteZed.isParasiteQueen(zed)
-	local isNested = ParasiteZed.isNested(zed)
 
-	if isQueen then
-		if SandboxVars.ParasiteZed_Queen.AlertIndicator ~= false and isNested then
-			zed:addLineChatElement("Nested")
-		end
 
+	if isQueen then	
 		if zed:getModData().ParasiteZed_Queen_Init == nil then
 			ParasiteZed.setQueenStats(zed)
 		end
@@ -100,9 +96,11 @@ function ParasiteZed.queen(zed)
 		if not ParasiteZed.isCrawler(zed) then
 			ParasiteZed.setCrawler(zed)
 		end
+        local targ = zed:getTarget()        
+        if targ and zed:getTargetSeenTime() % 250 == 0 then
+            ParasiteZed.doSpit(zed:getX(), zed:getY(),  targ:getX(),  targ:getY(),  targ:getZ(), 1, 1)
+        end
 
-		zed:setUseless(isNested)
-		--ParasiteZed.doQueenBehavior(zed)
 
 	else
 		if zed:getVariableBoolean("isParasiteQueen") then
@@ -181,7 +179,7 @@ function ParasiteZed.setSmoke(targ)
 		end
 		return
 	end
-
+    
 	if spr and spr:size() > 0 then return end
 
 	targ:AttachAnim("Smoke", "01", 5, 0.2, 0, 270, true, 0, false, 0, ColorInfo.new(0, 0.2, 0.2, 0.05))
@@ -283,31 +281,23 @@ function ParasiteZed.hitQueenZed(zed, pl, part, wpn)
             if targ and targ == getPlayer() then
                 if ParasiteZed.doRoll(8) then
                     local sq = zed:getSquare()
-                    local midSq = ParasiteZed.getNestCellMidSquare()
-                    ParasiteZed.doSpawn(midSq, false, "ParasiteZed")
+                    ParasiteZed.doSpawn(sq, false, "ParasiteZed")
                 end
             end
-        else
-            if not  ParasiteZed.isFirearm(pl, wpn) then
-                local hp = zed:getHealth()
-                if hp then
-                    if isDebugEnabled() then
-                        zed:SayDebug(tostring(hp))
-                        print(tostring(hp))
-                    end
-                    if hp < 0.15 then
-                        zed:setAvoidDamage(false)
-                        zed:setImmortalTutorialZombie(false)
-                    end
-                end
-                local healthDmg = 0.05
+        else          
+            local hp = zed:getHealth()
+            if hp then
+                local healthDmg = 0.02
+                zed:setHealth(hp - healthDmg)
+            end
 
-                zed:setHealth(zed:getHealth() - healthDmg)
-                zed:setVariable("hitreaction")
-                zed:update()
-            end
+            --zed:setVariable("hitreaction")
+            zed:update()
+        
         end
 	end
 end
 Events.OnHitZombie.Remove(ParasiteZed.hitQueenZed)
 Events.OnHitZombie.Add(ParasiteZed.hitQueenZed)
+
+

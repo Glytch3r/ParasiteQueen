@@ -11,7 +11,7 @@
 |‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾|
 |                       	Portfolio:  https://steamcommunity.com/id/glytch3r/myworkshopfiles/							          |
 |                       		                                    														 	  |
-|                       	Discord:    Glytch3r#1337 / glytch3r															      |
+|                       	Discord:    glytch3r															      |
 |                       		                                    														 	  |
 |                       	Support:    https://ko-fi.com/glytch3r														    	  |
 |_______________________________________________________________________________________________________________________________-]]
@@ -24,15 +24,15 @@ ParasiteZed = ParasiteZed or {}
 MapSymbolDefinitions.getInstance():addTexture("ParasiteZed", "media/ui/LootableMaps/ParasiteZed_Symbol.png")
 
 Events.OnPostDistributionMerge.Add(function()
-   local rate = SandboxVars.ParasiteZed_Queen.SpawnRate or 1
-   local qRate = SandboxVars.ParasiteZed_Queen.SpawnRate or 0.01
+   local rate = SandboxVars.ParasiteQueen.SoldierSpawnRate or 0.01
+   local qRate = SandboxVars.ParasiteQueen.QueenSpawnRate or 0.001
    
    if rate > 0 then
-      table.insert(ZombiesZoneDefinition.Default,{name = "ParasiteZed_Queen", chance=rate, });
+      table.insert(ZombiesZoneDefinition.Default,{name = "ParasiteZed", chance=rate, });
    end
---[[    if qRate > 0 then
+   if qRate > 0 then
       table.insert(ZombiesZoneDefinition.Default,{name = "ParasiteZed_Queen", chance=qRate, });
-   end ]]
+   end
 
    ItemPickerJava.doParse = true
 end)

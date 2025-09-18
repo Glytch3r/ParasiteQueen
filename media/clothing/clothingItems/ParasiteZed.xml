@@ -2,6 +2,8 @@
 <clothingItem>
 	<m_MaleModel>media\models_X\Skinned\ParasiteZed.fbx</m_MaleModel>
 	<m_FemaleModel>media\models_X\Skinned\ParasiteZed.fbx</m_FemaleModel>
+	<!-- media\models_X\Skinned\ParasiteZed.fbx -->
+
 	<m_GUID>938cff2d-4d77-4e4c-a938-c35ef10590f5</m_GUID>
 	<m_Static>false</m_Static>
 	<m_AllowRandomHue>false</m_AllowRandomHue>

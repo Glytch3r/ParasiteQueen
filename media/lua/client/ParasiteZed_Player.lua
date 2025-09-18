@@ -132,66 +132,49 @@ function ParasiteZed.isUnarmed(pl)
 end
 
 -----------------------            ---------------------------
-
-function ParasiteZed.plSync()
-    local pl = getPlayer()
-    if not pl then return end
-
+--[[ 
+function ParasiteZed.plSync(pl)
     local modData = pl:getModData()
-
     if modData.isParasitePl == nil then
         modData.isParasitePl = ParasiteZed.isParasitePl(pl)
     end
 
-    if modData.isParasitePl == true then
-        modData.isParasiteQueenPl = false
-    end
+    local currentIsParasite = ParasiteZed.isParasitePl(pl)
+    local currentIsQueen = ParasiteZed.isParasiteQueenPl(pl)
 
     local isParasitePl = pl:getVariableBoolean("isParasitePl")
     local isParasiteQueenPl = pl:getVariableBoolean("isParasiteQueenPl")
 
-
-    if ParasiteZed.isParasitePl(pl) and not isParasitePl then
-        pl:setVariable("isParasitePl", "true")
-        pl:setVariable("isParasiteQueenPl", "false")
+    if currentIsParasite and not isParasitePl then
+        pl:setVariable("isParasitePl", true)
+        pl:setVariable("isParasiteQueenPl", false)
         if isClient() then
             sendClientCommand("ParasiteZed", "isParasitePl", {isParasitePl = true, plId = pl:getOnlineID()})
         end
-    elseif not ParasiteZed.isParasitePl(pl) and isParasitePl then
-        pl:setVariable("isParasitePl", "false")
-
+    elseif not currentIsParasite and isParasitePl then
+        pl:setVariable("isParasitePl", false)
         if isClient() then
             sendClientCommand("ParasiteZed", "isParasitePl", {isParasitePl = false, plId = pl:getOnlineID()})
         end
-    end 
-    -----------------------            ---------------------------
-    if ParasiteZed.isParasiteQueenPl(pl) and not isParasiteQueenPl then
-        pl:setVariable("isParasiteQueenPl", "true")
-        pl:setVariable("isParasitePl", "false")
+    end
+
+    if currentIsQueen and not isParasiteQueenPl then
+        pl:setVariable("isParasiteQueenPl", true)
+        pl:setVariable("isParasitePl", false)
         if isClient() then
             sendClientCommand("ParasiteZed", "isParasiteQueenPl", {isParasiteQueenPl = true, plId = pl:getOnlineID()})
         end
-    elseif not ParasiteZed.isParasiteQueenPl(pl) and isParasiteQueenPl then
-        pl:setVariable("isParasiteQueenPl", "false")
+    elseif not currentIsQueen and isParasiteQueenPl then
+        pl:setVariable("isParasiteQueenPl", false)
         if isClient() then
             sendClientCommand("ParasiteZed", "isParasiteQueenPl", {isParasiteQueenPl = false, plId = pl:getOnlineID()})
         end
-    end 
-
-
-    --[[ 
-        if ParasiteZed.isParasiteCharPl(pl) then
-            local shouldHide = isParasite or (modData.isParasiteQueenPl == true)
-            if pl:isHideWeaponModel() ~= shouldHide then
-                pl:setHideWeaponModel(shouldHide)
-            end
-        end
-    ]]
-
-
-
+    end
 end
+Events.OnPlayerUpdate.Remove(ParasiteZed.plSync)
+
 Events.OnPlayerUpdate.Add(ParasiteZed.plSync)
+ ]]
 --[[ 
 Events.OnLoad.Add(ParasiteZed.plSync)
 Events.OnClothingUpdated.Add(ParasiteZed.plSync)
