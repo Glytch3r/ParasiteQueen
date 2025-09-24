@@ -4,8 +4,8 @@
 	<m_AnimName>Insect_Flop</m_AnimName>
 	<m_deferredBoneAxis>Y</m_deferredBoneAxis>
 	<m_SpeedScale>0.05</m_SpeedScale>
+	<m_BlendTime>0.3</m_BlendTime>
 
-	<m_BlendTime>0.50</m_BlendTime>
 	<m_Conditions>
 		<m_Name>bMoving</m_Name>
 		<m_Type>BOOL</m_Type>

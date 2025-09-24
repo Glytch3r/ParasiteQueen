@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <animNode>
 	<m_Name>ParasiteQueen_doSpit</m_Name>
-	<m_AnimName>Insect_Dash</m_AnimName>
+	<m_AnimName>Insect_Stomp</m_AnimName>
 	<m_deferredBoneAxis>Y</m_deferredBoneAxis>
 	<m_SyncTrackingEnabled>false</m_SyncTrackingEnabled>
 	<m_SpeedScale>0.40</m_SpeedScale>
@@ -21,14 +21,9 @@
 	<m_Conditions>
 		<m_Name>QueenBehavior</m_Name>
 		<m_Type>STRING</m_Type>
-		<m_StringValue>doSpit</m_StringValue>
+		<m_StringValue>doEgg</m_StringValue>
 	</m_Conditions>
 
-	<m_Conditions>
-		<m_Name>bHasTarget</m_Name>
-		<m_Type>BOOL</m_Type>
-		<m_BoolValue>true</m_BoolValue>
-	</m_Conditions>
 
 	<m_Conditions>
 		<m_Name>isParasiteQueen</m_Name>

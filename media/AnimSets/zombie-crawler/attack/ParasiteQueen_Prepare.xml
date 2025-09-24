@@ -3,10 +3,10 @@
 	<m_Name>ParasiteQueen_Prepare</m_Name>
 	<!-- <m_AnimName>Zombie_CrawlLunge_Start</m_AnimName> -->
 	<m_AnimName>Insect_Prepare</m_AnimName>
-	<m_SpeedScale>0.005</m_SpeedScale>
+	<m_SpeedScale>0.5</m_SpeedScale>
 
-	<m_BlendTime>0.40</m_BlendTime>
-	<m_BlendOutTime>2</m_BlendOutTime>
+	<m_BlendTime>0.4</m_BlendTime>
+	<m_BlendOutTime>0.2</m_BlendOutTime>
 	<m_Conditions>
 		<m_Name>isParasiteQueen</m_Name>
 		<m_Type>BOOL</m_Type>

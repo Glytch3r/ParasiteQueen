@@ -2,8 +2,8 @@
 <animNode x_extends="ParasiteQueen_Prepare.xml">
 	<m_Name>ParasiteQueen_Miss</m_Name>
 	<m_AnimName>ParasiteZed_Miss</m_AnimName>
-	<m_SpeedScale>0.005</m_SpeedScale>
-	<m_BlendTime>0.40</m_BlendTime>
+	<m_SpeedScale>0.05</m_SpeedScale>
+	<m_BlendTime>0.4</m_BlendTime>
 	<m_BlendOutTime>0.6</m_BlendOutTime>
 
 	<m_Conditions>

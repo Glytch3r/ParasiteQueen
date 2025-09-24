@@ -145,16 +145,18 @@ function ParasiteZed.soldier(zed)
 
     if ParasiteZed.isParasiteZed(zed) then
         if zed:getModData()['ParasiteZed_Init'] == nil then
+            ParasiteZed.cleanUp(zed)
+
             ParasiteZed.setStats(zed)
         end
 
         if not zed:getVariableBoolean('isParasiteZed') then
-            ParasiteZed.cleanUp(zed)
 
             zed:setVariable('isParasiteZed', true)
         end
         
         if not ParasiteZed.isCrawler(zed) then
+
             ParasiteZed.setCrawler(zed)
         end
         local targ = zed:getTarget()
