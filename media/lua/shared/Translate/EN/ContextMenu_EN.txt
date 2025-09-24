@@ -5,7 +5,8 @@ ContextMenu_EN = {
 	ContextMenu_ParasiteZed_WearSkin = "Wear Skin",
 	ContextMenu_ParasiteZed_WearQueenSkin = "Wear Queen Skin",
 	ContextMenu_ParasiteZed_RemoveSkin = "Remove Skin",
-	ContextMenu_ParasiteZed_Spawn = "Spawn Parasite Queen",
+	ContextMenu_ParasiteZed_Spawn = "Spawn Parasite Zed",
+	ContextMenu_ParasiteZed_SpawnQueen = "Spawn Parasite Queen",
 
 	ContextMenu_ParasiteZed_Emote = "Emote",
 	ContextMenu_ParasiteZed_Despawn = "Despawn",

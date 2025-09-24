@@ -190,6 +190,44 @@ function ParasiteZed.getParasiteCount(x, y)
     return #ParasiteZed.parasiteList
 end
 
+function ParasiteZed.getNearestQueenToMidpoint(x, y)
+    local pl = getPlayer()
+    x = x or math.floor(pl:getX())
+    y = y or math.floor(pl:getY())
+
+    ParasiteZed.getNestCellZeds(x, y)
+    ParasiteZed.midSq = ParasiteZed.getNestCellMidSquare()
+
+    local queens = ParasiteZed.queenList
+    if not queens or #queens == 0 then return nil end
+    if #queens == 1 then return queens[1] end
+
+    local size = ParasiteZed.NestCellSize
+
+    local cellX = math.floor(x / size)
+    local cellY = math.floor(y / size)
+
+    local midX = (cellX * size) + math.floor(size / 2)
+    local midY = (cellY * size) + math.floor(size / 2)
+
+    local function getDistSq(zed)
+        local zx = math.floor(zed:getX())
+        local zy = math.floor(zed:getY())
+        return (zx - midX)^2 + (zy - midY)^2
+    end
+
+    local closest = queens[1]
+    local closestDist = getDistSq(closest)
+
+    for i = 2, #queens do
+        local dist = getDistSq(queens[i])
+        if dist < closestDist then
+            closest = queens[i]
+            closestDist = dist
+        end
+    end
+    return closest
+end
 function ParasiteZed.getNestCellZeds(x, y)
 	local size = ParasiteZed.NestCellSize
 	local parasiteList = {}

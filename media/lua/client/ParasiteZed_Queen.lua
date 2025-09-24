@@ -1,50 +1,12 @@
 ParasiteZed = ParasiteZed or {}
 
-function ParasiteZed.getNearestQueenToMidpoint(x, y)
-    local pl = getPlayer()
-    x = x or math.floor(pl:getX())
-    y = y or math.floor(pl:getY())
-
-    ParasiteZed.getNestCellZeds(x, y)
-    ParasiteZed.midSq = ParasiteZed.getNestCellMidSquare()
-
-    local queens = ParasiteZed.queenList
-    if not queens or #queens == 0 then return nil end
-    if #queens == 1 then return queens[1] end
-
-    local size = ParasiteZed.NestCellSize
-
-    local cellX = math.floor(x / size)
-    local cellY = math.floor(y / size)
-
-    local midX = (cellX * size) + math.floor(size / 2)
-    local midY = (cellY * size) + math.floor(size / 2)
-
-    local function getDistSq(zed)
-        local zx = math.floor(zed:getX())
-        local zy = math.floor(zed:getY())
-        return (zx - midX)^2 + (zy - midY)^2
-    end
-
-    local closest = queens[1]
-    local closestDist = getDistSq(closest)
-
-    for i = 2, #queens do
-        local dist = getDistSq(queens[i])
-        if dist < closestDist then
-            closest = queens[i]
-            closestDist = dist
-        end
-    end
-    return closest
-end
-
-function ParasiteZed.setQueenStats(zed, force)
+function ParasiteZed.setQueenStats(zed)
     if zed then
         if zed:isReanimatedPlayer() then
             return
         end
-        if ParasiteZed.isParasiteQueen(zed) and (zed:getModData()['ParasiteZed_Queen_Init'] == nil or force) then
+        if  zed:getModData()['ParasiteZed_Init'] == nil then
+
             local sandOpt = getSandboxOptions()
            
 
@@ -56,64 +18,193 @@ function ParasiteZed.setQueenStats(zed, force)
             sandOpt:set("ZombieLore.Sight",1) 		-- 1 eagle 				2 normal 			3 poor 				4 random
             sandOpt:set("ZombieLore.Hearing",1) 	-- 1 pinpoint 			2 normal 			3 poor 				4 random
             --ParasiteZed.setTurnSpeed(zed, 2)
-            zed:setVariable('isParasiteQueen', 'true')
             zed:makeInactive(true);
             zed:makeInactive(false);
-            zed:setUseless(true)
             --ParasiteZed.setCrawler(zed)
             --zed:dressInPersistentOutfit("ParasiteZed")
+      
+            ParasiteZed.setCrawler(zed)
             ParasiteZed.cleanUp(zed)
-            if not ParasiteZed.isCrawler(zed) then
-                ParasiteZed.setCrawler(zed)
-            end
-            zed:setTurnDelta(1)
-            zed:getModData()['ParasiteZed_Queen_Init'] = true
+
+            zed:setTurnDelta(32)
+            zed:getModData()['ParasiteZed_Init'] = true
+            zed:resetModelNextFrame()
 
         end
     end
 end
+
 function ParasiteZed.isShouldIgnore(zed)
-    if not ParasiteZed.nest then return false end
     if not zed or not ParasiteZed.isParasiteQueen(zed) then return false end
     local targ = zed:getTarget()
     return targ and instanceof(targ, "IsoPlayer")
 end
 
+function ParasiteZed.CallToArms(pl)
+    local rad = 30
+    local cell = getCell()
+    local sqX, sqY, sqZ = pl:getX(), pl:getY(), pl:getZ()
+    local zeds = cell:getZombieList()
+    for i = 0, zeds:size() - 1 do
+        local zed = zeds:get(i)
+        if zed and  ParasiteZed.isParasiteZed(zed)  and not zed:isDead() then
+            local dx = zed:getX() - sqX
+            local dy = zed:getY() - sqY
+            if dx * dx + dy * dy <= rad * rad then
+                ParasiteZed.setScent(zed)
+                zed:setTarget(pl)
+            end
+        end
+    end
+end
+function ParasiteZed.getNearbySoldierCount(zed)
+    local rad = 30
+    local cell = getCell()
+    local sqX, sqY, sqZ = zed:getX(), zed:getY(), zed:getZ()
+    local zeds = cell:getZombieList()
+    local count = 0
+    for i = 0, zeds:size() - 1 do
+        local soldier = zeds:get(i)
+        if soldier and ParasiteZed.isParasiteZed(soldier) and not soldier:isDead() then
+            local dx = soldier:getX() - sqX
+            local dy = soldier:getY() - sqY
+            if dx * dx + dy * dy <= rad * rad then
+                count = count + 1
+            end
+        end
+    end
+    return count
+end
+function ParasiteZed.getQueenAct(zed, targ)
+    if not zed or not targ then return nil end
+    local dist = zed:DistTo(targ)
+    local facing = zed:isFacingTarget()
+    local seeTarg = zed:isTargetVisible()
+    local gotHit = zed:getHitTime() <= 2
+    local soldiersCount = ParasiteZed.getNearbySoldierCount(zed)
+    local curAct = zed:getVariableString("QueenBehavior")
+    if dist > 20 then
+        zed:setTarget(nil)
+        return nil
+    end
+    if (not curAct or curAct ~= "doBash") and dist < 8 and facing and seeTarg then
+        return "doBash"
+    end
+    if (not curAct or curAct ~= "doSpit") and dist >= 8 and dist <= 15 and facing and seeTarg then
+        return "doSpit"
+    end
+    if (not curAct or curAct ~= "doEgg") and not seeTarg and gotHit and soldiersCount <= 10 then
+        return "doEgg"
+    end
+    if (not curAct or curAct ~= "doGas") and zed:isBeingSteppedOn() then
+        return "doGas"
+    end
+    return nil
+end
+function ParasiteZed.doQueenBehavior(zed, targ)
+    if not zed then return end
+    local sq = zed:getSquare()
+    local act = ParasiteZed.getQueenAct(zed, targ)
+    if not targ then
+        zed:setUseless(false)
+    end
+    targ = targ or zed:getTarget()
+    if act then
+        zed:setVariable("QueenBehavior", act)
+        if not zed:isUseless() and act ~= 'doWait' then
+            local sq = zed:getSquare()
+            if act == 'doEgg' then
+                local adj = sq:getAdjacentSquare(zed:getDir())
+                zed:setUseless(true)
+                ParasiteZed.doSpawnQueenNest(adj)
+                ParasiteZed.doSpawn(adj, false, "ParasiteZed")
+                getSoundManager():PlayWorldSound('ParasiteZed_LaunchSpit', sq, 0, 5, 5, false)
+                zed:setVariable("QueenBehavior", 'doWait')
+            elseif act == 'doBash' then
+                zed:setVariable("QueenBehavior", 'doBash')
+                zed:setUseless(false)
+            elseif act == 'doGas' then
+                zed:setUseless(true)
+                ParasiteZed.doGasTrigger(zed)
+                getSoundManager():PlayWorldSound('ParasiteZed_LaunchSpit', sq, 0, 5, 5, false)
+                zed:setVariable("QueenBehavior", 'doWait')
+            elseif act == 'doSpit' and targ and targ:getZ() == zed:getZ() then
+                getSoundManager():PlayWorldSound('ParasiteZed_LaunchSpit', sq, 0, 5, 5, false)
+                zed:setUseless(true)
+                zed:faceLocation(targ:getX(), targ:getY())
+                if zed:getHealth() <= 0.5 then
+                    ParasiteZed.spitAtFurtherSetClosest(zed)
+                else
+                    ParasiteZed.doSpit(zed:getX(), zed:getY(), targ:getX(), targ:getY(), targ:getZ(), 1, 1)
+                end
+                zed:setVariable("QueenBehavior", 'doWait')
+            end
+        end
+    else
+        zed:setVariable("QueenBehavior", 'doWait')
+        zed:setUseless(false)
+    end
+end
+
+function ParasiteZed.spitAtFurtherSetClosest(zed)
+    if not zed then return end
+    local players = getOnlinePlayers()
+    if not players or players:size() < 2 then return end
+    local closest, second
+    local dist1, dist2 = math.huge, math.huge
+    for i = 0, players:size() - 1 do
+        local pl = players:get(i)
+        if pl and not pl:isDead() then
+            local d = zed:DistTo(pl)
+            if d < dist1 then
+                second, dist2 = closest, dist1
+                closest, dist1 = pl, d
+            elseif d < dist2 then
+                second, dist2 = pl, d
+            end
+        end
+    end
+    if closest and second then
+        ParasiteZed.doSpit(zed:getX(), zed:getY(), second:getX(), second:getY(), second:getZ(), 1, 1)
+        getSoundManager():PlayWorldSound('ParasiteZed_LaunchSpit', zed:getSqure(), 0, 5, 5, false);
+        zed:setTarget(closest)
+    end
+end
+
+
+
+
 
 function ParasiteZed.queen(zed)
 	if not zed then return end
-
 	local isQueen = ParasiteZed.isParasiteQueen(zed)
-
-
 	if isQueen then	
-		if zed:getModData().ParasiteZed_Queen_Init == nil then
+        if zed:getModData()['ParasiteZed_Init'] == nil then            
 			ParasiteZed.setQueenStats(zed)
-		end
-		if not zed:getVariableBoolean("isParasiteQueen") then
-			zed:setVariable("isParasiteQueen", true)
-		end
-		if not ParasiteZed.isCrawler(zed) then
-			ParasiteZed.setCrawler(zed)
-		end
-        local targ = zed:getTarget()        
-        if targ and zed:getTargetSeenTime() % 250 == 0 then
-            ParasiteZed.doSpit(zed:getX(), zed:getY(),  targ:getX(),  targ:getY(),  targ:getZ(), 1, 1)
+            --ParasiteZed.setStats(zed)
         end
+        if not zed:getVariableBoolean('isParasiteQueen') then
+            zed:setVariable('isParasiteQueen', 'true')
+        end
+        if not ParasiteZed.isCrawler(zed) then
+            ParasiteZed.setCrawler(zed)
+        end
+  
+        local targ = zed:getTarget()
+        if zed:isBeingSteppedOn() then
+            ParasiteZed.doGas(zed)
+        end
+        ParasiteZed.doQueenBehavior(zed, targ)
 
-
-	else
-		if zed:getVariableBoolean("isParasiteQueen") then
-			zed:setVariable("isParasiteQueen", false)
-			zed:getModData().ParasiteZed_Queen_Init = nil
-		end
+        if targ then
+            ParasiteZed.doQueenBehavior(zed, targ)
+--[[             if not zed:isUseless() then
+                zed:setUseless(true)
+            end 
+            zed:setUseless(zed:getTarget() == nil) ]]
+        end
 	end
-
-	if not (isQueen and ParasiteZed.isParasiteZed(zed)) then
-		if not zed:isCrawling() then
-			ParasiteZed.doNearZedEffects(zed)
-		end
-	end
+    
 end
 
 Events.OnZombieUpdate.Remove(ParasiteZed.queen)
@@ -144,6 +235,7 @@ function ParasiteZed.isNested(zed)
     end
     return true
 end
+--[[ 
 
 function ParasiteZed.doNearZedEffects(zed)
     if tonumber(os.time()) % 30 == 0 then
@@ -161,7 +253,7 @@ function ParasiteZed.doNearZedEffects(zed)
         end
     end
 end
-
+ ]]
 
 
 function ParasiteZed.isShouldBurn(zed)
@@ -210,60 +302,6 @@ function ParasiteZed.getOutfitHash(fit, isDigitOnly)
     return str
 end
 
---[[
-
-function ParasiteZed.registerQueenCandidate(zed)
-    if not ParasiteZed.QueenZed or not ParasiteZed.QueenZed:isAlive() then
-        ParasiteZed.QueenZed = zed
-        ParasiteZed.setQueenStats(zed)
-    elseif ParasiteZed.QueenZed ~= zed then
-        ParasiteZed.doDespawn(zed)
-    end
-end
- ]]
-function ParasiteZed.isCanTrigger()
-    local trigger = false
-    if tonumber(Calendar.SECOND) %  10 == 0 then
-   -- if tonumber(getGameTime():getWorldAgeSeconds()) % 10 == 0 then
-        trigger = true
-    end
-    return trigger
-end
-
-
---[[
-function ParasiteZed.hitQueen(zed, pl, bodyPart, wpn)
-    if pl ~= getPlayer() then return end
-    if not ParasiteZed.isParasiteQueen(zed) then return end
-
-    local toAvoid = false
-
-    if ParasiteZed.nest ~= nil then
-        toAvoid = true
-        local targ = zed:getTarget()
-        if targ and targ == getPlayer() then
-            if ParasiteZed.doRoll(8) then
-                local sq = zed:getSquare()
-        		local midSq = ParasiteZed.getNestCellMidSquare()
-                ParasiteZed.doSpawn(midSq, false, "ParasiteZed")
-
-            end
-        end
-    end
-
-
-    if ParasiteZed.isFirearm(pl, wpn) then
-        toAvoid = true
-    end
-
-    if toAvoid ~= zed:avoidDamage() then
-        zed:setAvoidDamage(toAvoid)
-    end
-end
-
-Events.OnHitZombie.Remove(ParasiteZed.hitQueen)
-Events.OnHitZombie.Add(ParasiteZed.hitQueen) ]]
-
 function ParasiteZed.isFirearm(pl, wpn)
 	if not wpn then return false end
 	if wpn:isAimedFirearm() then return true end
@@ -288,7 +326,11 @@ function ParasiteZed.hitQueenZed(zed, pl, part, wpn)
             local hp = zed:getHealth()
             if hp then
                 local healthDmg = 0.02
+                if wpn:isAimedFirearm() then
+                    healthDmg = 0.01
+                end
                 zed:setHealth(hp - healthDmg)
+                print(zed:getHealth())
             end
 
             --zed:setVariable("hitreaction")

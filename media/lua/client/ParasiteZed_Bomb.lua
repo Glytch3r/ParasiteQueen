@@ -364,7 +364,7 @@ function ParasiteZed.BugBombContext(player, context, worldobjects, test)
     end
 end
 Events.OnFillWorldObjectContextMenu.Remove(ParasiteZed.BugBombContext)
-Events.OnFillWorldObjectContextMenu.Add(ParasiteZed.BugBombContext)
+--Events.OnFillWorldObjectContextMenu.Add(ParasiteZed.BugBombContext)
 
 function ParasiteZed.exploded(sq)
     local pl = getPlayer()

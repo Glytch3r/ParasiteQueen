@@ -81,6 +81,8 @@ function ParasiteZed.setStats(zed)
             ParasiteZed.cleanUp(zed)
             zed:setTurnDelta(12)
             zed:getModData()['ParasiteZed_Init'] = true
+            zed:resetModelNextFrame()
+
         end
     end
 end

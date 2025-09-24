@@ -1,10 +1,10 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <animNode>
 	<m_Name>ParasiteQueen_Move</m_Name>
-	<m_AnimName>Insect_Crawl</m_AnimName>
+	<m_AnimName>Insect_Low</m_AnimName>
 	<m_deferredBoneAxis>Y</m_deferredBoneAxis>
 	<m_SpeedScale>3</m_SpeedScale>
-	<m_BlendTime>0.20</m_BlendTime>
+	<m_BlendTime>0.50</m_BlendTime>
 	<m_Conditions>
 		<m_Name>TurnDirection</m_Name>
 		<m_Type>STRING</m_Type>

@@ -14,6 +14,13 @@ module Base {
 	sound  ParasiteZed_Stutter2 { category = UI, clip { file = media/sound/ParasiteZed_Stutter2.ogg, distanceMax = 80, is3D = true, volume = 0.5, maxGain = 1, maxInstancesPerEmitter = 2, } }
 	sound  ParasiteZed_BugBomb { category = UI, clip { file = media/sound/ParasiteZed_BugBomb.ogg, distanceMax = 80, is3D = true, volume = 0.5, maxGain = 1, maxInstancesPerEmitter = 2, } }
 
+	sound  ParasiteZed_LaunchSpit { category = UI, clip { file = media/sound/ParasiteZed_LaunchSpit.ogg, distanceMax = 80, is3D = true, volume = 0.5, maxGain = 1, maxInstancesPerEmitter = 2, } }
+	sound  ParasiteZed_SpitHit { category = UI, clip { file = media/sound/ParasiteZed_SpitHit.ogg, distanceMax = 80, is3D = true, volume = 0.5, maxGain = 1, maxInstancesPerEmitter = 2, } }
+
+
+
+
+
 }
 
 

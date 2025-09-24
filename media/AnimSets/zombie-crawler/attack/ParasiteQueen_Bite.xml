@@ -3,10 +3,16 @@
 	<m_Name>ParasiteQueen_Bite</m_Name>
 	<m_AnimName>Insect_Bite</m_AnimName>
 	<m_SpeedScale>0.5</m_SpeedScale>
-
+  	<m_Transitions>
+		<m_Target>ParasiteQueen_doWait</m_Target>
+		<m_AnimName>Insect_Flop</m_AnimName>
+		<m_blendInTime>0.5</m_blendInTime>
+		<m_blendOutTime>0.5</m_blendOutTime>
+		<m_speedScale>1.3</m_speedScale>
+	</m_Transitions>
 	<m_deferredBoneAxis>Y</m_deferredBoneAxis>
 	<m_BlendTime>0.40</m_BlendTime>
-	<m_BlendOutTime>2.1</m_BlendOutTime>
+	<m_BlendOutTime>1.1</m_BlendOutTime>
 	<m_Conditions />
 	<m_Conditions>
 		<m_BoolValue>true</m_BoolValue>

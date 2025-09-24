@@ -136,6 +136,9 @@ function ParasiteZed.Context(player, context, worldobjects)
 
 		skinMenu:addOption(getText("ContextMenu_ParasiteZed_RemoveSkin"), worldobjects, function()
 			ParasiteZed.clearParasiteZedSkin(pl)
+			local md = pl:getModData()
+			md.isParasitePl = false
+			md.isParasiteQueenPl = false
 		end)
 
 		-----------------------            ---------------------------
@@ -147,10 +150,13 @@ function ParasiteZed.Context(player, context, worldobjects)
 			end
 		end
 		 ]]
+		rootMenu:addOption(getText("ContextMenu_ParasiteZed_Spawn"), worldobjects, function()
+			ParasiteZed.doSpawn(sq, false, "ParasiteZed")
+		end)
 
 		
-		rootMenu:addOption(getText("ContextMenu_ParasiteZed_Spawn"), worldobjects, function()
-			ParasiteZed.doSpawnQueen(sq, true, "ParasiteZed_Queen")
+		rootMenu:addOption(getText("ContextMenu_ParasiteZed_SpawnQueen"), worldobjects, function()
+			ParasiteZed.doSpawn(sq, false, "ParasiteZed_Queen")
 		end)
 
 

@@ -32,6 +32,21 @@ ParasiteZed = ParasiteZed or {}
 function ParasiteZed.isCrawler(zed)
 	return zed:isCrawling()
 end
+
+
+function ParasiteZed.setCrawler(zed)
+
+	zed:setCrawler(true);
+	zed:setCanCrawlUnderVehicle(true)
+	zed:setCanWalk(false);
+
+end
+
+
+
+
+
+
 --[[
 function ParasiteZed.setCrawler(zed)
     if not zed:isCrawling() then
@@ -49,6 +64,7 @@ function ParasiteZed.setCrawler(zed)
 	zed:setCrawlerType(1)
 end
  ]]
+--[[ 
 function ParasiteZed.setCrawler(zed)
 	zed:setCanWalk(false);
 	zed:setOnFloor(true);
@@ -66,10 +82,9 @@ function ParasiteZed.setCrawler(zed)
 	end
 end
 
+ ]]
 
-
------------------------            ---------------------------
-
+-----------------
 
 function ParasiteZed.isWalkable(sq)
     if not sq then return false end

@@ -45,7 +45,10 @@ Commands.ParasiteZed.OnSpitHit = function(player, args)
     local playerId = player:getOnlineID();
     sendServerCommand('ParasiteZed', 'OnSpitHit', {id = playerId})
 end
-
+Commands.ParasiteZed.OnDoGas = function(player, args)
+    local playerId = player:getOnlineID();
+    sendServerCommand('ParasiteZed', 'OnDoGas', {id = playerId, x = args.x, y = args.y, z = args.z})
+end
 Commands.ParasiteZed.isParasiteQueen = function(player, args)
     local playerId = player:getOnlineID();
     sendServerCommand('ParasiteZed', 'isParasiteQueen', {id = playerId, isParasiteQueen = args.isParasiteQueen,   zedID = args.zedID})
@@ -75,19 +78,17 @@ Commands.ParasiteZed.doDespawn = function(player, args)
     end
 end
 
-
 Commands.ParasiteZed.doSpawn = function(player, args)
     local x, y, z, count, fit, fChance, isDown = args.x,  args.y,  args.z, args.count, args.fit, args.fChance, args.isDown
-    local zed = addZombiesInOutfit(round(x), round(y), round(z), 1, tostring(fit), tonumber(fChance), isDown, false, isDown, isDown, 1.0)
-    if zed then
+    addZombiesInOutfit(round(x), round(y), round(z), 1, tostring(fit), tonumber(fChance), isDown, false, isDown, isDown, 1.0)
+--[[     if zed then
         if isDown then
             if not zed:isOnFloor() then
                 zed:knockDown(true)
             end
         end
-    end
+    end ]]
 end
-
 Events.OnClientCommand.Add(function(module, command, player, args)
 	if Commands[module] and Commands[module][command] then
 	    Commands[module][command](player, args)

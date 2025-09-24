@@ -88,7 +88,7 @@ function ParasiteZed.clearParasiteZedSkin(pl)
 	ParasiteZed.plSync()
 end
 -----------------------            ---------------------------
-
+--[[ 
 function ParasiteZed.wpnHide(pl, wpn)
     local mods = getActivatedMods()
     if mods:contains("BanditsLegacy") or mods:contains("Bandits2") or mods:contains("BanditsDayOne") then
@@ -114,7 +114,7 @@ end
 
 Events.OnEquipPrimary.Add(ParasiteZed.wpnHide)
 Events.OnEquipSecondary.Add(ParasiteZed.wpnHide)
-
+ ]]
 -----------------------            ---------------------------
 
 function ParasiteZed.isBiteReact(pl)
@@ -132,7 +132,7 @@ function ParasiteZed.isUnarmed(pl)
 end
 
 -----------------------            ---------------------------
---[[ 
+
 function ParasiteZed.plSync(pl)
     local modData = pl:getModData()
     if modData.isParasitePl == nil then
@@ -173,8 +173,8 @@ function ParasiteZed.plSync(pl)
 end
 Events.OnPlayerUpdate.Remove(ParasiteZed.plSync)
 
-Events.OnPlayerUpdate.Add(ParasiteZed.plSync)
- ]]
+--Events.OnPlayerUpdate.Add(ParasiteZed.plSync)
+
 --[[ 
 Events.OnLoad.Add(ParasiteZed.plSync)
 Events.OnClothingUpdated.Add(ParasiteZed.plSync)

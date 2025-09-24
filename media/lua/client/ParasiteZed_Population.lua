@@ -131,22 +131,29 @@ function ParasiteZed.getSpawnRandomZedInfo(fit)
     end
 end
 
-function ParasiteZed.doSpawnQueen(sq, isDown, outfit)
-    isDown = isDown or true
+
+function ParasiteZed.doSpawn(sq, isDown, outfit)
     if sq then
         local x, y, z = sq:getX(), sq:getY(), sq:getZ()
         if isClient() then
+
             local fit, fChance = ParasiteZed.getSpawnRandomZedInfo()
 
             if outfit and outfit ~= '' then
                 fit, fChance = ParasiteZed.getSpawnRandomZedInfo(outfit)
             end
-            sendClientCommand('ParasiteZed', 'doSpawnQueen', {x = x, y = y, z = z, count = 1, fit = fit, fChance = fChance, isDown = isDown})
+            if outfit == "ParasiteZed_Queen" then
+                fChance = 0.5
+            end
+            sendClientCommand('ParasiteZed', 'doSpawn', {x = x, y = y, z = z, count = 1, fit = fit, fChance = fChance, isDown = isDown})
         else
-            addZombiesInOutfit(x, y, z, 1, tostring(fit), 100, false, false, false, false, 2);
+            local fChance = 100
+            if outfit == "ParasiteZed_Queen" then
+                fChance = 50
+            end
+            addZombiesInOutfit(x, y, z, 1, tostring(fit), fChance, false, false, false, false, 2);
         end
     end
-
 end
 
 function ParasiteZed.doLocalSpawn(sq, outfit)

@@ -123,6 +123,7 @@ function ParasiteZed.RewardsHandler(zed)
     local sq = zed:getSquare()
     if not pl or not sq then return end
     if not ParasiteZed.isParasiteZed(zed)  then return end
+
     local attacker = zed:getAttackedBy()
     local inv = zed:getInventory();
 

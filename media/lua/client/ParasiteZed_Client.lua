@@ -63,21 +63,48 @@ Commands.ParasiteZed.syncKills = function(args)
     end
 end
 
+Commands.ParasiteZed.OnDoGas = function(args)
+    if not args or not args.id then return end
+    local targ = getPlayerByOnlineID(args.id)
+    if not targ then return end
+    local x = args.x
+    local y = args.y
+    local z = args.z
+    if x and y and z then
+        local sq = getCell():getOrCreateGridSquare(x, y, z) 
+        local zedID = args.zedID
+        if type(zedID) == 'string' then zedID = tonumber(zedID) end
+        local zed = ParasiteZed.findzedID(zedID)
+        if zed ~= nil then
+            if sq then
+                ParasiteZed.doGas(zed, sq)
+            end
+        end
+    end
+end
+
 
 Commands.ParasiteZed.OnSpitHit = function(args)
     if not args or not args.id then return end
     local targ = getPlayerByOnlineID(args.id)
     if not targ then return end
-    targ:setBumpType("pushedbehind"); 
-    targ:setVariable("BumpFall", true);
-    targ:setVariable("BumpFallType", "pushedbehind"); 
+    local car = targ:getVehicle() 
+    if car then
+        car:addRandomDamageFromCrash(targ, 15)
+        car:engineDoStalling()
+    else
+        targ:setBumpType("pushedbehind"); 
+        targ:setVariable("BumpFall", true);
+        targ:setVariable("BumpFallType", "pushedbehind"); 
+    end
+    ParasiteZed.setScent(targ)
 end
 
 -----------------------            ---------------------------
 function ParasiteZed.isShouldChase(zed)
     local targ = zed:getTarget()
     if not targ then return false end
-
+    if zed:getModData()['ParasiteZed_Scent'] ~= nil then return true end
     local minDist = SandboxVars.ParasiteQueen.DistToChase or 6
     local minSeenTime = SandboxVars.ParasiteQueen.SeenTime or 4
 
@@ -85,10 +112,27 @@ function ParasiteZed.isShouldChase(zed)
         and zed:getTargetSeenTime() >= minSeenTime
 end
 
+function ParasiteZed.setScent(targ)
+    targ:getModData()['ParasiteZed_Scent'] = true
+    if instanceof(targ, "IsoPlayer")  then
+        targ:getModData()['isScentMarked'] = true 
+    else
+        targ:getModData()['ParasiteZed_Scent'] = true
+    end
+
+    timer:Simple(10, function()  
+        if targ and targ:isAlive() then
+            targ:getModData()['ParasiteZed_Scent'] = nil 
+            targ:getModData()['isScentMarked'] = nil 
+        end
+    end)
+end
+
+
 function ParasiteZed.isShouldObserve(zed)
     local targ = zed:getTarget()
     if not targ then return false end
-
+    if zed:getModData()['ParasiteZed_Scent'] ~= nil then return false end
     local minDist = SandboxVars.ParasiteQueen.DistToChase or 6
     local minSeenTime = SandboxVars.ParasiteQueen.SeenTime or 4
     local seen =  zed:getTargetSeenTime() * 100
@@ -105,9 +149,11 @@ function ParasiteZed.soldier(zed)
         end
 
         if not zed:getVariableBoolean('isParasiteZed') then
+            ParasiteZed.cleanUp(zed)
+
             zed:setVariable('isParasiteZed', true)
         end
-
+        
         if not ParasiteZed.isCrawler(zed) then
             ParasiteZed.setCrawler(zed)
         end
