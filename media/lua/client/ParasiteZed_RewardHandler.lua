@@ -1,42 +1,35 @@
---[[██████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████
-   ░▒▓█████▓▒░     ░▒▓█▓▒░        ░▒▓█▓▒░░▒▓█▓▒░  ░▒▓███████▓▒░   ░▒▓██████▓▒░   ░▒▓█▓▒░ ░▒▓█▓▒░  ░▒▓███████▓▒░    ░▒▓███████▓▒░
-  ░▒▓█▓▒░░▒▓█▓▒░   ░▒▓█▓▒░        ░▒▓█▓▒░░▒▓█▓▒░     ░▒▓█▓▒░     ░▒▓█▓▒░░▒▓█▓▒░  ░▒▓█▓▒░ ░▒▓█▓▒░  ▒▓░    ░▒▓█▓▒░   ░▒▓█▒░  ░▒▓█▒░
-  ░▒▓█▓▒░          ░▒▓█▓▒░        ░▒▓█▓▒░░▒▓█▓▒░     ░▒▓█▓▒░     ░▒▓█▓▒░         ░▒▓█▓▒░ ░▒▓█▓▒░         ░▒▓█▓▒░   ░▒▓█▒░  ░▒▓█▒░
-  ░▒▓█▓▒▒▓███▓▒░   ░▒▓█▓▒░         ░▒▓██████▓▒░      ░▒▓█▓▒░     ░▒▓█▓▒░         ░▒▓█████████▓▒░     ░▒▓███▓▒░     ░▒▓███████▓▒░
-  ░▒▓█▓▒░░▒▓█▓▒░   ░▒▓█▓▒░           ░▒▓█▓▒░         ░▒▓█▓▒░     ░▒▓█▓▒░         ░▒▓█▓▒░ ░▒▓█▓▒░         ░▒▓█▓▒░   ░▒▓█▓▒░  ░▒▓▒░
-  ░▒▓█▓▒░░▒▓█▓▒░   ░▒▓█▓▒░           ░▒▓█▓▒░         ░▒▓█▓▒░     ░▒▓█▓▒░░▒▓█▓▒░  ░▒▓█▓▒░ ░▒▓█▓▒░  ▒▓░    ░▒▓█▓▒░   ░▒▓█▓▒░  ░▒█▒░
-   ░▒▓██████▓▒░    ░▒▓████████▓▒░    ░▒▓█▓▒░         ░▒▓█▓▒░      ░▒▓██████▓▒░   ░▒▓█▓▒░ ░▒▓█▓▒░  ░▒▓███████▓▒░    ░▒▓█▓▒░  ░▒█▒░
-|‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾|
-|                        				 Custom  PZ  Mod  Developer  for  Hire													  |
-|‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾|
-|                       		 Portfolio:  https://steamcommunity.com/id/glytch3r/myworkshopfiles/							  |
-|                       		 Discord:    Glytch3r#1337 / glytch3r															  |
-|                       		 Support:    https://ko-fi.com/glytch3r														 	  |
-|_________________________________________________________________________________________________________________________________|
-   ░▒▓██████▓▒░    ░▒▓████████▓▒░    ░▒▓█▓▒░         ░▒▓█▓▒░      ░▒▓██████▓▒░   ░▒▓█▓▒░ ░▒▓█▓▒░  ░▒▓███████▓▒░    ░▒▓█▓▒░  ░▒█▒░
-  ░▒▓█▓▒░░▒▓█▓▒░   ░▒▓█▓▒░           ░▒▓█▓▒░         ░▒▓█▓▒░     ░▒▓█▓▒░░▒▓█▓▒░  ░▒▓█▓▒░ ░▒▓█▓▒░  ▒▓░    ░▒▓█▓▒░   ░▒▓█▓▒░  ░▒█▒░
-  ░▒▓█▓▒░░▒▓█▓▒░   ░▒▓█▓▒░           ░▒▓█▓▒░         ░▒▓█▓▒░     ░▒▓█▓▒░         ░▒▓█▓▒░ ░▒▓█▓▒░         ░▒▓█▓▒░   ░▒▓█▓▒░  ░▒▓▒░
-  ░▒▓█▓▒▒▓███▓▒░   ░▒▓█▓▒░         ░▒▓██████▓▒░      ░▒▓█▓▒░     ░▒▓█▓▒░         ░▒▓█████████▓▒░     ░▒▓███▓▒░     ░▒▓███████▓▒░
-  ░▒▓█▓▒░          ░▒▓█▓▒░        ░▒▓█▓▒░░▒▓█▓▒░     ░▒▓█▓▒░     ░▒▓█▓▒░         ░▒▓█▓▒░ ░▒▓█▓▒░         ░▒▓█▓▒░   ░▒▓█▒░  ░▒▓█▒░
-  ░▒▓█▓▒░░▒▓█▓▒░   ░▒▓█▓▒░        ░▒▓█▓▒░░▒▓█▓▒░     ░▒▓█▓▒░     ░▒▓█▓▒░░▒▓█▓▒░  ░▒▓█▓▒░ ░▒▓█▓▒░  ▒▓░    ░▒▓█▓▒░   ░▒▓█▒░  ░▒▓█▒░
-   ░▒▓█████▓▒░     ░▒▓█▓▒░        ░▒▓█▓▒░░▒▓█▓▒░  ░▒▓███████▓▒░   ░▒▓██████▓▒░   ░▒▓█▓▒░ ░▒▓█▓▒░  ░▒▓███████▓▒░    ░▒▓███████▓▒░
-███████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████-]]
-
-----------------------------------------------------------------------------------------------------------------------------------
+----------------------------------------------------------------
+-----  ▄▄▄   ▄    ▄   ▄  ▄▄▄▄▄   ▄▄▄   ▄   ▄   ▄▄▄    ▄▄▄  -----
+----- █   ▀  █    █▄▄▄█    █    █   ▀  █▄▄▄█  ▀  ▄█  █ ▄▄▀ -----
+----- █  ▀█  █      █      █    █   ▄  █   █  ▄   █  █   █ -----
+-----  ▀▀▀▀  ▀▀▀▀   ▀      ▀     ▀▀▀   ▀   ▀   ▀▀▀   ▀   ▀ -----
+----------------------------------------------------------------
+--                                                            --
+--   Project Zomboid Modding Commissions                      --
+--   https://steamcommunity.com/id/glytch3r/myworkshopfiles   --
+--                                                            --
+--   ▫ Discord  ꞉   glytch3r                                  --
+--   ▫ Support  ꞉   https://ko-fi.com/glytch3r                --
+--   ▫ Youtube  ꞉   https://www.youtube.com/@glytch3r         --
+--   ▫ Github   ꞉   https://github.com/Glytch3r               --
+--                                                            --
+----------------------------------------------------------------
+----- ▄   ▄   ▄▄▄   ▄   ▄   ▄▄▄     ▄      ▄   ▄▄▄▄  ▄▄▄▄  -----
+----- █   █  █   ▀  █   █  ▀   █    █      █      █  █▄  █ -----
+----- ▄▀▀ █  █▀  ▄  █▀▀▀█  ▄   █    █    █▀▀▀█    █  ▄   █ -----
+-----  ▀▀▀    ▀▀▀   ▀   ▀   ▀▀▀   ▀▀▀▀▀  ▀   ▀    ▀   ▀▀▀  -----
+----------------------------------------------------------------
 
 
 ParasiteZed = ParasiteZed or {}
 
-function ParasiteZed.getRewards()
-    if not sq then return end
-    if ParasiteZed.parsedItems == nil then
-        ParasiteZed.parsedItems = ParasiteZed.parseItems()
-    end
+function ParasiteZed.getRewards(isQueen)
+    local lootStr = ParasiteZed.getDeathRewards(isQueen)
+    local parsedItems = ParasiteZed.parseItems(lootStr)
     local randomItem = nil
-    local itemList = ParasiteZed.parsedItems
+    local itemList = parsedItems
     if #itemList == 0 then return end
-
-    if ParasiteZed.getRewardRoll() then
+    if ParasiteZed.getRewardRoll(isQueen) then
         randomItem = itemList[ZombRand(1, #itemList + 1)]
         if randomItem then
             if getCore():getDebug() then
@@ -49,20 +42,28 @@ end
 
 
 
-function ParasiteZed.getRewardRoll()
+function ParasiteZed.getRewardRoll(isQueen)
     local chance = SandboxVars.ParasiteQueen.DropRate or 20
+    if isQueen then
+        chance = SandboxVars.ParasiteQueen.DropRateQueen or 30
+    end
     if chance <= 0 then return false end
     if chance >= 100 then return true end
     return ParasiteZed.doRoll(chance)
 end
 
-function ParasiteZed.getDeathRewards()
-    return SandboxVars.ParasiteQueen.DeathRewards or 'Base.Katana;Base.Machete'
+function ParasiteZed.getDeathRewards(isQueen)
+    local rewards = SandboxVars.ParasiteQueen.DeathRewards 
+    if isQueen then
+        rewards = SandboxVars.ParasiteQueen.DeathRewardsQueen
+    end
+    return rewards
 end
 
-function ParasiteZed.parseItems()
+function ParasiteZed.parseItems(lootStr)
     local tab = {}
-    local lootStr = ParasiteZed.getDeathRewards()
+    lootStr = lootStr or ParasiteZed.getDeathRewards()
+    if not lootStr then return end
     if lootStr and lootStr ~= '' then
         for item in string.gmatch(lootStr, "([^;]+)") do
             table.insert(tab, item)
@@ -122,14 +123,21 @@ function ParasiteZed.RewardsHandler(zed)
     local pl = getPlayer()
     local sq = zed:getSquare()
     if not pl or not sq then return end
-    if not ParasiteZed.isParasiteZed(zed)  then return end
-
-    local attacker = zed:getAttackedBy()
     local inv = zed:getInventory();
-
+    local attacker = zed:getAttackedBy()
     if not attacker then return end
-    if ParasiteZed.isClosestPl(pl, zed) or (attacker and attacker == pl) then
+
+    if ParasiteZed.isParasiteQueen(zed)  and attacker == pl then 
+        ParasiteZed.spawnParasitesOnCorpsesWithNest(zed)
+        local loot =  ParasiteZed.getRewards()
+        if loot then
+            inv:AddItem(loot)
+        end
+         
+    end
+    if attacker == pl and ParasiteZed.isParasiteZed(zed)  then
         local mats = ParasiteZed.getMaterialDrop()
+
         local loot =  ParasiteZed.getRewards()
         if loot then
             inv:AddItem(loot)
@@ -139,7 +147,7 @@ function ParasiteZed.RewardsHandler(zed)
         end
     end
 
-
+    
     local md = attacker:getModData()
     if not md then return end
 
@@ -165,6 +173,56 @@ function ParasiteZed.RewardsHandler(zed)
 end
 
 Events.OnZombieDead.Add(ParasiteZed.RewardsHandler)
+
+function ParasiteZed.spawnParasitesOnCorpsesWithNest(source)
+    if forageSystem.getTimeOfDay() == 'isDay' then return end
+    local rad = 30
+    if RainManager.isRaining() then rad = 60 end
+    local cell = getCell()
+    local totalToSpawn = 0
+    local x, y, z = source:getX(), source:getY(), 0
+    local corpseSquares = {}
+
+    for xDelta = -rad, rad do
+        for yDelta = -rad, rad do
+            local sq = cell:getOrCreateGridSquare(x + xDelta, y + yDelta, z)
+            local hasNest = false
+            for i = 0, sq:getObjects():size() - 1 do
+                local obj = sq:getObjects():get(i)
+                local sprName = ParasiteZed.getSprName(obj)
+                if sprName and ParasiteZed.isSpawnerNest(sprName) then
+                    hasNest = true
+                    break
+                end
+            end
+            if hasNest then
+                for i = 0, sq:getObjects():size() - 1 do
+                    local obj = sq:getObjects():get(i)
+                    if instanceof(obj, "IsoDeadBody") and not obj:isRemoved() then
+                        table.insert(corpseSquares, sq)
+                        totalToSpawn = totalToSpawn + 1
+                    end
+                end
+            end
+        end
+    end
+
+    if totalToSpawn >= 10 then
+        for i = 1, #corpseSquares do
+            ParasiteZed.doSpawn(corpseSquares[i], false, "ParasiteZed")
+        end
+    end
+end
+
+function ParasiteZed.spawnAtAllNests(source, rad)
+    local nests = ParasiteZed.getNests(source, rad)
+    for i = 1, #nests do
+        local sq = nests[i]:getSquare()
+        if sq then
+            ParasiteZed.doSpawn(sq, false, "ParasiteZed")
+        end
+    end
+end
 
 function ParasiteZed.LearnHandler(recipeStr, pl)
     pl = pl or getPlayer()

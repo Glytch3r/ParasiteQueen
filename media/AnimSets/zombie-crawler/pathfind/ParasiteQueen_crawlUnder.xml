@@ -4,7 +4,7 @@
 	<m_AnimName>Insect_Low</m_AnimName>
 	<m_deferredBoneAxis>Y</m_deferredBoneAxis>
 	<m_SyncTrackingEnabled>false</m_SyncTrackingEnabled>
-	<m_SpeedScale>0.04</m_SpeedScale>
+	<m_SpeedScale>2</m_SpeedScale>
 
 	<m_Conditions>
 		<m_Name>bMoving</m_Name>

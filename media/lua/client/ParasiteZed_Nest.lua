@@ -73,6 +73,7 @@ function ParasiteZed.doSpawnQueenNest(sq)
 	return obj
 end
 
+
 function ParasiteZed.getSprName(obj)
     if not obj then return nil end
     local spr = obj:getSprite()
@@ -88,27 +89,38 @@ function ParasiteZed.isSpawnerNest(sprName)
 	return sprName == ParasiteZed.MainNest
 end
 
-function ParasiteZed.getNest(source, rad)
-	rad = rad or 5
-	local cell = getCell()
-	source = source or ParasiteZed.getNestCellMidSquare()
-	local x, y, z = source:getX(), source:getY(), 0
-	for xDelta = -rad, rad do
-		for yDelta = -rad, rad do
-			local sq = cell:getOrCreateGridSquare(x + xDelta, y + yDelta, z)
-			for i=0, sq:getObjects():size()-1 do
-				local obj = sq:getObjects():get(i)
-				local sprName = ParasiteZed.getSprName(obj)
-				if sprName and ParasiteZed.isSpawnerNest(sprName) then
-					ParasiteZed.nestSq = sq
-					ParasiteZed.nest = obj
-					return obj
-				end
-			end
-		end
-	end
-	return ParasiteZed.nest or nil
+function ParasiteZed.getNests(source, rad)
+    rad = rad or 5
+    local cell = getCell()
+    local nests = {}
+    local x, y, z = source:getX(), source:getY(), 0
+    for xDelta = -rad, rad do
+        for yDelta = -rad, rad do
+            local sq = cell:getOrCreateGridSquare(x + xDelta, y + yDelta, z)
+            for i = 0, sq:getObjects():size() - 1 do
+                local obj = sq:getObjects():get(i)
+                local sprName = ParasiteZed.getSprName(obj)
+                if sprName and ParasiteZed.isSpawnerNest(sprName) then
+                    table.insert(nests, obj)
+                end
+            end
+        end
+    end
+    return nests
+end
 
+function ParasiteZed.getNest(sq)
+    if not sq then return nil end
+    local cell = getCell()
+    sq = cell:getOrCreateGridSquare(sq:getX(), sq:getY(), 0)
+    for i = 0, sq:getObjects():size() - 1 do
+        local obj = sq:getObjects():get(i)
+        local sprName = ParasiteZed.getSprName(obj)
+        if sprName and ParasiteZed.isSpawnerNest(sprName) then        
+            return obj
+        end
+    end
+    return  nil
 end
 
 

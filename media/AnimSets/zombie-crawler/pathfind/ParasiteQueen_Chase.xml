@@ -2,7 +2,7 @@
 <animNode x_extends="ParasiteQueen_Move.xml">
 	<m_Name>Insect_Chase</m_Name>
 	<m_AnimName>Insect_Chase</m_AnimName>
-	<m_SpeedScale>0.03</m_SpeedScale>
+	<m_SpeedScale>2</m_SpeedScale>
 
 	<m_Conditions />
 	<m_Conditions>

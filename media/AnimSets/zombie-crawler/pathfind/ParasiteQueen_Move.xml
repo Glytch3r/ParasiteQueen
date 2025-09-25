@@ -3,7 +3,7 @@
 	<m_Name>Insect_Step</m_Name>
 	<m_AnimName>Insect_Low</m_AnimName>
 	<m_deferredBoneAxis>Y</m_deferredBoneAxis>
-	<m_SpeedScale>0.02</m_SpeedScale>
+	<m_SpeedScale>1</m_SpeedScale>
 
 	<m_BlendTime>0.20</m_BlendTime>
 	<m_Conditions>

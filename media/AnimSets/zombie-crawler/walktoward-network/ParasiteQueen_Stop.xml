@@ -3,9 +3,9 @@
 	<m_Name>ParasiteQueen_Stop</m_Name>
 	<m_AnimName>Insect_Tail</m_AnimName>
 	<m_deferredBoneAxis>Y</m_deferredBoneAxis>
-	<m_SpeedScale>1</m_SpeedScale>
 	<m_BlendTime>0.20</m_BlendTime>
 	<m_Priority>4</m_Priority>
+	<m_SpeedScale>2</m_SpeedScale>
 
 	<m_Conditions>
 		<m_Name>isParasiteQueen</m_Name>

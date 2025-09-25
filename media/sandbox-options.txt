@@ -66,9 +66,22 @@ option ParasiteQueen.QueenSpawnRate
 
 option ParasiteQueen.DeathRewards
 {
-	type = string, default = Base.Machete;Base.Katana,
+	type = string, default = Base.HuntingKnife;Base.IcePick,
 	page = ParasiteQueen, translation = ParasiteQueen_DeathRewards,
 }
+
+option ParasiteQueen.DeathRewardsQueen
+{
+	type = string, default = Base.Machete;Base.Katana;Base.Sledgehammer,
+	page = ParasiteQueen, translation = ParasiteQueen_DeathRewardsQueen,
+}
+
+option ParasiteQueen.DropRateQueen
+{
+    type = double, min = 0, max = 100, default = 30,
+	page = ParasiteQueen, translation = ParasiteQueen_DropRateQueen,
+}
+
 
 option ParasiteQueen.DropRate
 {

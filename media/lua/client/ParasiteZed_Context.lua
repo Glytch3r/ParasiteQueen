@@ -162,7 +162,7 @@ function ParasiteZed.Context(player, context, worldobjects)
 
 		-----------------------            ---------------------------
 
-
+--[[ 
 
 		local emoteMenu = ISContextMenu:getNew(context)
 		rootMenu:addSubMenu(rootMenu:addOption(getText("ContextMenu_ParasiteZed_Emote")), emoteMenu)
@@ -177,7 +177,7 @@ function ParasiteZed.Context(player, context, worldobjects)
 			emoteMenu:addOption(emote, worldobjects, function()
 				pl:playEmote(emote)
 			end)
-		end
+		end ]]
 
 		local function killZombiesInRadius(centerPl, radius, predicate)
 			local killed = 0

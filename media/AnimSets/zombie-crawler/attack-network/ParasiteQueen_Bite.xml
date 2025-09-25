@@ -2,7 +2,8 @@
 <animNode x_extends="ParasiteQueen_Miss.xml">
 	<m_Name>ParasiteQueen_Bite</m_Name>
 	<m_AnimName>Insect_Jab</m_AnimName>
-	<m_SpeedScale>0.5</m_SpeedScale>
+	<m_SpeedScale>1.5</m_SpeedScale>
+
   	<m_Transitions>
 		<m_Target>ParasiteQueen_doWait</m_Target>
 		<m_AnimName>Insect_Flop</m_AnimName>
