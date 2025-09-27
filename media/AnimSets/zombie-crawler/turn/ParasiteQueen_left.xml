@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <animNode>
 	<m_Name>ParasiteQueen_left</m_Name>
-	<m_AnimName>Insect_Tail</m_AnimName>
+	<m_AnimName>Insect_Low</m_AnimName>
 	<m_deferredBoneAxis>Y</m_deferredBoneAxis>
 <!-- 	<m_SpeedScale>AnimSpeed</m_SpeedScale> -->
 	<m_SpeedScale>3</m_SpeedScale>

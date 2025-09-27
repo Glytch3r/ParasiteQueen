@@ -145,6 +145,8 @@ function ParasiteZed.RewardsHandler(zed)
         if mats then
             inv:AddItem(mats)
         end
+    else
+        return
     end
 
     

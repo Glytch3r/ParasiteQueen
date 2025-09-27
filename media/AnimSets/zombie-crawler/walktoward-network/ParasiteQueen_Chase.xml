@@ -23,9 +23,4 @@
 		<m_BoolValue>true</m_BoolValue>
 	</m_Conditions>
 
-<!-- 	<m_Conditions>
-		<m_Name>QueenBehavior</m_Name>
-		<m_Type>STRING</m_Type>
-		<m_StringValue>doBash</m_StringValue>
-	</m_Conditions> -->
 </animNode>

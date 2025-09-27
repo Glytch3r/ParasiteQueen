@@ -211,47 +211,18 @@ end
 
 function ParasiteZed.moveToXYZ(zed, x, y, z)
     if not zed then return end
+   
+
     local sq = getCell():getGridSquare(x, y, z)
-    if not sq or not sq:isFree(false) or not sq:isSolidFloor() then return end
-
-    local pf = zed:getPathFindBehavior2()
-    if pf and not pf:isTarget(x, y, z) then
-        pf:pathToLocation(x, y, z)
-        zed:setVariable("bPathfind", true)
-        zed:setVariable("bMoving", true)
-    end
-end
-
-
-function ParasiteZed.seekAndPlantNest(zed)
-    if not zed or zed:isDead() then return end
-    local cell = getCell()
-    local closest, dist = nil, 9999
-    local x, y, z = zed:getX(), zed:getY(), zed:getZ()
-
-    for i = 0, cell:getObjectList():size() - 1 do
-        local obj = cell:getObjectList():get(i)
-        if instanceof(obj, "IsoDeadBody") and not obj:isRemoved() then
-            local sq = obj:getSquare()
-            if sq and not ParasiteZed.getNest(sq) then
-                local d = obj:DistTo(x, y)
-                if d < dist then
-                    dist = d
-                    closest = obj
-                end
-            end
+    if zed:DistTo(sq) <= 2 then
+        return true
+    else
+        local pf = zed:getPathFindBehavior2()
+        if pf then
+            pf:pathToLocation(x, y, z)
+            zed:setVariable("bPathfind", true)
+            zed:setVariable("bMoving", true)
         end
-    end
-
-    if closest then
-        zed:getPathFindBehavior2():pathToLocation(closest:getX(), closest:getY(), closest:getZ())
-        Events.OnPlayerUpdate.Add(function()
-            if not zed or zed:isDead() then Events.OnPlayerUpdate.Remove(this) return end
-            if zed:getSquare() == closest:getSquare() then
-                ParasiteZed.plantNestOnCorpseSquare(zed, closest:getSquare())
-                Events.OnPlayerUpdate.Remove(this)
-            end
-        end)
     end
 end
 
@@ -259,69 +230,71 @@ function ParasiteZed.plantNestOnCorpseSquare(zed, sq)
     if not sq or ParasiteZed.getNest(sq) then return end
     ParasiteZed.doSpawnQueenNest(sq)
     ParasiteZed.doSpawn(sq, false, "ParasiteZed")
-    ParasiteZed.seekAndPlantNest(zed)
 end
 
-function ParasiteZed.seek(zed)
-    if not zed or zed:isDead() then return end
-    local cell = getCell()
-    local closest, dist = nil, 9999
-    local x, y, z = zed:getX(), zed:getY(), zed:getZ()
-    for i = 0, cell:getObjectList():size() - 1 do
-        local obj = cell:getObjectList():get(i)
-        if instanceof(obj, "IsoDeadBody") and not obj:isRemoved() then
-            local d = obj:DistTo(x, y)
-            if d < dist then
-                dist = d
-                closest = obj
-            end
+function ParasiteZed.huntCorpse(zed)
+    if not zed then return nil end
+    if ParasiteZed.isMoving(zed) or zed:getTarget() ~= nil then return nil end
+    local laySq = ParasiteZed.getLaySq(zed)
+    if laySq then
+        local x, y, z = laySq:getX(), laySq:getY(), laySq:getZ()
+        local sq = ParasiteZed.moveToXYZ(zed, x, y, z)
+        if sq then
+            ParasiteZed.plantNestOnCorpseSquare(zed, sq)
         end
     end
-    if closest then
-		local targSq = getCell():getOrCreateGridSquare(closest:getX(), closest:getY(), closest:getZ()) 
-		if not ParasiteZed.getNest(targSq) then
-			zed:getPathFindBehavior2():pathToLocation(closest:getX(), closest:getY(), closest:getZ())
-		end
-    end
 end
-function ParasiteZed.huntCorpse(zed)
-    if not zed or zed:isDead() then return end
+function ParasiteZed.getLaySq(zed)
+    if not zed then return end
     local cell = getCell()
     local zx, zy, zz = zed:getX(), zed:getY(), zed:getZ()
-    local closest, bestDist = nil, 9999
-
-    for i = 0, cell:getObjectList():size() - 1 do
-        local obj = cell:getObjectList():get(i)
-        if instanceof(obj, "IsoDeadBody") and not obj:isRemoved() then
-            local sq = obj:getSquare()
-            if sq and sq:getZ() == zz then
-                local d = obj:DistTo(zx, zy)
-                if d < bestDist then
-                    bestDist = d
-                    closest = obj
+    local rad = 30
+    for xDelta = -rad, rad do
+        for yDelta = -rad, rad do
+            local sq = cell:getOrCreateGridSquare(zx + xDelta, zy + yDelta, zz)
+            if sq and not ParasiteZed.getNest(sq) then
+                for i = 0, sq:getStaticMovingObjects():size() - 1 do
+                    local obj = sq:getStaticMovingObjects():get(i)
+                    if instanceof(obj, "IsoDeadBody") then
+                        return sq
+                    end
                 end
             end
         end
     end
+end
 
-    if closest then
-        local sq = closest:getSquare()
-        if sq and sq:isFree(false) and sq:isSolidFloor() then
-            local pf = zed:getPathFindBehavior2()
-            if pf and not pf:isTarget(sq:getX(), sq:getY(), sq:getZ()) then
-                pf:pathToLocation(sq:getX(), sq:getY(), sq:getZ())
-                zed:setVariable("bPathfind", true)
-                zed:setVariable("bMoving", true)
+
+
+--[[ 
+function ParasiteZed.getLaySq(zed)
+    if not zed then return end
+    local cell = getCell()
+    local zx, zy, zz = zed:getX(), zed:getY(), zed:getZ()
+    local closest, bestDist = nil, 9999
+    local rad = 30
+    for xDelta = -rad, rad do
+        for yDelta = -rad, rad do
+            local sq = cell:getOrCreateGridSquare(zx + xDelta, zy + yDelta, zz)
+            if sq and not ParasiteZed.getNest(sq) then
+                for i = 0, sq:getStaticMovingObjects():size() - 1 do
+                    local obj = sq:getStaticMovingObjects():get(i)
+                    if instanceof(obj, "IsoDeadBody") then
+                        local d = obj:DistTo(zx, zy)
+                        if d < bestDist then
+                            bestDist = d
+                            closest = obj
+                        end
+                    end
+                end
             end
         end
     end
-end
-
---[[ 
-
-if not ParasiteZed.getNest(sq) then
-	ParasiteZed.doSpawnQueenNest(sq)
-	ParasiteZed.doSpawn(sq, false, "ParasiteZed")	
-	ParasiteZed.seek(zed)
+    if closest then
+        local sq2 = closest:getSquare()
+        if sq2 then
+            return sq2
+        end
+    end
 end
  ]]

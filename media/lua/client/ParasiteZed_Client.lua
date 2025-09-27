@@ -151,12 +151,10 @@ function ParasiteZed.soldier(zed)
         end
 
         if not zed:getVariableBoolean('isParasiteZed') then
-
             zed:setVariable('isParasiteZed', true)
         end
         
         if not ParasiteZed.isCrawler(zed) then
-
             ParasiteZed.setCrawler(zed)
         end
         local targ = zed:getTarget()
@@ -181,10 +179,6 @@ function ParasiteZed.soldier(zed)
                 zed:setUseless(false)
             end
         end
-
-
-
-
     else
         if zed:getVariableBoolean('isParasiteZed') then
             zed:setVariable('isParasiteZed', false)
@@ -198,7 +192,6 @@ Events.OnZombieUpdate.Add(ParasiteZed.soldier)
 
 
 -----------------------            ---------------------------
-
 
 -----------------------            ---------------------------
 
