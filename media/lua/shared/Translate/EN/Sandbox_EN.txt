@@ -3,6 +3,8 @@ Sandbox_EN = {
 
     Sandbox_ParasiteQueen = "Parasite Zed Queen",
 	Sandbox_ParasiteQueen_EMP  = "EMP",
+	Sandbox_ParasiteQueen_EMP_tooltip  = "Some feature may not be available for this version",
+
 	Sandbox_ParasiteQueen_InfectionChance = "InfectionChance",
 	Sandbox_ParasiteQueen_ParasiteInfection = "ParasiteInfection",
 	Sandbox_ParasiteQueen_ParasiteImmunity = "ParasiteImmunity",
@@ -28,9 +30,13 @@ Sandbox_EN = {
 	Sandbox_ParasiteQueen_KillsToLearnCraftAnatomy = "KillsToLearnCraftAnatomy",
 	Sandbox_ParasiteQueen_KillsToLearnAntiParasitic = "KillsToLearnAntiParasitic",
 	Sandbox_ParasiteQueen_KillsToLearnBugBomb = "KillsToLearnBugBomb",
-	Sandbox_ParasiteQueen_gasCooldown = "gasCooldown",
-	Sandbox_ParasiteQueen_spitCooldown = "spitCooldown",
-	Sandbox_ParasiteQueen_eggCooldown = "eggCooldown",
+
+	Sandbox_ParasiteQueen_gasCooldown = "Gas Cooldown",
+	Sandbox_ParasiteQueen_gasCooldown_tooltip = "Set to 0 to disable feature",
+	Sandbox_ParasiteQueen_spitCooldown = "Spit Cooldown",
+	Sandbox_ParasiteQueen_spitCooldown_tooltip = "Set to 0 to disable feature",
+	Sandbox_ParasiteQueen_eggCooldown = "Egg Cooldown",
+	Sandbox_ParasiteQueen_eggCooldown_tooltip = "Set to 0 to disable feature",
 
 
 

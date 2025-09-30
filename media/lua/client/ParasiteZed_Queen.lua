@@ -169,28 +169,30 @@ function ParasiteZed.behavior(zed)
                     zed:getModData()['ParasiteZed_Spit'] = nil
                 end ]]
                 if not sq then return end
-                if zed:getModData()['ParasiteZed_Spit'] == nil then
-                    if ParasiteZed.isInSpitRange(zed, targ) and targ:getZ() == zed:getZ() then   
-                        local facing = zed:isFacingTarget() or false
-                        if facing then
-                            zed:setUseless(true)
-                            zed:getModData()['ParasiteZed_Spit'] = true
-                            getSoundManager():PlayWorldSound('ParasiteZed_LaunchSpit', sq, 0, 5, 5, false)
-                            ParasiteZed.doSpit(zed:getX(), zed:getY(), targ:getX(), targ:getY(), targ:getZ(), 1, 1)
-                            local cd = SandboxVars.ParasiteQueen.spitCooldown or 5
-                            timer:Simple(cd, function() 
-                                if zed then                        
-                                    zed:getModData()['ParasiteZed_Spit'] = nil
-                                    zed:setUseless(false)                            
-                                end
-                            end)
-                        else
-                            zed:setUseless(false)    
-                            zed:faceLocation(targ:getX(), targ:getY())     
+                local cd = SandboxVars.ParasiteQueen.spitCooldown or 5
+                if cd > 0 then  
+                    if zed:getModData()['ParasiteZed_Spit'] == nil then
+                        if ParasiteZed.isInSpitRange(zed, targ) and targ:getZ() == zed:getZ() then   
+                            local facing = zed:isFacingTarget() or false
+                            if facing then
+                                zed:setUseless(true)
+                                zed:getModData()['ParasiteZed_Spit'] = true
+                                getSoundManager():PlayWorldSound('ParasiteZed_LaunchSpit', sq, 0, 5, 5, false)
+                                ParasiteZed.doSpit(zed:getX(), zed:getY(), targ:getX(), targ:getY(), targ:getZ(), 1, 1)
+                                timer:Simple(cd, function() 
+                                    if zed then                        
+                                        zed:getModData()['ParasiteZed_Spit'] = nil
+                                        zed:setUseless(false)                            
+                                    end
+                                end)
+                            else
+                                zed:setUseless(false)    
+                                zed:faceLocation(targ:getX(), targ:getY())     
+                            end
                         end
+                    else
+                        zed:setUseless(false)    
                     end
-                else
-                    zed:setUseless(false)    
                 end
             end
         end

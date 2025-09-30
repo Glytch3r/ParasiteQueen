@@ -89,21 +89,23 @@ function ParasiteZed.doGasTrigger(zed)
     local sq = zed:getSquare() 
     local pl = getPlayer()
     if not zed then return end
-    if zed:getModData()['ParasiteZed_Gas'] == nil and sq and pl then
-        getSoundManager():PlayWorldSound("ParasiteZed_SpitHit", sq, 0, 5, 5, false)    
+    local cd = SandboxVars.ParasiteQueen.gasCooldown or 5
+    if cd > 0 then  
+        if zed:getModData()['ParasiteZed_Gas'] == nil and sq and pl then
+            getSoundManager():PlayWorldSound("ParasiteZed_SpitHit", sq, 0, 5, 5, false)    
 
-        zed:getModData()['ParasiteZed_Gas'] = true
-        if isClient() then
-            local x, y, z = round(sq:getX()),  round(sq:getY()),  sq:getZ() or 0
-            sendClientCommand('ParasiteZed', 'OnDoGas', {id = pl:getOnlineID(), x = x, y = y, z = z, zedID = zed:getOnlineID()})
-        end
-        local cd = SandboxVars.ParasiteQueen.gasCooldown or 5
-
-        timer:Simple(cd, function() 
-            if zed then
-                zed:getModData()['ParasiteZed_Gas'] = nil
+            zed:getModData()['ParasiteZed_Gas'] = true
+            if isClient() then
+                local x, y, z = round(sq:getX()),  round(sq:getY()),  sq:getZ() or 0
+                sendClientCommand('ParasiteZed', 'OnDoGas', {id = pl:getOnlineID(), x = x, y = y, z = z, zedID = zed:getOnlineID()})
             end
-        end)
+
+            timer:Simple(cd, function() 
+                if zed then
+                    zed:getModData()['ParasiteZed_Gas'] = nil
+                end
+            end)
+        end
     end
 end
 function ParasiteZed.doGas(zed, sq)
@@ -133,7 +135,7 @@ function ParasiteZed.doGas(zed, sq)
             end
         end
         Events.OnTick.Add(gas)
-        timer:Simple(2, function()
+        timer:Simple(5, function()
             if ParasiteZed.qmarker then
                 ParasiteZed.qmarker:remove()
                 ParasiteZed.qmarker = nil

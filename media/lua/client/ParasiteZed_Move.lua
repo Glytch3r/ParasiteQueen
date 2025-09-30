@@ -265,21 +265,23 @@ function ParasiteZed.getLaySq(zed)
     if zed:getModData()['ParasiteZed_Egg'] == nil then 
         zed:getModData()['ParasiteZed_Egg'] = true
         local cd = SandboxVars.ParasiteQueen.eggCooldown or 5
-        timer:Simple(cd, function() 
-            if zed then
-                zed:getModData()['ParasiteZed_Egg'] = nil 
-            end
-        end)
-        local zx, zy, zz = zed:getX(), zed:getY(), zed:getZ()
-        local rad = 30
-        for xDelta = -rad, rad do
-            for yDelta = -rad, rad do
-                local sq = cell:getOrCreateGridSquare(zx + xDelta, zy + yDelta, zz)
-                if sq and not ParasiteZed.getNest(sq) then
-                    for i = 0, sq:getStaticMovingObjects():size() - 1 do
-                        local obj = sq:getStaticMovingObjects():get(i)
-                        if instanceof(obj, "IsoDeadBody") then
-                            return sq
+        if cd > 0 then  
+            timer:Simple(cd, function() 
+                if zed then
+                    zed:getModData()['ParasiteZed_Egg'] = nil 
+                end
+            end)
+            local zx, zy, zz = zed:getX(), zed:getY(), zed:getZ()
+            local rad = 30
+            for xDelta = -rad, rad do
+                for yDelta = -rad, rad do
+                    local sq = cell:getOrCreateGridSquare(zx + xDelta, zy + yDelta, zz)
+                    if sq and not ParasiteZed.getNest(sq) then
+                        for i = 0, sq:getStaticMovingObjects():size() - 1 do
+                            local obj = sq:getStaticMovingObjects():get(i)
+                            if instanceof(obj, "IsoDeadBody") then
+                                return sq
+                            end
                         end
                     end
                 end
