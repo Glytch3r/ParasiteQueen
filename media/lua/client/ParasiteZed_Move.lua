@@ -262,8 +262,8 @@ function ParasiteZed.getLaySq(zed)
                     local sq = cell:getOrCreateGridSquare(zx + xDelta, zy + yDelta, zz)
                     if sq and not ParasiteZed.getNest(sq) then
                         for i = 0, sq:getStaticMovingObjects():size() - 1 do
-                            local obj = sq:getStaticMovingObjects():get(i)
-                            if instanceof(obj, "IsoDeadBody") then
+                            local obj = sq:getStaticMovingObjects():get(i) 
+                            if sq:getDeadBody() or instanceof(obj, "IsoDeadBody") then
                                 return sq
                             end
                         end
