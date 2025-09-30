@@ -143,7 +143,6 @@ function ParasiteZed.queen(zed)
         end        
     end
 end
-
 Events.OnZombieUpdate.Remove(ParasiteZed.queen)
 Events.OnZombieUpdate.Add(ParasiteZed.queen)
 
@@ -152,7 +151,6 @@ function ParasiteZed.behavior(zed)
     local isQueen = ParasiteZed.isParasiteQueen(zed)
     if isQueen then
         local sq = zed:getSquare() 
- 
         if  zed:isBeingSteppedOn() then
             zed:getModData()['ParasiteZed_Gas'] = nil
             zed:getModData()['ParasiteZed_Spit'] = nil
@@ -164,10 +162,6 @@ function ParasiteZed.behavior(zed)
                 zed:getModData()['ParasiteZed_Gas'] = nil
                 zed:getModData()['ParasiteZed_Spit'] = nil
             elseif targ then
-      --[[           local gotHit = zed:getHitTime() <= 2
-                if gotHit then
-                    zed:getModData()['ParasiteZed_Spit'] = nil
-                end ]]
                 if not sq then return end
                 local cd = SandboxVars.ParasiteQueen.spitCooldown or 5
                 if cd > 0 then  
@@ -178,7 +172,8 @@ function ParasiteZed.behavior(zed)
                                 zed:setUseless(true)
                                 zed:getModData()['ParasiteZed_Spit'] = true
                                 getSoundManager():PlayWorldSound('ParasiteZed_LaunchSpit', sq, 0, 5, 5, false)
-                                ParasiteZed.doSpit(zed:getX(), zed:getY(), targ:getX(), targ:getY(), targ:getZ(), 1, 1)
+                                local dur =  SandboxVars.ParasiteQueen.spitDuration or 3000
+                                ParasiteZed.doSpit(zed:getX(), zed:getY(), targ:getX(), targ:getY(), targ:getZ(), dur, 0.7)
                                 timer:Simple(cd, function() 
                                     if zed then                        
                                         zed:getModData()['ParasiteZed_Spit'] = nil
@@ -249,6 +244,7 @@ function ParasiteZed.doQueenBehavior(zed, targ)
     end
 end
  ]]
+--[[ 
 function ParasiteZed.spitAtFurtherSetClosest(zed)
     if not zed then return end
     local players = getOnlinePlayers()
@@ -273,7 +269,7 @@ function ParasiteZed.spitAtFurtherSetClosest(zed)
         zed:setTarget(closest)
     end
 end
-
+ ]]
 --[[ function ParasiteZed.doQueenBehavior(zed)
 	if tonumber(Calendar.SECOND) % 30 == 0 then
 		local nestSq = ParasiteZed.getNest(zed)
@@ -376,8 +372,7 @@ end
 function ParasiteZed.hitQueenZed(zed, pl, part, wpn)
 	if ParasiteZed.isParasiteQueen(zed) then
         zed:setAvoidDamage(true)
-        zed:getModData()['ParasiteZed_Gas'] = nil
-        zed:getModData()['ParasiteZed_Spit'] = nil
+
         local hp = zed:getHealth()
         if hp then
             local healthDmg = 0.02
@@ -387,8 +382,8 @@ function ParasiteZed.hitQueenZed(zed, pl, part, wpn)
             zed:setHealth(hp - healthDmg)
             --   print(zed:getHealth())
         end
-
-        --zed:setVariable("hitreaction")
+        
+        zed:setVariable("hitreaction", "hurt")
         zed:update()
     
 

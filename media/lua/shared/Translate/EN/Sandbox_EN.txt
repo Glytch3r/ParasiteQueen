@@ -33,8 +33,18 @@ Sandbox_EN = {
 
 	Sandbox_ParasiteQueen_gasCooldown = "Gas Cooldown",
 	Sandbox_ParasiteQueen_gasCooldown_tooltip = "Set to 0 to disable feature",
+	Sandbox_ParasiteQueen_gasGrowth = "Gas Growth",
+	Sandbox_ParasiteQueen_gasDuration = "Gas Duration",
+	Sandbox_ParasiteQueen_gasDmgRate = "Gas Damage Rate",
+
+
 	Sandbox_ParasiteQueen_spitCooldown = "Spit Cooldown",
 	Sandbox_ParasiteQueen_spitCooldown_tooltip = "Set to 0 to disable feature",
+	Sandbox_ParasiteQueen_spitHitChance = "Spit Hit Chance",
+	Sandbox_ParasiteQueen_spitDuration = "Spit Duration",
+
+
+
 	Sandbox_ParasiteQueen_eggCooldown = "Egg Cooldown",
 	Sandbox_ParasiteQueen_eggCooldown_tooltip = "Set to 0 to disable feature",
 

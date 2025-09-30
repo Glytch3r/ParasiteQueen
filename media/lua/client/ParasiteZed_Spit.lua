@@ -10,6 +10,9 @@ function ParasiteZed.OnSpitHitLocal(id)
         targPl:getStats():setPanic(100)
         local sq = targPl:getSquare()
         getSoundManager():PlayWorldSound('ParasiteZed_SpitHit', sq, 0, 5, 5, false);
+        
+        local chance = SandboxVars.ParasiteQueen.spitHitChance or 75
+        ParasiteZed.doRoll(chance)
         if isClient() then
             sendClientCommand('ParasiteZed', 'OnSpitHit', {  id = targPl:getOnlineID() })
         end
@@ -67,12 +70,12 @@ function SpitAnim:new(x1, y1, x2, y2, z, duration, scale)
     for i = 0, 16 do
         table.insert(o.frames, getTexture(string.format("media/textures/spit/spit_%d.png", i)))
     end
-
+    
     o.frameIndex = 1
     o.startX, o.startY = x1, y1
     o.endX, o.endY = x2, y2
     o.worldZ = z or 0
-    o.duration = duration or 1000
+    o.duration = duration or 3000
     o.elapsed = 0
     o.worldX, o.worldY = x1, y1
     o.scale = scale or 0.5
@@ -130,7 +133,7 @@ end
 
 function ParasiteZed.doSpit(x1, y1, x2, y2, z, duration, scale)
     
-    local effect = SpitAnim:new(x1, y1, x2, y2, z or 0, duration or 5000, scale or 0.7)	
+    local effect = SpitAnim:new(x1, y1, x2, y2, z or 0, duration or 3000, scale or 0.7)	
     effect:initialise()
     effect:addToUIManager()
 end
