@@ -212,14 +212,29 @@ end
 function ParasiteZed.moveToXYZ(zed, x, y, z)
     if not zed then return end
     local sq = getCell():getGridSquare(x, y, z)
-    if sq and zed:DistTo(sq) <= 2 then
-        return true
-    else
-        local pf = zed:getPathFindBehavior2()
-        if pf then
-            pf:pathToLocation(x, y, z)
-            zed:setVariable("bPathfind", true)
-            zed:setVariable("bMoving", true)
+    if sq then
+        if zed:DistTo(sq) <= 2 then
+            return true
+        else
+            zed:pathToLocation(sq:getX(), sq:getY(), sq:getZ())
+            if not sq:TreatAsSolidFloor() and sq:getZ() == zed:getSquare():getZ() then
+                zed:setVariable("bPathfind", false)
+                zed:setVariable("bMoving", true)
+            end
+            --[[ 
+            zed:faceLocation(pl:getX(), pl:getY());
+            zed:pathToLocation(pl:getX(), pl:getY(),  pl:getZ())
+            if not sq:TreatAsSolidFloor() and pl:getZ() == zed:getSquare():getZ() then
+                zed:setVariable("bPathfind", false)
+                zed:setVariable("bMoving", true)
+            end
+
+            local pf = zed:getPathFindBehavior2()
+            if pf then
+                pf:pathToLocation(x, y, z)
+                zed:setVariable("bPathfind", true)
+                zed:setVariable("bMoving", true)
+            end ]]
         end
     end
 end
@@ -236,9 +251,11 @@ function ParasiteZed.huntCorpse(zed)
     local laySq = ParasiteZed.getLaySq(zed)
     if laySq then
         local x, y, z = laySq:getX(), laySq:getY(), laySq:getZ()
-        local sq = ParasiteZed.moveToXYZ(zed, x, y, z)
-        if sq then
-            ParasiteZed.plantNestOnCorpseSquare(zed, sq)
+        if x and y and z then
+            local sq = ParasiteZed.moveToXYZ(zed, x, y, z)
+            if sq then
+                ParasiteZed.plantNestOnCorpseSquare(zed, sq)
+            end
         end
     end
 end
