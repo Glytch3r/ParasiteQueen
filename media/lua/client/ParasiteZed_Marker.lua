@@ -86,18 +86,19 @@ function ParasiteZed.addMark(sq)
     end
 end
 function ParasiteZed.doGasTrigger(zed)
+    if not zed then return end
     local sq = zed:getSquare() 
     local pl = getPlayer()
-    if not zed then return end
     local cd = SandboxVars.ParasiteQueen.gasCooldown or 5
     if cd > 0 then  
-        if zed:getModData()['ParasiteZed_Gas'] == nil and sq and pl then
+        if zed:getModData()['ParasiteZed_Gas'] == nil and sq  then
             getSoundManager():PlayWorldSound("ParasiteZed_SpitHit", sq, 0, 5, 5, false)    
-
             zed:getModData()['ParasiteZed_Gas'] = true
-            if isClient() then
+            if pl and isClient() then
                 local x, y, z = round(sq:getX()),  round(sq:getY()),  sq:getZ() or 0
-                sendClientCommand('ParasiteZed', 'OnDoGas', {id = pl:getOnlineID(), x = x, y = y, z = z, zedID = zed:getOnlineID()})
+                if x and y and z then
+                    sendClientCommand('ParasiteZed', 'OnDoGas', {id = pl:getOnlineID(), x = x, y = y, z = z, zedID = zed:getOnlineID()})
+                end
             end
 
             timer:Simple(cd, function() 
@@ -113,7 +114,7 @@ function ParasiteZed.doGas(zed, sq)
     if not zed then return end
     sq = sq or zed:getSquare()
 
-    if not ParasiteZed.qmarker then
+    if sq and not ParasiteZed.qmarker then
         ParasiteZed.qmarker = getWorldMarkers():addGridSquareMarker("ParasiteZedNest_Marker9", "ParasiteZedNest_Marker9", sq, 0.1, 1, 0.1, true, rad)
         local pl = getPlayer()
         if not pl then return end
@@ -126,7 +127,7 @@ function ParasiteZed.doGas(zed, sq)
                 local x, y, z = round(zed:getX()), round(zed:getY()), zed:getZ() or 0
                 ParasiteZed.qmarker:setPosAndSize(x, y, z, rad)
                 --local targ = zed:getTarget()
-                if ParasiteZed.isWithinRange(pl, zed, rad) then
+                if ParasiteZed.isWithinRange(zed, sq, rad) then
                     ParasiteZed.spitScreen(0.6, 0.6, 0.6, 0.85, 8)
                     getSoundManager():PlayWorldSound("ParasiteZed_SpitHit", pl:getSquare(), 0, 5, 5, false)
                     pl:setHaloNote("toxic gas", 150, 250, 150, 900)

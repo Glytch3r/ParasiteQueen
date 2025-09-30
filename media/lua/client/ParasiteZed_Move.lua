@@ -213,13 +213,15 @@ function ParasiteZed.moveToXYZ(zed, x, y, z)
     if not zed then return end
     local sq = getCell():getGridSquare(x, y, z)
     if sq then
-       
+        if ParasiteZed.isWithinRange(zed, sq, 2) then
+            return sq
+        else
             zed:pathToLocation(sq:getX(), sq:getY(), sq:getZ())
             if not sq:TreatAsSolidFloor() and sq:getZ() == zed:getSquare():getZ() then
                 zed:setVariable("bPathfind", false)
                 zed:setVariable("bMoving", true)
             end
-      
+        end
     end
 end
 

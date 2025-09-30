@@ -24,8 +24,8 @@ function ParasiteZed.checkDist(pl, sq)
     return math.floor(dist)
 end
 
-function ParasiteZed.isWithinRange(pl, zed, range)
-	local dist = pl:DistTo(zed:getX(), zed:getY())
+function ParasiteZed.isWithinRange(targ, sq, range)
+	local dist = targ:DistTo(sq:getX(), sq:getY())
     return dist <= range
 end
 
