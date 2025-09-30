@@ -26,7 +26,7 @@ function ParasiteZed.setQueenStats(zed)
             ParasiteZed.setCrawler(zed)
             ParasiteZed.cleanUp(zed)
 
-            zed:setTurnDelta(32)
+            zed:setTurnDelta(4)
             zed:getModData()['ParasiteZed_Init'] = true
             zed:resetModelNextFrame()
 
@@ -164,10 +164,10 @@ function ParasiteZed.behavior(zed)
                 zed:getModData()['ParasiteZed_Gas'] = nil
                 zed:getModData()['ParasiteZed_Spit'] = nil
             elseif targ then
-                local gotHit = zed:getHitTime() <= 2
+      --[[           local gotHit = zed:getHitTime() <= 2
                 if gotHit then
                     zed:getModData()['ParasiteZed_Spit'] = nil
-                end
+                end ]]
                 if not sq then return end
                 if zed:getModData()['ParasiteZed_Spit'] == nil then
                     if ParasiteZed.isInSpitRange(zed, targ) and targ:getZ() == zed:getZ() then   
@@ -177,12 +177,12 @@ function ParasiteZed.behavior(zed)
                             getSoundManager():PlayWorldSound('ParasiteZed_LaunchSpit', sq, 0, 5, 5, false)
                             ParasiteZed.doSpit(zed:getX(), zed:getY(), targ:getX(), targ:getY(), targ:getZ(), 1, 1)
                             zed:getModData()['ParasiteZed_Spit'] = true
-                            timer:Simple(2, function() 
+                            timer:Simple(5, function() 
                                 if zed then
                                     zed:getModData()['ParasiteZed_Egg'] = nil 
-                                    zed:setUseless(false)                            
                                     zed:getModData()['ParasiteZed_Gas'] = nil
                                     zed:getModData()['ParasiteZed_Spit'] = nil
+                                    zed:setUseless(false)                            
                                 end
                             end)
                         else
@@ -190,6 +190,8 @@ function ParasiteZed.behavior(zed)
                             zed:faceLocation(targ:getX(), targ:getY())     
                         end
                     end
+                else
+                    zed:setUseless(false)    
                 end
             end
         end

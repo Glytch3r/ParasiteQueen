@@ -10,7 +10,9 @@ function ParasiteZed.OnSpitHitLocal(id)
         targPl:getStats():setPanic(100)
         local sq = targPl:getSquare()
         getSoundManager():PlayWorldSound('ParasiteZed_SpitHit', sq, 0, 5, 5, false);
-        sendClientCommand('ParasiteZed', 'OnSpitHit', {  id = targPl:getOnlineID() })
+        if isClient() then
+            sendClientCommand('ParasiteZed', 'OnSpitHit', {  id = targPl:getOnlineID() })
+        end
         ParasiteZed.CallToArms(targPl)
     end
 end
