@@ -264,7 +264,8 @@ function ParasiteZed.getLaySq(zed)
     local cell = getCell()
     if zed:getModData()['ParasiteZed_Egg'] == nil then 
         zed:getModData()['ParasiteZed_Egg'] = true
-        timer:Simple(5, function() 
+        local cd = SandboxVars.ParasiteQueen.eggCooldown or 5
+        timer:Simple(cd, function() 
             if zed then
                 zed:getModData()['ParasiteZed_Egg'] = nil 
             end

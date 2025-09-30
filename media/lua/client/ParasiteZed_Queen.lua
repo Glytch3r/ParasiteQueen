@@ -174,13 +174,12 @@ function ParasiteZed.behavior(zed)
                         local facing = zed:isFacingTarget() or false
                         if facing then
                             zed:setUseless(true)
+                            zed:getModData()['ParasiteZed_Spit'] = true
                             getSoundManager():PlayWorldSound('ParasiteZed_LaunchSpit', sq, 0, 5, 5, false)
                             ParasiteZed.doSpit(zed:getX(), zed:getY(), targ:getX(), targ:getY(), targ:getZ(), 1, 1)
-                            zed:getModData()['ParasiteZed_Spit'] = true
-                            timer:Simple(5, function() 
-                                if zed then
-                                    zed:getModData()['ParasiteZed_Egg'] = nil 
-                                    zed:getModData()['ParasiteZed_Gas'] = nil
+                            local cd = SandboxVars.ParasiteQueen.spitCooldown or 5
+                            timer:Simple(cd, function() 
+                                if zed then                        
                                     zed:getModData()['ParasiteZed_Spit'] = nil
                                     zed:setUseless(false)                            
                                 end

@@ -1,69 +1,36 @@
 Sandbox_EN = {
 
 
-    Sandbox_ParasiteZed_Queen = "Parasite Zed Queen",
-	Sandbox_ParasiteZed_Queen_SpawnRate = "Queen Spawn Rate",
-	Sandbox_ParasiteZed_Queen_EMP = "EMP",
-	Sandbox_ParasiteZed_Queen_EMP_tooltip = "Queen produces Bio Chemical that acts like an organic EMP",
-
-
-
-    Sandbox_ParasiteZed = "Parasite Zed",
-
-	Sandbox_ParasiteZed_ParasiteInfection = "Parasite Infection Delay",
-	Sandbox_ParasiteZed_ParasiteInfection_tooltip = "Infection Variant Mortality Delay (In Game Minutes)",
-
-	Sandbox_ParasiteZed_ParasiteImmunity = "Parasite Infection Immunity Duration",
-	Sandbox_ParasiteZed_ParasiteImmunity_tooltip = "AntiParasitic Drug Immunity Duration (In Game Hours)". set to 0 to disable feature,
-
-	Sandbox_ParasiteZed_DistToChase = "Distance To Chase",
-	Sandbox_ParasiteZed_DistToChase_tooltip = "Minimum Distance Before Parasite Zed Chaces Target",
-
-	Sandbox_ParasiteZed_SeenTime = "Chase Delay Time",
-	Sandbox_ParasiteZed_SeenTime_tooltip = "Minimum Time Before Parasite Zed Chaces Target. Set to 0 To Disable Feature",
-
-	Sandbox_ParasiteZed_AlertIndicator = "Drop Rate",
-	Sandbox_ParasiteZed_AlertIndicator_tooltip = "Overhead Text While Parasite Is Observing The Target. Leave Blank To Disable Feature",
-
-	Sandbox_ParasiteZed_SFXRate = "Sound Effects Rate",
-	Sandbox_ParasiteZed_SpawnRate = "Parasite Spawn Rate",
-
-	Sandbox_ParasiteZed_DeathRewards = "Death Rewards",
-	Sandbox_ParasiteZed_DropRate = "Drop Rate",
-
-	Sandbox_ParasiteZed_DeathSpawn = "Death Spawn",
-	Sandbox_ParasiteZed_DeathSpawn_tooltip  = "Spawn Parasite Upon Death Caused By Parasite Infection",
-
-	Sandbox_ParasiteZed_PlayerInfectPlayer = "Player Parasite Infects Target",
-	Sandbox_ParasiteZed_PlayerInfectPlayer_tooltip = "Admins Wearing Parasite Skin Will Infect Other Players When They Attack Them",
-
-
-
-	Sandbox_ParasiteZed_KillsToLearnCraftDummy = "Sculpture Kill Requirement",
-	Sandbox_ParasiteZed_KillsToLearnCraftDummy_tooltip = "Parasite Zed Kill Count Requirement to Craft Parasite Sculpture",
-	Sandbox_ParasiteZed_KillsToLearnCraftSword = "Sword Kill Requirement",
-	Sandbox_ParasiteZed_KillsToLearnCraftSword_tooltip = "Parasite Zed Kill Count Requirement to Craft Sword",
-	Sandbox_ParasiteZed_KillsToLearnCraftArmor = "Armor Kill Requirement",
-	Sandbox_ParasiteZed_KillsToLearnCraftArmor_tooltip = "Parasite Zed Kill Count Requirement to Craft Armor",
-	Sandbox_ParasiteZed_KillsToLearnCraftSpear = "Spear Kill Requirement",
-	Sandbox_ParasiteZed_KillsToLearnCraftSpear_tooltip = "Parasite Zed Kill Count Requirement to Craft Spear",
-	Sandbox_ParasiteZed_KillsToLearnCraftEgg = "Egg Kill Requirement",
-	Sandbox_ParasiteZed_KillsToLearnCraftEgg_tooltip = "Parasite Zed Kill Count Requirement to Craft Preserved Egg",
-	Sandbox_ParasiteZed_KillsToLearnCraftMask = "Mask Kill Requirement",
-	Sandbox_ParasiteZed_KillsToLearnCraftMask_tooltip = "Parasite Zed Kill Count Requirement to Craft Face Mask",
-	Sandbox_ParasiteZed_KillsToLearnCraftTrophy = "Throphy Kill Requirement",
-	Sandbox_ParasiteZed_KillsToLearnCraftTrophy_tooltip = "Parasite Zed Kill Count Requirement to Craft Head Thropy",
-	Sandbox_ParasiteZed_KillsToLearnCraftAnatomy  = "Anatomy Kill Requirement",
-	Sandbox_ParasiteZed_KillsToLearnCraftAnatomy_tooltip  = "Parasite Zed Kill Count Requirement to Craft Anatomy Painting",
-
-	Sandbox_ParasiteZed_AntiParasitic  = "Anti Parasitic",
-	Sandbox_ParasiteZed_AntiParasitic_tooltip  = "Parasite Zed Kill Count Requirement to Craft AntiParasitic",
-
-
-	Sandbox_ParasiteZed_KillsToLearnBugBomb  = "Bug Bomb Kill Requirement",
-	Sandbox_ParasiteZed_KillsToLearnBugBomb_tooltip  = "Parasite Zed Kill Count Requirement to Craft Parasite Bug Bomb",
-
-
+    Sandbox_ParasiteQueen = "Parasite Zed Queen",
+	Sandbox_ParasiteQueen_EMP  = "EMP",
+	Sandbox_ParasiteQueen_InfectionChance = "InfectionChance",
+	Sandbox_ParasiteQueen_ParasiteInfection = "ParasiteInfection",
+	Sandbox_ParasiteQueen_ParasiteImmunity = "ParasiteImmunity",
+	Sandbox_ParasiteQueen_DistToChase = "DistToChase",
+	Sandbox_ParasiteQueen_SeenTime = "SeenTime",
+	Sandbox_ParasiteQueen_AlertIndicator = "AlertIndicator",
+	Sandbox_ParasiteQueen_SFXRate = "SFXRate",
+	Sandbox_ParasiteQueen_SoldierSpawnRate = "SoldierSpawnRate",
+	Sandbox_ParasiteQueen_QueenSpawnRate = "QueenSpawnRate",
+	Sandbox_ParasiteQueen_DeathRewards = "DeathRewards",
+	Sandbox_ParasiteQueen_DeathRewardsQueen = "DeathRewardsQueen",
+	Sandbox_ParasiteQueen_DropRateQueen = "DropRateQueen",
+	Sandbox_ParasiteQueen_DropRate = "DropRate",
+	Sandbox_ParasiteQueen_DeathSpawn = "DeathSpawn",
+	Sandbox_ParasiteQueen_PlayerInfectPlayer = "PlayerInfectPlayer",
+	Sandbox_ParasiteQueen_KillsToLearnCraftDummy = "KillsToLearnCraftDummy",
+	Sandbox_ParasiteQueen_KillsToLearnCraftSword = "KillsToLearnCraftSword",
+	Sandbox_ParasiteQueen_KillsToLearnCraftArmor = "KillsToLearnCraftArmor",
+	Sandbox_ParasiteQueen_KillsToLearnCraftSpear = "KillsToLearnCraftSpear",
+	Sandbox_ParasiteQueen_KillsToLearnCraftEgg = "KillsToLearnCraftEgg",
+	Sandbox_ParasiteQueen_KillsToLearnCraftMask = "KillsToLearnCraftMask",
+	Sandbox_ParasiteQueen_KillsToLearnCraftTrophy = "KillsToLearnCraftTrophy",
+	Sandbox_ParasiteQueen_KillsToLearnCraftAnatomy = "KillsToLearnCraftAnatomy",
+	Sandbox_ParasiteQueen_KillsToLearnAntiParasitic = "KillsToLearnAntiParasitic",
+	Sandbox_ParasiteQueen_KillsToLearnBugBomb = "KillsToLearnBugBomb",
+	Sandbox_ParasiteQueen_gasCooldown = "gasCooldown",
+	Sandbox_ParasiteQueen_spitCooldown = "spitCooldown",
+	Sandbox_ParasiteQueen_eggCooldown = "eggCooldown",
 
 
 
