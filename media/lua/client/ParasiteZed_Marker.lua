@@ -88,15 +88,20 @@ end
 function ParasiteZed.doGasTrigger(zed)
     local sq = zed:getSquare() 
     local pl = getPlayer()
-    getSoundManager():PlayWorldSound("ParasiteZed_SpitHit", sq, 0, 5, 5, false)    
 
-    if isClient() then
-        local x, y, z = round(sq:getX()),  round(sq:getY()),  sq:getZ() or 0
-        sendClientCommand('ParasiteZed', 'doGas', {id = pl:getOnlineID(), x = x, y = y, z = z, zedID = zed:getOnlineID()})
+    if zed:getModData()['ParasiteZed_Gas'] == nil and sq then
+        getSoundManager():PlayWorldSound("ParasiteZed_SpitHit", sq, 0, 5, 5, false)    
+
+        zed:getModData()['ParasiteZed_Gas'] = true
+        if isClient() then
+            local x, y, z = round(sq:getX()),  round(sq:getY()),  sq:getZ() or 0
+            sendClientCommand('ParasiteZed', 'OnDoGas', {id = pl:getOnlineID(), x = x, y = y, z = z, zedID = zed:getOnlineID()})
+        end
+        timer:Simple(3, function() zed:getModData()['ParasiteZed_Gas'] = nil end)
     end
 end
 function ParasiteZed.doGas(zed, sq)
-    local rad = 0.1
+    local rad = 2
     sq = sq or zed:getSquare()
     if not ParasiteZed.qmarker then
         ParasiteZed.qmarker = getWorldMarkers():addGridSquareMarker("ParasiteZedNest_Marker9", "ParasiteZedNest_Marker9", sq, 0.1, 1, 0.1, true, rad)

@@ -211,10 +211,8 @@ end
 
 function ParasiteZed.moveToXYZ(zed, x, y, z)
     if not zed then return end
-   
-
     local sq = getCell():getGridSquare(x, y, z)
-    if zed:DistTo(sq) <= 2 then
+    if sq and zed:DistTo(sq) <= 2 then
         return true
     else
         local pf = zed:getPathFindBehavior2()
@@ -233,8 +231,8 @@ function ParasiteZed.plantNestOnCorpseSquare(zed, sq)
 end
 
 function ParasiteZed.huntCorpse(zed)
-    if not zed then return nil end
-    if ParasiteZed.isMoving(zed) or zed:getTarget() ~= nil then return nil end
+    if not zed then return end
+    if zed:getTarget() ~= nil then return end
     local laySq = ParasiteZed.getLaySq(zed)
     if laySq then
         local x, y, z = laySq:getX(), laySq:getY(), laySq:getZ()
@@ -245,23 +243,33 @@ function ParasiteZed.huntCorpse(zed)
     end
 end
 function ParasiteZed.getLaySq(zed)
-    if not zed then return end
+    if not zed then return nil end
     local cell = getCell()
-    local zx, zy, zz = zed:getX(), zed:getY(), zed:getZ()
-    local rad = 30
-    for xDelta = -rad, rad do
-        for yDelta = -rad, rad do
-            local sq = cell:getOrCreateGridSquare(zx + xDelta, zy + yDelta, zz)
-            if sq and not ParasiteZed.getNest(sq) then
-                for i = 0, sq:getStaticMovingObjects():size() - 1 do
-                    local obj = sq:getStaticMovingObjects():get(i)
-                    if instanceof(obj, "IsoDeadBody") then
-                        return sq
+    if zed:getModData()['ParasiteZed_Egg'] == nil then 
+        zed:getModData()['ParasiteZed_Egg'] = true
+        timer:Simple(5, function() 
+            if zed then
+                zed:getModData()['ParasiteZed_Egg'] = nil 
+            end
+        end)
+        local zx, zy, zz = zed:getX(), zed:getY(), zed:getZ()
+        local rad = 30
+        for xDelta = -rad, rad do
+            for yDelta = -rad, rad do
+                local sq = cell:getOrCreateGridSquare(zx + xDelta, zy + yDelta, zz)
+                if sq and not ParasiteZed.getNest(sq) then
+                    for i = 0, sq:getStaticMovingObjects():size() - 1 do
+                        local obj = sq:getStaticMovingObjects():get(i)
+                        if instanceof(obj, "IsoDeadBody") then
+                            return sq
+                        end
                     end
                 end
             end
         end
     end
+    
+    return nil
 end
 
 

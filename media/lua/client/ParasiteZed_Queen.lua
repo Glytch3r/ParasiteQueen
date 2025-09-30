@@ -95,7 +95,7 @@ function ParasiteZed.isOutOfRangeFar(zed, targ)
     if not targ then return false end
     return zed:DistTo(targ) > 15
 end
-
+--[[ 
 function ParasiteZed.getQueenAct(zed, targ)
     if not zed then return nil end
     targ = targ or zed:getTarget()
@@ -127,7 +127,7 @@ function ParasiteZed.getQueenAct(zed, targ)
         return "doEgg"
     end    
 end
-
+ ]]
 function ParasiteZed.queen(zed)
     if not zed then return end
     local isQueen = ParasiteZed.isParasiteQueen(zed)
@@ -140,13 +140,26 @@ function ParasiteZed.queen(zed)
         end
         if not ParasiteZed.isCrawler(zed) then
             ParasiteZed.setCrawler(zed)
-        end
+        end        
+    end
+end
+
+Events.OnZombieUpdate.Remove(ParasiteZed.queen)
+Events.OnZombieUpdate.Add(ParasiteZed.queen)
+
+function ParasiteZed.behavior(zed)
+    if not zed then return end
+    local isQueen = ParasiteZed.isParasiteQueen(zed)
+    if isQueen then
+        local sq = zed:getSquare() 
+ 
         if  zed:isBeingSteppedOn() then
             zed:getModData()['ParasiteZed_Gas'] = nil
             zed:getModData()['ParasiteZed_Spit'] = nil
+            ParasiteZed.doGasTrigger(zed)
         else
             local targ = zed:getTarget()
-            if targ == nil or targ and ParasiteZed.isOutOfRangeFar(zed, targ) then
+            if targ == nil then
                 ParasiteZed.huntCorpse(zed)
                 zed:getModData()['ParasiteZed_Gas'] = nil
                 zed:getModData()['ParasiteZed_Spit'] = nil
@@ -155,21 +168,27 @@ function ParasiteZed.queen(zed)
                 if gotHit then
                     zed:getModData()['ParasiteZed_Spit'] = nil
                 end
-                if ParasiteZed.isInSpitRange(zed, targ) and targ:getZ() == zed:getZ() then
-                    if zed:getModData()['ParasiteZed_Spit'] == nil then
-                        local sq = zed:getSquare() 
-                        if sq then
+                if not sq then return end
+                if zed:getModData()['ParasiteZed_Spit'] == nil then
+                    if ParasiteZed.isInSpitRange(zed, targ) and targ:getZ() == zed:getZ() then   
+                        local facing = zed:isFacingTarget() or false
+                        if facing then
                             zed:setUseless(true)
                             getSoundManager():PlayWorldSound('ParasiteZed_LaunchSpit', sq, 0, 5, 5, false)
                             ParasiteZed.doSpit(zed:getX(), zed:getY(), targ:getX(), targ:getY(), targ:getZ(), 1, 1)
                             zed:getModData()['ParasiteZed_Spit'] = true
-                            timer:Simple(1, function() 
-                                zed:setUseless(false)
-                                
-                                zed:getModData()['ParasiteZed_Gas'] = nil
-                                zed:getModData()['ParasiteZed_Spit'] = nil
+                            timer:Simple(2, function() 
+                                if zed then
+                                    zed:getModData()['ParasiteZed_Egg'] = nil 
+                                    zed:setUseless(false)                            
+                                    zed:getModData()['ParasiteZed_Gas'] = nil
+                                    zed:getModData()['ParasiteZed_Spit'] = nil
+                                end
                             end)
-                        end                    
+                        else
+                            zed:setUseless(false)    
+                            zed:faceLocation(targ:getX(), targ:getY())     
+                        end
                     end
                 end
             end
@@ -177,9 +196,11 @@ function ParasiteZed.queen(zed)
     end
 end
 
-Events.OnZombieUpdate.Remove(ParasiteZed.queen)
-Events.OnZombieUpdate.Add(ParasiteZed.queen)
+Events.OnZombieUpdate.Remove(ParasiteZed.behavior)
+Events.OnZombieUpdate.Add(ParasiteZed.behavior)
 
+
+--[[ 
 function ParasiteZed.collide(zed, pl)
     if ParasiteZed.isParasiteZed(zed) and pl == getPlayer() then
         if zed:getModData()['ParasiteZed_Gas'] == nil then
@@ -190,7 +211,7 @@ end
 
 Events.OnObjectCollide.Add(ParasiteZed.collide)
 
-
+ ]]
 
 
 

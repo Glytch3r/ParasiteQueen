@@ -47,7 +47,7 @@ Commands.ParasiteZed.OnSpitHit = function(player, args)
 end
 Commands.ParasiteZed.OnDoGas = function(player, args)
     local playerId = player:getOnlineID();
-    sendServerCommand('ParasiteZed', 'OnDoGas', {id = playerId, x = args.x, y = args.y, z = args.z})
+    sendServerCommand('ParasiteZed', 'OnDoGas', {id = playerId, x = args.x, y = args.y, z = args.z, zedID = args.zedID})
 end
 Commands.ParasiteZed.isParasiteQueen = function(player, args)
     local playerId = player:getOnlineID();

@@ -127,8 +127,8 @@ function SpitAnim:render()
 end
 
 function ParasiteZed.doSpit(x1, y1, x2, y2, z, duration, scale)
-    local effect = SpitAnim:new(x1, y1, x2, y2, z or 0, duration or 5000, scale or 0.7)
-	
+    
+    local effect = SpitAnim:new(x1, y1, x2, y2, z or 0, duration or 5000, scale or 0.7)	
     effect:initialise()
     effect:addToUIManager()
 end
