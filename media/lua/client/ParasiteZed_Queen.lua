@@ -171,7 +171,9 @@ function ParasiteZed.behavior(zed)
                             if facing then
                                 zed:setUseless(true)
                                 zed:getModData()['ParasiteZed_Spit'] = true
-                                getSoundManager():PlayWorldSound('ParasiteZed_LaunchSpit', sq, 0, 5, 5, false)
+                                if ParasiteZed.doRoll(30) then
+                                    getSoundManager():PlayWorldSound('ParasiteZed_LaunchSpit', sq, 0, 5, 5, false)
+                                end
                                 local dur =  SandboxVars.ParasiteQueen.spitDuration or 3000
                                 ParasiteZed.doSpit(zed:getX(), zed:getY(), targ:getX(), targ:getY(), targ:getZ(), dur, 0.7)
                                 timer:Simple(cd, function() 

@@ -6,17 +6,19 @@ SpitAnim = ISUIElement:derive("SpitAnim")
 function ParasiteZed.OnSpitHitLocal(id)
     local targPl = getPlayerByOnlineID(id)
     if targPl == getPlayer()  then
-        ParasiteZed.spitScreen(0.55, 0.22, 0.67 , 0.75)
-        targPl:getStats():setPanic(100)
-        local sq = targPl:getSquare()
-        getSoundManager():PlayWorldSound('ParasiteZed_SpitHit', sq, 0, 5, 5, false);
-        
         local chance = SandboxVars.ParasiteQueen.spitHitChance or 75
-        ParasiteZed.doRoll(chance)
-        if isClient() then
-            sendClientCommand('ParasiteZed', 'OnSpitHit', {  id = targPl:getOnlineID() })
+        if ParasiteZed.doRoll(chance) then
+            ParasiteZed.spitScreen(0.55, 0.22, 0.67 , 0.75)
+            targPl:getStats():setPanic(100)
+            local sq = targPl:getSquare()
+            getSoundManager():PlayWorldSound('ParasiteZed_SpitHit', sq, 0, 5, 5, false);
+            
+
+            if isClient() then
+                sendClientCommand('ParasiteZed', 'OnSpitHit', {  id = targPl:getOnlineID() })
+            end
+            ParasiteZed.CallToArms(targPl)
         end
-        ParasiteZed.CallToArms(targPl)
     end
 end
 --[[ 

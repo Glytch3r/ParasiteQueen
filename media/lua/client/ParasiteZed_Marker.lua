@@ -92,23 +92,30 @@ function ParasiteZed.doGasTrigger(zed)
     local cd = SandboxVars.ParasiteQueen.gasCooldown or 5
     if cd > 0 then  
         if zed:getModData()['ParasiteZed_Gas'] == nil and sq  then
-            getSoundManager():PlayWorldSound("ParasiteZed_SpitHit", sq, 0, 5, 5, false)    
-            zed:getModData()['ParasiteZed_Gas'] = true
-            if pl and isClient() then
-                local x, y, z = round(sq:getX()),  round(sq:getY()),  sq:getZ() or 0
-                if x and y and z then
-                    sendClientCommand('ParasiteZed', 'OnDoGas', {id = pl:getOnlineID(), x = x, y = y, z = z, zedID = zed:getOnlineID()})
+            local targ = zed:getTarget()
+            if pl and  targ and targ == pl then
+                zed:getModData()['ParasiteZed_Gas'] = true
+                if isClient() then
+                    getSoundManager():PlayWorldSound("ParasiteZed_SpitHit", sq, 0, 5, 5, false)    
+                    local x, y, z = round(sq:getX()),  round(sq:getY()),  sq:getZ() or 0
+                    if x and y and z then
+                        sendClientCommand('ParasiteZed', 'OnDoGas', {id = pl:getOnlineID(), x = x, y = y, z = z, zedID = zed:getOnlineID()})
+                    end
+                end
+                if ParasiteZed.doRoll(25) then
+                    zed:getModData()['ParasiteZed_Gas'] = nil      
+                else      
+                    timer:Simple(cd, function() 
+                        if zed then
+                            zed:getModData()['ParasiteZed_Gas'] = nil
+                        end
+                    end)
                 end
             end
-
-            timer:Simple(cd, function() 
-                if zed then
-                    zed:getModData()['ParasiteZed_Gas'] = nil
-                end
-            end)
         end
     end
 end
+
 function ParasiteZed.doGas(zed, sq)
     local rad = 0.5
     if not zed then return end
@@ -123,17 +130,17 @@ function ParasiteZed.doGas(zed, sq)
             if not ParasiteZed.qmarker then return end
             local growth = SandboxVars.ParasiteQueen.gasGrowth or 0.5
             rad = rad + growth
+            local x, y, z = round(sq:getX()), round(sq:getY()), sq:getZ() or 0
             if x and y and z then
-                local x, y, z = round(zed:getX()), round(zed:getY()), zed:getZ() or 0
                 ParasiteZed.qmarker:setPosAndSize(x, y, z, rad)
                 --local targ = zed:getTarget()
-                if ParasiteZed.isWithinRange(zed, sq, rad) then
+                if ParasiteZed.isWithinRange(zed, pl, rad) and pl:getZ() == z then
                     ParasiteZed.spitScreen(0.6, 0.6, 0.6, 0.85, 8)
-                    getSoundManager():PlayWorldSound("ParasiteZed_SpitHit", pl:getSquare(), 0, 5, 5, false)
+                    --getSoundManager():PlayWorldSound("ParasiteZed_SpitHit", pl:getSquare(), 0, 5, 5, false)
                     pl:setHaloNote("toxic gas", 150, 250, 150, 900)
                     local dmg = SandboxVars.ParasiteQueen.gasDmgRate or 0.05
                     
-                    pl:getBodyDamage():setFoodSicknessLevel(pl:getBodyDamage():getFoodSicknessLevel() + dmg5)
+                    pl:getBodyDamage():setFoodSicknessLevel(pl:getBodyDamage():getFoodSicknessLevel() + dmg)
                     pl:getStats():setDrunkenness(pl:getStats():getDrunkenness() + dmg)
         
                 end

@@ -65,8 +65,8 @@ end
 
 Commands.ParasiteZed.OnDoGas = function(args)
     if not args or not args.id then return end
-    local targ = getPlayerByOnlineID(args.id)
-    if not targ then return end
+--[[     local targ = getPlayerByOnlineID(args.id)
+    if not targ then return end ]]
     local x = args.x
     local y = args.y
     local z = args.z

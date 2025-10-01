@@ -42,11 +42,12 @@ Sandbox_EN = {
 	Sandbox_ParasiteQueen_spitCooldown_tooltip = "Set to 0 to disable feature",
 	Sandbox_ParasiteQueen_spitHitChance = "Spit Hit Chance",
 	Sandbox_ParasiteQueen_spitDuration = "Spit Duration",
+	Sandbox_ParasiteQueen_spitDuration_tooltip = "This controls how long the spit will last. The lower the value the faster the projectile",
 
 
 
 	Sandbox_ParasiteQueen_eggCooldown = "Egg Cooldown",
-	Sandbox_ParasiteQueen_eggCooldown_tooltip = "Set to 0 to disable feature",
+	Sandbox_ParasiteQueen_eggCooldown_tooltip = "Set to 0 to disable feature. This Affects performance",
 
 
 
