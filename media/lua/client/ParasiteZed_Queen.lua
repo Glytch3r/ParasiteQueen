@@ -149,46 +149,57 @@ Events.OnZombieUpdate.Add(ParasiteZed.queen)
 function ParasiteZed.behavior(zed)
     if not zed then return end
     local isQueen = ParasiteZed.isParasiteQueen(zed)
-    if isQueen then
-        local sq = zed:getSquare() 
-        if  zed:isBeingSteppedOn() then
-            zed:getModData()['ParasiteZed_Gas'] = nil
-            zed:getModData()['ParasiteZed_Spit'] = nil
-            ParasiteZed.doGasTrigger(zed)
-        else
-            local targ = zed:getTarget()
-            if targ == nil then
-                ParasiteZed.huntCorpse(zed)
-                zed:getModData()['ParasiteZed_Gas'] = nil
-                zed:getModData()['ParasiteZed_Spit'] = nil
-            elseif targ then
-                if not sq then return end
-                local cd = SandboxVars.ParasiteQueen.spitCooldown or 5
-                if cd > 0 then  
-                    if zed:getModData()['ParasiteZed_Spit'] == nil then
-                        if ParasiteZed.isInSpitRange(zed, targ) and targ:getZ() == zed:getZ() then   
-                            local facing = zed:isFacingTarget() or false
-                            if facing then
-                                zed:setUseless(true)
-                                zed:getModData()['ParasiteZed_Spit'] = true
-                                if ParasiteZed.doRoll(30) then
-                                    getSoundManager():PlayWorldSound('ParasiteZed_LaunchSpit', sq, 0, 5, 5, false)
-                                end
-                                local dur =  SandboxVars.ParasiteQueen.spitDuration or 3000
-                                ParasiteZed.doSpit(zed:getX(), zed:getY(), targ:getX(), targ:getY(), targ:getZ(), dur, 0.7)
-                                timer:Simple(cd, function() 
-                                    if zed then                        
-                                        zed:getModData()['ParasiteZed_Spit'] = nil
-                                        zed:setUseless(false)                            
+    local pl = getPlayer() 
+    if ParasiteZed.isClosestPl(pl, zed) and pl then
+        if isQueen then
+            local sq = zed:getSquare() 
+            if  zed:isBeingSteppedOn() then
+                ParasiteZed.doGasTrigger(zed)
+            else
+                local targ = zed:getTarget()
+                if targ == nil then
+                    ParasiteZed.huntCorpse(zed)
+                elseif targ then
+                    if not sq then return end
+                    local cd = SandboxVars.ParasiteQueen.spitCooldown or 5
+                    if cd > 0 then  
+                        if zed:getModData()['ParasiteZed_Spit'] == nil then
+                            if ParasiteZed.isInSpitRange(zed, targ) and targ:getZ() == zed:getZ() then   
+                                local facing = zed:isFacingTarget() or false
+                                if facing then
+
+                                    zed:setUseless(true)
+                                    zed:getModData()['ParasiteZed_Spit'] = true
+                                    ParasiteZed.doSyncData(zed)
+
+                                    if ParasiteZed.doRoll(30) then
+                                        getSoundManager():PlayWorldSound('ParasiteZed_LaunchSpit', sq, 0, 5, 5, false)
                                     end
-                                end)
-                            else
+                                    local dur =  SandboxVars.ParasiteQueen.spitDuration or 3000
+                                    ParasiteZed.doSpit(zed:getX(), zed:getY(), targ:getX(), targ:getY(), targ:getZ(), dur, 0.7)
+
+                                    timer:Simple(cd, function() 
+                                        if zed then                        
+                                            zed:getModData()['ParasiteZed_Spit'] = nil
+                                            zed:setUseless(false)       
+                                            ParasiteZed.doSyncData(zed)                     
+                                        end
+                                    end)
+
+                                else
+                                    if zed:isUseless() then
+                                        zed:setUseless(false)    
+                                        ParasiteZed.doSyncData(zed)
+                                    end
+                                    zed:faceLocation(targ:getX(), targ:getY())     
+                                end
+                            end
+                        else
+                            if zed:isUseless() then
                                 zed:setUseless(false)    
-                                zed:faceLocation(targ:getX(), targ:getY())     
+                                ParasiteZed.doSyncData(zed)
                             end
                         end
-                    else
-                        zed:setUseless(false)    
                     end
                 end
             end

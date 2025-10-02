@@ -30,11 +30,12 @@ function ParasiteZed.isWithinRange(targ, sq, range)
 end
 
 function ParasiteZed.isClosestPl(pl, zed)
-	if not ParasiteZed.isParasiteZed(zed) then return end
-	local plDist = ParasiteZed.checkDist(pl, zed)
-	local compare = round(zed:distToNearestCamCharacter())
-	if plDist == compare then
-		return true
+	if ParasiteZed.isParasiteZed(zed) or ParasiteZed.isParasiteQueen(zed) then  
+		local plDist = ParasiteZed.checkDist(pl, zed)
+		local compare = round(zed:distToNearestCamCharacter())
+		if plDist == compare then
+			return true
+		end
 	end
 	return false
 end

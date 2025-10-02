@@ -49,8 +49,7 @@ function ParasiteZed.syncModdata()
         ticks = 0
     end
 end
---Events.OnPlayerUpdate.Add(ParasiteZed.syncModdata)
-
+Events.OnPlayerUpdate.Add(ParasiteZed.syncModdata)
 
 Commands.ParasiteZed.syncKills = function(args)
     if not args or not args.id then return end
@@ -62,6 +61,55 @@ Commands.ParasiteZed.syncKills = function(args)
         targ:getModData()["ParasiteZed_KillCount"] = args.killCount
     end
 end
+
+-----------------------            ---------------------------
+
+
+
+
+function ParasiteZed.doSyncData(zed)
+    if not isClient() then return end
+    if not zed or zed:isDead() then return end
+    local pl = getPlayer()
+    if not pl then return end
+    if getOnlinePlayers():size() <= 1 then return end
+    if ParasiteZed.isClosestPl(pl, zed) then
+        local modData = zed:getModData()
+        if not modData then return end
+        local data = {
+            ParasiteZed_Gas  = modData["ParasiteZed_Gas"]  or nil,
+            ParasiteZed_Spit = modData["ParasiteZed_Spit"] or nil,
+            ParasiteZed_Egg  = modData["ParasiteZed_Egg"]  or nil,
+        }
+        
+        sendClientCommand('ParasiteZed', 'data', { data = data, zedID = zed:getOnlineID(), useless = zed:isUseless()})
+    end
+end
+
+Commands.ParasiteZed.data = function(args)
+    local pl = getPlayer()
+    local sender = getPlayerByOnlineID(args.id)
+    if sender and pl and pl ~= sender then
+        local zedID = args.zedID
+        local data = args.data
+        if not data then return end
+        if type(zedID) == 'string' then zedID = tonumber(zedID) end
+        local zed = ParasiteZed.findzedID(zedID)
+        if zed then
+            local md = zed:getModData()
+            md["ParasiteZed_Gas"]  = data.ParasiteZed_Gas  or nil
+            md["ParasiteZed_Spit"] = data.ParasiteZed_Spit or nil
+            md["ParasiteZed_Egg"]  = data.ParasiteZed_Egg  or nil
+            if args.useless ~= nil then 
+                zed:setUseless(args.useless)
+            end
+        end
+    end
+end
+
+
+
+-----------------------            ---------------------------
 
 Commands.ParasiteZed.OnDoGas = function(args)
     if not args or not args.id then return end
@@ -193,7 +241,6 @@ Events.OnZombieUpdate.Add(ParasiteZed.soldier)
 
 -----------------------            ---------------------------
 
------------------------            ---------------------------
 
 Commands.ParasiteZed.isParasiteZed = function(args)
     local source = getPlayer();

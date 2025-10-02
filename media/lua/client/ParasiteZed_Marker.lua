@@ -91,7 +91,8 @@ function ParasiteZed.doGasTrigger(zed)
     local pl = getPlayer()
     local cd = SandboxVars.ParasiteQueen.gasCooldown or 5
     if cd > 0 then  
-        if zed:getModData()['ParasiteZed_Gas'] == nil and sq  then
+        if zed:getModData()['ParasiteZed_Gas'] == nil and sq then
+    
             local targ = zed:getTarget()
             if pl and  targ and targ == pl then
                 zed:getModData()['ParasiteZed_Gas'] = true
@@ -101,13 +102,19 @@ function ParasiteZed.doGasTrigger(zed)
                     if x and y and z then
                         sendClientCommand('ParasiteZed', 'OnDoGas', {id = pl:getOnlineID(), x = x, y = y, z = z, zedID = zed:getOnlineID()})
                     end
+                    ParasiteZed.doSyncData(zed)
+
                 end
                 if ParasiteZed.doRoll(25) then
                     zed:getModData()['ParasiteZed_Gas'] = nil      
+                    ParasiteZed.doSyncData(zed)
+
                 else      
                     timer:Simple(cd, function() 
                         if zed then
                             zed:getModData()['ParasiteZed_Gas'] = nil
+                            ParasiteZed.doSyncData(zed)
+
                         end
                     end)
                 end
@@ -138,11 +145,10 @@ function ParasiteZed.doGas(zed, sq)
                     ParasiteZed.spitScreen(0.6, 0.6, 0.6, 0.85, 8)
                     --getSoundManager():PlayWorldSound("ParasiteZed_SpitHit", pl:getSquare(), 0, 5, 5, false)
                     pl:setHaloNote("toxic gas", 150, 250, 150, 900)
-                    local dmg = SandboxVars.ParasiteQueen.gasDmgRate or 0.05
-                    
+                    local dmg = SandboxVars.ParasiteQueen.gasDmgRate or 0.05                    
                     pl:getBodyDamage():setFoodSicknessLevel(pl:getBodyDamage():getFoodSicknessLevel() + dmg)
                     pl:getStats():setDrunkenness(pl:getStats():getDrunkenness() + dmg)
-        
+                    
                 end
             end
         end

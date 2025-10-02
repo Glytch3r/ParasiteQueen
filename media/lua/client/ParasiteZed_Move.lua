@@ -245,16 +245,21 @@ function ParasiteZed.huntCorpse(zed)
         end
     end
 end
+
 function ParasiteZed.getLaySq(zed)
     if not zed then return nil end
     local cell = getCell()
     if zed:getModData()['ParasiteZed_Egg'] == nil then 
+
         zed:getModData()['ParasiteZed_Egg'] = true
+        ParasiteZed.doSyncData(zed)
+
         local cd = SandboxVars.ParasiteQueen.eggCooldown or 5
         if cd > 0 then  
             timer:Simple(cd, function() 
                 if zed then
                     zed:getModData()['ParasiteZed_Egg'] = nil 
+                    ParasiteZed.doSyncData(zed)                    
                 end
             end)
             local zx, zy, zz = zed:getX(), zed:getY(), zed:getZ()
