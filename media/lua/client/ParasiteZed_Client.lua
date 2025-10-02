@@ -53,25 +53,25 @@ end
 Events.OnPlayerUpdate.Add(ParasiteZed.syncModdata)
  ]]
 
-
 function ParasiteZed.doSyncPlayerData(pl)
     pl = pl or getPlayer()
     if not pl then return end
 
-    local modData = pl:getModData()
-    if not modData then return end
+    local modData = pl.getModData and pl:getModData() or nil
+    if not modData or type(modData) ~= "table" then return end
+
     local data = {
-        isParasiteQueenPl  = modData["isParasiteQueenPl"]  or false,
-        isParasitePl = modData["isParasitePl"] or false,
-        QueenKillCount  = modData["ParasiteZed_QueenKillCount"]  or 0,
-        KillCount  = modData["ParasiteZed_KillCount"]  or 0,
+        isParasiteQueenPl = (modData["isParasiteQueenPl"] ~= nil) and modData["isParasiteQueenPl"] or false,
+        isParasitePl = (modData["isParasitePl"] ~= nil) and modData["isParasitePl"] or false,
+        QueenKillCount = (modData["ParasiteZed_QueenKillCount"] ~= nil) and modData["ParasiteZed_QueenKillCount"] or 0,
+        KillCount = (modData["ParasiteZed_KillCount"] ~= nil) and modData["ParasiteZed_KillCount"] or 0,
     }
 
     if isClient() then
-        sendClientCommand('ParasiteZed', 'syncPlayer', { data = data,  id = pl:getOnlineID() })
+        sendClientCommand('ParasiteZed', 'syncPlayer', { data = data, id = pl.getOnlineID and pl:getOnlineID() or -1 })
     end
-
 end
+
 Events.OnScoreboardUpdate.Add(ParasiteZed.doSyncPlayerData)
 
 Commands.ParasiteZed.syncPlayer = function(args)
@@ -79,6 +79,8 @@ Commands.ParasiteZed.syncPlayer = function(args)
     if not args or not args.id then return end
     local targ = getPlayerByOnlineID(args.id)
     if not targ then return end
+    local data = args.data
+    if not data then return end
     if pl and pl ~= targ then
         local md = targ:getModData()
         if not md then return end

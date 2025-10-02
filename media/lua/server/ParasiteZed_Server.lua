@@ -48,7 +48,7 @@ end
 
 Commands.ParasiteZed.syncPlayer = function(player, args)
     local playerId = player:getOnlineID();
-    sendServerCommand('ParasiteZed', 'syncPlayer', {id = playerId, QueenKillCount = args.QueenKillCount, KillCount = args.KillCount})
+    sendServerCommand('ParasiteZed', 'syncPlayer', {id = playerId, data = args.data})
 end
 
 
