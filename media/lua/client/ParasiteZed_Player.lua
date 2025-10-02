@@ -38,27 +38,29 @@ function ParasiteZed.wearFit(pl, fType)
 	local inv = pl:getInventory()
 	local equip = inv:addItem(item);
 	pl:setWornItem(equip:getBodyLocation(), equip);
-	if not pl:isHideWeaponModel() then pl:setHideWeaponModel(true) end
+	--if not pl:isHideWeaponModel() then pl:setHideWeaponModel(true) end
 	triggerEvent("OnClothingUpdated", pl)
 	pl:resetModelNextFrame();
+	--ParasiteZed.plSync()
+    ParasiteZed.doSyncPlayerData(pl)
 
-	ParasiteZed.plSync()
 end
 
 function ParasiteZed.wearParasiteZed(pl)
 	pl = pl or getPlayer()
 	local fType = 'Base.ParasiteZed'
-	ParasiteZed.wearFit(pl, fType)
     pl:getModData()['isParasitePl'] = true
     pl:getModData()['isParasiteQueenPl'] = false
+	ParasiteZed.wearFit(pl, fType)
 end
 
 function ParasiteZed.wearParasiteZed_Queen(pl)
 	pl = pl or getPlayer()
 	local fType = 'Base.ParasiteZed_Queen'
-	ParasiteZed.wearFit(pl, fType)
     pl:getModData()['isParasiteQueenPl'] = true
     pl:getModData()['isParasitePl'] = false
+	ParasiteZed.wearFit(pl, fType)
+   
 end
 
 
@@ -85,7 +87,7 @@ function ParasiteZed.clearParasiteZedSkin(pl)
 	pl:getModData()['isParasitePl'] = false
 	pl:getModData()['isParasiteQueenPl'] = false
 	triggerEvent("OnClothingUpdated", pl)
-	ParasiteZed.plSync()
+	ParasiteZed.doSyncPlayerData(pl)
 end
 -----------------------            ---------------------------
 --[[ 
@@ -172,8 +174,7 @@ function ParasiteZed.plSync(pl)
     end
 end
 Events.OnPlayerUpdate.Remove(ParasiteZed.plSync)
-
---Events.OnPlayerUpdate.Add(ParasiteZed.plSync)
+Events.OnPlayerUpdate.Add(ParasiteZed.plSync)
 
 --[[ 
 Events.OnLoad.Add(ParasiteZed.plSync)

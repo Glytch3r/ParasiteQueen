@@ -126,8 +126,8 @@ function ParasiteZed.RewardsHandler(zed)
     local inv = zed:getInventory();
     local attacker = zed:getAttackedBy()
     if not attacker then return end
-
-    if ParasiteZed.isParasiteQueen(zed)  and attacker == pl then 
+    local isQueen = ParasiteZed.isParasiteQueen(zed) 
+    if isQueen and attacker == pl then 
         ParasiteZed.spawnParasitesOnCorpsesWithNest(zed)
         local loot =  ParasiteZed.getRewards()
         if loot then
@@ -144,18 +144,21 @@ function ParasiteZed.RewardsHandler(zed)
         end
         if mats then
             inv:AddItem(mats)
-        end
+        end   
+    end
+    local score
+    local md = attacker:getModData()
+    if not md then return end
+    if isQueen then
+        md.ParasiteZed_QueenKillCount = (md.ParasiteZed_QueenKillCount or 0) + 1
+        score = md.ParasiteZed_QueenKillCount
     else
-        return
+        md.ParasiteZed_KillCount = (md.ParasiteZed_KillCount or 0) + 1
+        score = md.ParasiteZed_KillCount
     end
 
     
-    local md = attacker:getModData()
-    if not md then return end
-
-    md.ParasiteZed_KillCount = (md.ParasiteZed_KillCount or 0) + 1
-    local score = md.ParasiteZed_KillCount
-
+  
     if attacker == pl then
         for recipeStr, killReq in pairs(ParasiteZed.LearnTable) do
             if score >= killReq and not pl:isRecipeKnown(recipeStr) then

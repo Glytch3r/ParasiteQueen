@@ -131,7 +131,7 @@ function ParasiteZed.trigger()
     end
 
     if msg and msg ~= "" then
-        ParasiteZed.plSync()
+        --ParasiteZed.plSync()
         if dbg then
             print(tostring(msg))
             pl:addLineChatElement(tostring(msg))

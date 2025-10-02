@@ -76,7 +76,7 @@ function ParasiteZed.invContext(plNum, context, items)
 
 end
 Events.OnFillInventoryObjectContextMenu.Remove(ParasiteZed.invContext);
-Events.OnFillInventoryObjectContextMenu.Add(ParasiteZed.invContext);
+--Events.OnFillInventoryObjectContextMenu.Add(ParasiteZed.invContext);
 
 
 -----------------------            ---------------------------

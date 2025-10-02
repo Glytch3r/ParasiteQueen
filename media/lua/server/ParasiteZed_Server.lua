@@ -46,6 +46,12 @@ Commands.ParasiteZed.data = function(player, args)
     sendServerCommand('ParasiteZed', 'data', {id = playerId, data = args.data, zedID = args.zedID, useless = args.useless})
 end
 
+Commands.ParasiteZed.syncPlayer = function(player, args)
+    local playerId = player:getOnlineID();
+    sendServerCommand('ParasiteZed', 'syncPlayer', {id = playerId, QueenKillCount = args.QueenKillCount, KillCount = args.KillCount})
+end
+
+
 Commands.ParasiteZed.OnSpitHit = function(player, args)
     local playerId = player:getOnlineID();
     sendServerCommand('ParasiteZed', 'OnSpitHit', {id = playerId})

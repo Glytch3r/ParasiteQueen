@@ -33,7 +33,7 @@ local Commands = {}
 Commands.ParasiteZed = {}
 
 local ticks = 0
-
+--[[ 
 function ParasiteZed.syncModdata()
     ticks = ticks + 1
     if ticks % 250 == 0 then
@@ -41,8 +41,9 @@ function ParasiteZed.syncModdata()
         if not pl then return end
 
         local killCount = pl:getModData()["ParasiteZed_KillCount"]
+        local QueenKillCount = pl:getModData()["QueenKillCount"]
         if isClient() and killCount ~= nil then
-            sendClientCommand('ParasiteZed', 'syncKills', { killCount = killCount, id = pl:getOnlineID() })
+            sendClientCommand('ParasiteZed', 'syncKills', { killCount = killCount, QueenKillCount = QueenKillCount, id = pl:getOnlineID() })
         end
     end
     if ticks >= 500 then
@@ -50,16 +51,44 @@ function ParasiteZed.syncModdata()
     end
 end
 Events.OnPlayerUpdate.Add(ParasiteZed.syncModdata)
+ ]]
 
-Commands.ParasiteZed.syncKills = function(args)
+
+function ParasiteZed.doSyncPlayerData(pl)
+    pl = pl or getPlayer()
+    if not pl then return end
+
+    local modData = pl:getModData()
+    if not modData then return end
+    local data = {
+        isParasiteQueenPl  = modData["isParasiteQueenPl"]  or false,
+        isParasitePl = modData["isParasitePl"] or false,
+        QueenKillCount  = modData["ParasiteZed_QueenKillCount"]  or 0,
+        KillCount  = modData["ParasiteZed_KillCount"]  or 0,
+    }
+
+    if isClient() then
+        sendClientCommand('ParasiteZed', 'syncPlayer', { data = data,  id = pl:getOnlineID() })
+    end
+
+end
+Events.OnScoreboardUpdate.Add(ParasiteZed.doSyncPlayerData)
+
+Commands.ParasiteZed.syncPlayer = function(args)
+    local pl = getPlayer() 
     if not args or not args.id then return end
-
     local targ = getPlayerByOnlineID(args.id)
     if not targ then return end
-
-    if args.killCount ~= nil then
-        targ:getModData()["ParasiteZed_KillCount"] = args.killCount
-    end
+    if pl and pl ~= targ then
+        local md = targ:getModData()
+        if not md then return end
+        md["isParasitePl"] = data.isParasitePl  or false
+        md["isParasiteQueenPl"] = data.isParasiteQueenPl  or false
+        md["ParasiteZed_KillCount"] = data.KillCount  or 0
+        md["ParasiteZed_QueenKillCount"] = data.QueenKillCount  or 0
+        targ:setVariable('isParasiteZed', md["isParasitePl"]);
+        targ:setVariable('isParasiteQueenPl', md["isParasiteQueenPl"]);    
+   end
 end
 
 -----------------------            ---------------------------
@@ -80,6 +109,7 @@ function ParasiteZed.doSyncData(zed)
             ParasiteZed_Gas  = modData["ParasiteZed_Gas"]  or nil,
             ParasiteZed_Spit = modData["ParasiteZed_Spit"] or nil,
             ParasiteZed_Egg  = modData["ParasiteZed_Egg"]  or nil,
+            ParasiteZed_Scent  = modData["ParasiteZed_Scent"]  or nil,
         }
         
         sendClientCommand('ParasiteZed', 'data', { data = data, zedID = zed:getOnlineID(), useless = zed:isUseless()})
@@ -100,6 +130,8 @@ Commands.ParasiteZed.data = function(args)
             md["ParasiteZed_Gas"]  = data.ParasiteZed_Gas  or nil
             md["ParasiteZed_Spit"] = data.ParasiteZed_Spit or nil
             md["ParasiteZed_Egg"]  = data.ParasiteZed_Egg  or nil
+            md["ParasiteZed_Scent"]  = data.ParasiteZed_Scent  or nil
+
             if args.useless ~= nil then 
                 zed:setUseless(args.useless)
             end
@@ -161,17 +193,15 @@ function ParasiteZed.isShouldChase(zed)
 end
 
 function ParasiteZed.setScent(targ)
+  
+    if not targ then return end
     targ:getModData()['ParasiteZed_Scent'] = true
-    if instanceof(targ, "IsoPlayer")  then
-        targ:getModData()['isScentMarked'] = true 
-    else
-        targ:getModData()['ParasiteZed_Scent'] = true
-    end
+    ParasiteZed.doSyncData(zed)
 
     timer:Simple(10, function()  
         if targ and targ:isAlive() then
             targ:getModData()['ParasiteZed_Scent'] = nil 
-            targ:getModData()['isScentMarked'] = nil 
+            ParasiteZed.doSyncData(zed)
         end
     end)
 end
@@ -242,23 +272,6 @@ Events.OnZombieUpdate.Add(ParasiteZed.soldier)
 -----------------------            ---------------------------
 
 
-Commands.ParasiteZed.isParasiteZed = function(args)
-    local source = getPlayer();
-    local player = getPlayerByOnlineID(args.id)
-    local zedID = args.zedID
-    if type(zedID) == 'string' then zedID = tonumber(zedID) end
-    local zed = ParasiteZed.findzedID(zedID)
-    if zed ~= nil then
-		if source ~= player then
-			if args.isParasiteZed == 'true' then
-				zed:setVariable('isParasiteZed', 'true');
-			else
-				zed:setVariable('isParasiteZed', 'false');
-			end
-		end
-    end
-end
-
 Commands.ParasiteZed.KnockDown = function(args)
     local source = getPlayer();
     local player = getPlayerByOnlineID(args.id)
@@ -270,7 +283,8 @@ Commands.ParasiteZed.KnockDown = function(args)
 			zed:setKnockedDown(true)
 		end
 	end
-end--[[ 
+end
+--[[ 
 
 Commands.ParasiteZed.CellEvent = function(args)
     local cellName = args.cellName
@@ -291,6 +305,43 @@ end
  ]]
 -----------------------            ---------------------------
 
+Commands.ParasiteZed.isParasiteZed = function(args)
+    local source = getPlayer();
+    local player = getPlayerByOnlineID(args.id)
+    local zedID = args.zedID
+    if type(zedID) == 'string' then zedID = tonumber(zedID) end
+    local zed = ParasiteZed.findzedID(zedID)
+    if zed ~= nil then
+		if source ~= player then
+			if args.isParasiteZed == 'true' then
+				zed:setVariable('isParasiteZed', 'true');
+			else
+				zed:setVariable('isParasiteZed', 'false');
+			end
+		end
+    end
+end
+-----------------------            ---------------------------
+    
+
+Commands.ParasiteZed.isParasiteQueenPl = function(args)
+    local source = getPlayer();
+    local player = getPlayerByOnlineID(args.id)
+    if player ~= nil then
+        if source ~= player then
+            if args.isParasitePl then
+                --ParasiteZed.wearParasiteZed(player)
+                --player:setHideWeaponModel(true)
+                player:setVariable('isParasiteQueenPl', "true");        
+            else
+                --ParasiteZed.clearParasiteZedSkin(player)
+                --player:setHideWeaponModel(false)
+                player:setVariable('isParasiteQueenPl', "false");
+            end
+        end
+    end
+    --player:resetModelNextFrame();
+end
 Commands.ParasiteZed.isParasitePl = function(args)
     local source = getPlayer();
     local player = getPlayerByOnlineID(args.id)

@@ -90,7 +90,7 @@ function ParasiteZed.core(prevX, prevY, curX, curY)
     ParasiteZed.fetchZedLists()
     ParasiteZed.delGuide()
     Events.OnTick.Remove(ParasiteZed.guideHandler)
-    ParasiteZed.plSync()
+    --ParasiteZed.plSync()
 
     local prevNestCellName = ParasiteZed.getNestCellName(prevX, prevY)
     local curNestCellName = ParasiteZed.getNestCellName(x, y)

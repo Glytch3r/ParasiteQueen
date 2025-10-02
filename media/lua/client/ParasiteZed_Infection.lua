@@ -102,7 +102,8 @@ function ParasiteZed.hit(zpl, pl, wpn, HP)
             ParasiteZed.doParasiteInfect(pl)
         end
     end
-    ParasiteZed.plSync()
+    ParasiteZed.doSyncPlayerData(pl)
+    --ParasiteZed.plSync()
 end
 Events.OnWeaponHitCharacter.Remove(ParasiteZed.hit)
 Events.OnWeaponHitCharacter.Add(ParasiteZed.hit)
@@ -174,7 +175,7 @@ Events.EveryHours.Add(ParasiteZed.immunity)
 ParasiteZed.lastMouseCheck = 0
 function ParasiteZed.mousePoint()
     if not isIngameState() then return end
-
+    
     local pl = getPlayer()
     if not pl or not ParasiteZed.isWearingParasiteMask(pl) then return end
 
@@ -195,9 +196,9 @@ function ParasiteZed.mousePoint()
                 if md then
                     local score = md.ParasiteZed_KillCount or 0
                     chr:addLineChatElement("Parasite Killed: " .. tostring(score))
-                    if (getCore():getDebug() and  ParasiteZed.isAdm(pl)) and ParasiteZed.isWIP then
+                    --if (getCore():getDebug() and  ParasiteZed.isAdm(pl)) and ParasiteZed.isWIP then
                       --  pl:setHaloNote( "NestCell: ".. tostring(ParasiteZed.getNestCellName()),150,250,150,900)
-                    end
+                    --end
                 end
             end
         end
