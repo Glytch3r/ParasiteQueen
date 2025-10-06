@@ -134,9 +134,9 @@ Commands.ParasiteZed.data = function(args)
             md["ParasiteZed_Egg"]  = data.ParasiteZed_Egg  or nil
             md["ParasiteZed_Scent"]  = data.ParasiteZed_Scent  or nil
 
-            if args.useless ~= nil then 
+      --[[       if args.useless ~= nil then 
                 zed:setUseless(args.useless)
-            end
+            end ]]
         end
     end
 end

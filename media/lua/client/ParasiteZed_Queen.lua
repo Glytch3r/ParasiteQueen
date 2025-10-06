@@ -191,7 +191,7 @@ function ParasiteZed.behavior(zed)
                                         zed:setUseless(false)    
                                         ParasiteZed.doSyncData(zed)
                                     end
-                                    zed:faceLocation(targ:getX(), targ:getY())     
+                                    --zed:faceLocation(targ:getX(), targ:getY())     
                                 end
                             end
                         else

@@ -20,7 +20,7 @@
 	</m_Conditions>
 
 	<m_Conditions>
-		<m_Name>isParasiteQueen</m_Name>
+		<m_Name>isParasiteQueen2</m_Name>
 		<m_Type>BOOL</m_Type>
 		<m_BoolValue>true</m_BoolValue>
 	</m_Conditions>
