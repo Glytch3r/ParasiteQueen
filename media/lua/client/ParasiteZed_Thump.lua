@@ -29,7 +29,7 @@ function ParasiteZed.thumpHandler(zed)
     if isQueen and pl then
         if ParasiteZed.isClosestPl(pl, zed) then
             local rState =  zed:getRealState()
-            if string.lower(rState) == 'thump' then   
+            if rState and string.lower(rState) == 'thump' then   
                 local thump = zed:getThumpTarget()
                 if thump then
                     local cond = zed:getThumpCondition() 
