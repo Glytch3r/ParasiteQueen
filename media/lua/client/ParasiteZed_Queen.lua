@@ -159,7 +159,7 @@ function ParasiteZed.behavior(zed)
                 local targ = zed:getTarget()
                 if targ == nil then
                     ParasiteZed.huntCorpse(zed)
-                elseif targ then
+                elseif targ and zed:isTargetVisible()  then
                     if not sq then return end
                     local cd = SandboxVars.ParasiteQueen.spitCooldown or 5
                     if cd > 0 then  
@@ -209,7 +209,6 @@ end
 
 Events.OnZombieUpdate.Remove(ParasiteZed.behavior)
 Events.OnZombieUpdate.Add(ParasiteZed.behavior)
-
 
 --[[ 
 function ParasiteZed.collide(zed, pl)
