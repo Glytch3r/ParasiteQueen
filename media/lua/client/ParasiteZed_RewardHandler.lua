@@ -152,6 +152,7 @@ function ParasiteZed.RewardsHandler(zed)
     if isQueen then
         md.ParasiteZed_QueenKillCount = (md.ParasiteZed_QueenKillCount or 0) + 1
         score = md.ParasiteZed_QueenKillCount
+        ParasiteZed.removeEffects()
     else
         md.ParasiteZed_KillCount = (md.ParasiteZed_KillCount or 0) + 1
         score = md.ParasiteZed_KillCount

@@ -123,6 +123,19 @@ function ParasiteZed.doGasTrigger(zed)
     end
 end
 
+function ParasiteZed.removeEffects()
+    if ParasiteZed.qmarker then
+        ParasiteZed.qmarker:remove()
+        ParasiteZed.qmarker = nil
+    end
+    if ParasiteZed.damageFlash then
+        ParasiteZed.damageFlash:close()   
+        ParasiteZed.damageFlash = nil
+        Events.OnTick.Remove(ParasiteZed.fade)
+    end
+    ParasiteZed.clearMarkers()
+end
+
 function ParasiteZed.doGas(zed, sq)
     local rad = 0.5
     if not zed then return end
@@ -156,10 +169,7 @@ function ParasiteZed.doGas(zed, sq)
         local dur = SandboxVars.ParasiteQueen.gasDuration or 5
         
         timer:Simple(dur, function()
-            if ParasiteZed.qmarker then
-                ParasiteZed.qmarker:remove()
-                ParasiteZed.qmarker = nil
-            end
+ 
             Events.OnTick.Remove(gas)
         end)
     end

@@ -5,7 +5,7 @@ function ParasiteZed.setQueenStats(zed)
         if zed:isReanimatedPlayer() then
             return
         end
-        if  zed:getModData()['ParasiteZed_Init'] == nil then
+        if  zed:getModData()['ParasiteQueen_Init'] == nil then
 
             local sandOpt = getSandboxOptions()
            
@@ -27,7 +27,7 @@ function ParasiteZed.setQueenStats(zed)
             ParasiteZed.cleanUp(zed)
 
             zed:setTurnDelta(4)
-            zed:getModData()['ParasiteZed_Init'] = true
+            zed:getModData()['ParasiteQueen_Init'] = true
             zed:resetModelNextFrame()
 
         end
@@ -132,7 +132,7 @@ function ParasiteZed.queen(zed)
     if not zed then return end
     local isQueen = ParasiteZed.isParasiteQueen(zed)
     if isQueen then
-        if zed:getModData()['ParasiteZed_Init'] == nil then
+        if zed:getModData()['ParasiteQueen_Init'] == nil then
             ParasiteZed.setQueenStats(zed)
         end
         if not zed:getVariableBoolean('isParasiteQueen') then
